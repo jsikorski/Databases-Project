@@ -1,0 +1,7 @@
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.exe.config
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.exe
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.pdb
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.exe
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.pdb
+E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\some.sql
