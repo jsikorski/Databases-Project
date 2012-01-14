@@ -5,3 +5,6 @@ E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\Instan
 E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.exe
 E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.pdb
 E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\some.sql
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.exe.config
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.exe
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.pdb
