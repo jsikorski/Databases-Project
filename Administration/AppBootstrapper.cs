@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
+using Administration.Utils;
 using Autofac;
 using System;
 using System.Collections.Generic;
 using Caliburn.Micro;
+using Connection;
 
 namespace Administration
 {
@@ -27,7 +29,7 @@ namespace Administration
 
         protected override void OnUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            //ErrorMessageBox.Show(e.Exception.InnerException);
+            MessageBoxService.ShowError(e.Exception.InnerException);
             e.Handled = true;
         }
 
@@ -38,6 +40,7 @@ namespace Administration
             containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AsImplementedInterfaces().AsSelf().PropertiesAutowired(
                     PropertyWiringFlags.PreserveSetValues);
+            containerBuilder.RegisterType<ConnectionProvider>().SingleInstance().AsImplementedInterfaces();
 
             containerBuilder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
             containerBuilder.RegisterType<WindowManager>().As<IWindowManager>();

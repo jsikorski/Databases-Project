@@ -14,14 +14,14 @@ namespace InstanceGenerator
 
         public ScriptLoader(string fileName)
         {
-            var script = new FileInfo("some.sql");
+            var script = new FileInfo(fileName);
             _scriptText = script.OpenText().ReadToEnd()
                 .Replace("\n", "").Replace("\r", "");
         }
 
         public IEnumerable<string> GetCommands()
         {
-            return _scriptText.Split(';').Where(command => !string.IsNullOrEmpty(command));
+            return _scriptText.Split(';').Where(command => !string.IsNullOrEmpty(command) && !command.StartsWith("--"));
         }
     }
 }

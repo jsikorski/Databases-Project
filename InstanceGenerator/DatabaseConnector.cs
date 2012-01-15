@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Odbc;
-using System.Linq;
-using System.Text;
 
 namespace InstanceGenerator
 {
-    public class DatabaseConnector
+    internal class DatabaseConnector : IDatabaseConnector
     {
-        public IDbConnection Connection { get; private set; }
         private readonly string _connectionString;
+
+        public IDbConnection Connection { get; private set; }
 
         public DatabaseConnector(string connectionString)
         {

@@ -8,3 +8,7 @@ E:\Dane\Jakub\Moje dokumenty\Visual Studio 2010\Projects\DatabasesProject\Instan
 C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.exe.config
 C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.exe
 C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\InstanceGenerator.pdb
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.exe
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.pdb
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\script.sql

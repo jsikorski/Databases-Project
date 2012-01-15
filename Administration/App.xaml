@@ -1,5 +1,6 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Administration="clr-namespace:Administration"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Administration="clr-namespace:Administration"
              x:Class="YourNamespace.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -7,7 +8,8 @@
                 <ResourceDictionary>
                     <Administration:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
-                <!--<ResourceDictionary Source="Styles/Styles.xaml" />-->
+                <ResourceDictionary Source="Styles/Styles.xaml" />
+                <ResourceDictionary Source="Styles/WhistlerBlue.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

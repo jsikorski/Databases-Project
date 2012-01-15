@@ -6,12 +6,12 @@ using System.Text;
 
 namespace InstanceGenerator
 {
-    public class DatabaseGenerator
+    internal class DatabaseGenerator
     {
-        private readonly DatabaseConnector _dbConnector;
+        private readonly IDatabaseConnector _dbConnector;
         private readonly ScriptLoader _scriptLoader;
 
-        public DatabaseGenerator(DatabaseConnector dbConnector, ScriptLoader scriptLoader)
+        public DatabaseGenerator(IDatabaseConnector dbConnector, ScriptLoader scriptLoader)
         {
             _dbConnector = dbConnector;
             _scriptLoader = scriptLoader;
@@ -23,9 +23,10 @@ namespace InstanceGenerator
             {
                 _dbConnector.Connect();
             }
-            catch
+            catch (Exception exception)
             {
                 Console.WriteLine("\nCannot connect to database server.");
+                Console.WriteLine("Exception: " + exception.Message);
                 return;
             }
 
@@ -42,10 +43,11 @@ namespace InstanceGenerator
                     dbCommand.ExecuteNonQuery();
                     Console.WriteLine("Success");
                 }
-                catch
+                catch (Exception exception)
                 {
                     Console.WriteLine("Cannot execute command: {0}", command);
                     Console.WriteLine("\nDatabase generating failure.");
+                    Console.WriteLine("Exception: " + exception.Message);
                     return;
                 }
             }

@@ -26,7 +26,7 @@ namespace InstanceGenerator
                 password);
 
             var databaseConnector = new DatabaseConnector(connectionString);
-            var scriptLoader = new ScriptLoader("some.sql");
+            var scriptLoader = new ScriptLoader("script.sql");
             var databaseGenerator = new DatabaseGenerator(databaseConnector, scriptLoader);
 
             databaseGenerator.Generate();
