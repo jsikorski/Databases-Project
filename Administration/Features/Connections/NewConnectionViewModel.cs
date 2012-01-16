@@ -120,7 +120,8 @@ namespace Administration.Features.Connections
                        !string.IsNullOrEmpty(Price.Trim('_')) &&
                        !string.IsNullOrEmpty(NumberOfTickets.Trim('_')) &&
                        SelectedFromAirport != null &&
-                       SelectedToAirport != null;
+                       SelectedToAirport != null && 
+                       SelectedFromAirport != SelectedToAirport;
             }
         }
 

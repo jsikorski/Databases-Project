@@ -15,6 +15,9 @@
                   ItemsSource="{Binding Airports}"
                   SelectedItem="{Binding SelectedAirport, Mode=OneWayToSource}">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Symbol"
+                                    Width="*"
+                                    Binding="{Binding SYMBOL}" />
                 <DataGridTextColumn Header="Name"
                                     Width="*"
                                     Binding="{Binding NAME}" />
