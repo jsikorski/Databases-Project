@@ -26,7 +26,7 @@ namespace Administration.Infrastucture
             }
         }
 
-        public static void Invoke(ICommand command, Action onComplete)
+        public static void Invoke(ICommand command, Action onComplete = null)
         {
             ThreadPool.QueueUserWorkItem(o =>
                                              {
@@ -44,6 +44,12 @@ namespace Administration.Infrastucture
                                                      onComplete();                                                     
                                                  }
                                              });
+        }
+
+        public static void InvokeBusy(ICommand command, IBusyScope busyScope)
+        {
+            busyScope.IsBusy = true;
+            Invoke(command, () => busyScope.IsBusy = false);
         }
 
         private static void ShowErrorMessage(Exception exception)

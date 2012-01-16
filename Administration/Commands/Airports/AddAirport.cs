@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Linq;
-using Administration.Features;
 using Administration.Features.Airports;
 using Common;
 using Connection;
@@ -11,24 +10,20 @@ namespace Administration.Commands.Airports
     {
         private readonly IConnectionProvider _connectionProvider;
         private readonly AirportCreationData _airportCreationData;
-        private readonly MainViewModel _mainViewModel;
         private readonly ISymbolsProvider _symbolsProvider;
 
         public AddAirport(
             IConnectionProvider connectionProvider,
             AirportCreationData airportCreationData,
-            MainViewModel mainViewModel,
             ISymbolsProvider symbolsProvider)
         {
             _connectionProvider = connectionProvider;
             _airportCreationData = airportCreationData;
-            _mainViewModel = mainViewModel;
             _symbolsProvider = symbolsProvider;
         }
 
         public void Execute()
         {
-            _mainViewModel.IsBusy = true;
             DBConnection dbConnection = _connectionProvider.GetConnection();
 
             COUNTRY country = dbConnection.COUNTRY.FirstOrDefault(c => c.NAME == _airportCreationData.CountryName);

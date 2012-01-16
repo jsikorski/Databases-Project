@@ -9,5 +9,6 @@ namespace Common
     public interface ISymbolsProvider
     {
         string GetAirportSymbol(CITY city, COUNTRY country);
+        string GetConnectionSymbol(AIRPORT from, AIRPORT to);
     }
 }

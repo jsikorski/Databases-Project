@@ -5,32 +5,51 @@
         Width="300"
         SizeToContent="Height"
         WindowStartupLocation="CenterScreen">
-    <StackPanel Orientation="Vertical"
-                Margin="10">
-        <Label Content="Departure time" />
-        <extToolkit:TimePicker></extToolkit:TimePicker>
+    <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
+        <StackPanel Orientation="Vertical"
+                    Margin="10">
+            <Label Content="Departure time" />
+            <extToolkit:TimePicker Value="{Binding DepartureTime, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Content="Arival time" />
-        <extToolkit:TimePicker></extToolkit:TimePicker>
+            <Label Content="Arival time" />
+            <extToolkit:TimePicker Value="{Binding ArivalTime, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Content="Day" />
-        <ComboBox />
+            <Label Content="Day" />
+            <ComboBox ItemsSource="{Binding Days}"
+                      SelectedItem="{Binding SelectedDay, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Content="Price" />
-        <extToolkit:MaskedTextBox Mask="000000" />
+            <Label Content="Price" />
+            <extToolkit:MaskedTextBox Mask="000000"
+                                      Text="{Binding Price, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Content="Number of tickets" />
-        <extToolkit:MaskedTextBox Mask="0000" />
+            <Label Content="Number of tickets" />
+            <extToolkit:MaskedTextBox Mask="0000"
+                                      Text="{Binding NumberOfTickets, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Content="From" />
-        <ComboBox />
+            <Label Content="From" />
+            <ComboBox ItemsSource="{Binding Airports}"
+                      SelectedItem="{Binding SelectedFromAirport, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding NAME}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-        <Label Content="To" />
-        <ComboBox />
+            <Label Content="To" />
+            <ComboBox ItemsSource="{Binding Airports}"
+                      SelectedItem="{Binding SelectedToAirport, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding NAME}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-        <Button Name="AddConnection"
-                Content="Add"
-                Margin="0 15 0 0"></Button>
+            <Button Name="AddConnection"
+                    Content="Add"
+                    Margin="0 15 0 0"></Button>
 
-    </StackPanel>
+        </StackPanel>
+    </extToolkit:BusyIndicator>
 </Window>

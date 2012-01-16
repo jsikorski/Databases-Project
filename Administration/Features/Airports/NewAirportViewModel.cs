@@ -76,7 +76,7 @@ namespace Administration.Features.Airports
             TryClose();
             var airportCreationData = new AirportCreationData(AirportName, CityName, CountryName);
             ICommand addAirport = _container.Resolve<AddAirport>(new NamedParameter("airportCreationData", airportCreationData));
-            return new CommandResult(addAirport, () => _mainViewModel.IsBusy = false);
+            return new BusyCommandResult(addAirport, _mainViewModel);
         }
     }
 }

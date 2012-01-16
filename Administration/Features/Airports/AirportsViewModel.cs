@@ -55,16 +55,10 @@ namespace Administration.Features.Airports
 
         public IResult SearchAirports()
         {
-            var airportsSearchData = new AirportsSearchData
-                                       {
-                                           AirportName = AirportName,
-                                           CityName = CityName,
-                                           CountryName = CountryName
-                                       };
-
+            var airportsSearchData = new AirportsSearchData(AirportName, CityName, CountryName);
             ICommand command = _container.Resolve<SearchAirports>(
                 new NamedParameter("airportsSearchData", airportsSearchData));
-            return new CommandResult(command, () => _busyScope.IsBusy = false);
+            return new BusyCommandResult(command, _busyScope);
         }
 
         public void NewAirport()
@@ -76,7 +70,7 @@ namespace Administration.Features.Airports
         public IResult RemoveAirport()
         {
             ICommand command = _container.Resolve<RemoveAirport>(new TypedParameter(typeof(AIRPORT), SelectedAirport));
-            return new CommandResult(command, () => _busyScope.IsBusy = false);
+            return new CommandResult(command);
         }
 
         public void SetBusyScope(IBusyScope busyScope)

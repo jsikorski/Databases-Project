@@ -57,9 +57,8 @@ namespace Administration
         public IResult Login()
         {
             ICommand command = _container.Resolve<Login>(new NamedParameter("username", Username),
-                                                         new NamedParameter("password", Password),
-                                                         new NamedParameter("busyScope", this));
-            return new CommandResult(command, () => IsBusy = false);
+                                                         new NamedParameter("password", Password));
+            return new BusyCommandResult(command, this);
         }
 
         public void Handle(LoggedIn message)

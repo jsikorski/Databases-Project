@@ -34,6 +34,12 @@ namespace Administration.Features.Connections
             CommandInvoker.Execute(command);
         }
 
+        public IResult SearchConnections()
+        {
+            ICommand command = _container.Resolve<SearchConnections>();
+            return new BusyCommandResult(command, _busyScope);
+        }
+
         public void SetBusyScope(IBusyScope busyScope)
         {
             _busyScope = busyScope;
