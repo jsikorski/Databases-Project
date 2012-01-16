@@ -19,8 +19,8 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("Model", "AIRPORT_CITY_FK", "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CITY), "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPORT), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
+[assembly: EdmRelationshipAttribute("Model", "CONNECTION_FROM_AIRPORT_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
+[assembly: EdmRelationshipAttribute("Model", "CONNECTION_TO_AIRPORT_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
 [assembly: EdmRelationshipAttribute("Model", "CITY_COUNTRY_FK", "COUNTRY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.COUNTRY), "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CITY), true)]
 [assembly: EdmRelationshipAttribute("Model", "FLY_CONNECTION_FK", "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CONNECTION), "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.FLY), true)]
 [assembly: EdmRelationshipAttribute("Model", "RESERVATION_FLY_FK", "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.FLY), "RESERVATION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.RESERVATION), true)]
@@ -381,18 +381,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_FROM_AIRPORT_FK", "CONNECTION")]
         public EntityCollection<CONNECTION> CONNECTION
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM_FK", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_FROM_AIRPORT_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM_FK", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_FROM_AIRPORT_FK", "CONNECTION", value);
                 }
             }
         }
@@ -403,18 +403,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_TO_AIRPORT_FK", "CONNECTION")]
         public EntityCollection<CONNECTION> CONNECTION1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO_FK", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_TO_AIRPORT_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO_FK", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_TO_AIRPORT_FK", "CONNECTION", value);
                 }
             }
         }
@@ -835,16 +835,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_FROM_AIRPORT_FK", "AIRPORT")]
         public AIRPORT AIRPORT
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT").Value = value;
             }
         }
         /// <summary>
@@ -856,13 +856,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT", value);
                 }
             }
         }
@@ -873,16 +873,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_TO_AIRPORT_FK", "AIRPORT")]
         public AIRPORT AIRPORT1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT").Value = value;
             }
         }
         /// <summary>
@@ -894,13 +894,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT", value);
                 }
             }
         }

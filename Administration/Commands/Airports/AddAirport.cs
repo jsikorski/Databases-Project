@@ -53,7 +53,7 @@ namespace Administration.Commands.Airports
 
             var airport = new AIRPORT
                               {
-                                  SYMBOL = _symbolsProvider.GetAirportSymbol(city, country),
+                                  SYMBOL = _symbolsProvider.GetAirportSymbol(),
                                   NAME = _airportCreationData.AirportName,
                                   CITY_ID = city.ID
                               };

@@ -48,13 +48,14 @@ namespace Administration.Features.Airports
         {
             _container = container;
             _eventAggregator = eventAggregator;
-            _eventAggregator.Subscribe(this);
 
             Airports = new BindableCollection<AIRPORT>();
         }
 
         public IResult SearchAirports()
         {
+            _eventAggregator.Subscribe(this);
+
             var airportsSearchData = new AirportsSearchData(AirportName, CityName, CountryName);
             ICommand command = _container.Resolve<SearchAirports>(
                 new NamedParameter("airportsSearchData", airportsSearchData));
@@ -69,6 +70,8 @@ namespace Administration.Features.Airports
 
         public IResult RemoveAirport()
         {
+            _eventAggregator.Subscribe(this);
+
             ICommand command = _container.Resolve<RemoveAirport>(new TypedParameter(typeof(AIRPORT), SelectedAirport));
             return new CommandResult(command);
         }
@@ -82,11 +85,15 @@ namespace Administration.Features.Airports
         {
             Airports.Clear();
             Airports.AddRange(message.Airports);
+
+            _eventAggregator.Unsubscribe(this);
         }
 
         public void Handle(AirportRemoved message)
         {
             Airports.Remove(SelectedAirport);
+            
+            _eventAggregator.Unsubscribe(this);
         }
     }
 }

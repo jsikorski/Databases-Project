@@ -2,22 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Connection;
 
 namespace Common
 {
     public class SymbolsProvider : ISymbolsProvider
     {
-        public string GetAirportSymbol(CITY city, COUNTRY country)
+        public string GetAirportSymbol()
         {
-            return string.Format("{0}_{1}_{2}", 
-                city.NAME.Substring(0, 2), country.NAME.Substring(0, 2), DateTime.Now);
+            return string.Format("{0}_{1}", "AIRPORT", DateTime.Now);
         }
 
-        public string GetConnectionSymbol(AIRPORT @from, AIRPORT to)
+        public string GetConnectionSymbol()
         {
-            return string.Format("{0}_{1}_{2}",
-                @from.NAME.Substring(0, 2), to.NAME.Substring(0, 2), DateTime.Now);
+            return string.Format("{0}_{1}", "CONNECTION", DateTime.Now);
         }
     }
 }
