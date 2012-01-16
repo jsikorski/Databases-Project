@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Administration", "Administr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connection", "Connection\Connection.csproj", "{DE720842-0F5C-4A99-8765-C9C715DD84AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{DE720842-0F5C-4A99-8765-C9C715DD84AE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DE720842-0F5C-4A99-8765-C9C715DD84AE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DE720842-0F5C-4A99-8765-C9C715DD84AE}.Release|x86.ActiveCfg = Release|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

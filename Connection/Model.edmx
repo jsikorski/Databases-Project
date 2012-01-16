@@ -4,124 +4,73 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.DataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="AIRPLANE" EntityType="Model.Store.AIRPLANE" store:Type="Tables" Schema="JAKUB" />
-          <EntitySet Name="AIRPLANEMODEL" EntityType="Model.Store.AIRPLANEMODEL" store:Type="Tables" Schema="JAKUB" />
           <EntitySet Name="AIRPORT" EntityType="Model.Store.AIRPORT" store:Type="Tables" Schema="JAKUB" />
-          <EntitySet Name="CARRIER" EntityType="Model.Store.CARRIER" store:Type="Tables" Schema="JAKUB" />
           <EntitySet Name="CITY" EntityType="Model.Store.CITY" store:Type="Tables" Schema="JAKUB" />
           <EntitySet Name="CONNECTION" EntityType="Model.Store.CONNECTION" store:Type="Tables" Schema="JAKUB" />
           <EntitySet Name="COUNTRY" EntityType="Model.Store.COUNTRY" store:Type="Tables" Schema="JAKUB" />
           <EntitySet Name="FLY" EntityType="Model.Store.FLY" store:Type="Tables" Schema="JAKUB" />
-          <EntitySet Name="PRODUCER" EntityType="Model.Store.PRODUCER" store:Type="Tables" Schema="JAKUB" />
           <EntitySet Name="RESERVATION" EntityType="Model.Store.RESERVATION" store:Type="Tables" Schema="JAKUB" />
-          <AssociationSet Name="AIRPLANE_AIRPLANEMODEL" Association="Model.Store.AIRPLANE_AIRPLANEMODEL">
-            <End Role="AIRPLANEMODEL" EntitySet="AIRPLANEMODEL" />
-            <End Role="AIRPLANE" EntitySet="AIRPLANE" />
-          </AssociationSet>
-          <AssociationSet Name="AIRPLANE_CARRIER" Association="Model.Store.AIRPLANE_CARRIER">
-            <End Role="CARRIER" EntitySet="CARRIER" />
-            <End Role="AIRPLANE" EntitySet="AIRPLANE" />
-          </AssociationSet>
-          <AssociationSet Name="AIRPLANEMODEL_PRODUCER" Association="Model.Store.AIRPLANEMODEL_PRODUCER">
-            <End Role="PRODUCER" EntitySet="PRODUCER" />
-            <End Role="AIRPLANEMODEL" EntitySet="AIRPLANEMODEL" />
-          </AssociationSet>
-          <AssociationSet Name="AIRPORT_CITY" Association="Model.Store.AIRPORT_CITY">
+          <AssociationSet Name="AIRPORT_CITY_FK" Association="Model.Store.AIRPORT_CITY_FK">
             <End Role="CITY" EntitySet="CITY" />
             <End Role="AIRPORT" EntitySet="AIRPORT" />
           </AssociationSet>
-          <AssociationSet Name="CITY_COUNTRY" Association="Model.Store.CITY_COUNTRY">
+          <AssociationSet Name="CITY_COUNTRY_FK" Association="Model.Store.CITY_COUNTRY_FK">
             <End Role="COUNTRY" EntitySet="COUNTRY" />
             <End Role="CITY" EntitySet="CITY" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_AIRPLANEMODEL" Association="Model.Store.CONNECTION_AIRPLANEMODEL">
-            <End Role="AIRPLANEMODEL" EntitySet="AIRPLANEMODEL" />
-            <End Role="CONNECTION" EntitySet="CONNECTION" />
-          </AssociationSet>
-          <AssociationSet Name="CONNECTION_AIRPORT_FROM" Association="Model.Store.CONNECTION_AIRPORT_FROM">
+          <AssociationSet Name="CONNECTION_AIRPORT_FROM_FK" Association="Model.Store.CONNECTION_AIRPORT_FROM_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_AIRPORT_TO" Association="Model.Store.CONNECTION_AIRPORT_TO">
+          <AssociationSet Name="CONNECTION_AIRPORT_TO_FK" Association="Model.Store.CONNECTION_AIRPORT_TO_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_CARRIER" Association="Model.Store.CONNECTION_CARRIER">
-            <End Role="CARRIER" EntitySet="CARRIER" />
-            <End Role="CONNECTION" EntitySet="CONNECTION" />
-          </AssociationSet>
-          <AssociationSet Name="FLY_AIRPLANE" Association="Model.Store.FLY_AIRPLANE">
-            <End Role="AIRPLANE" EntitySet="AIRPLANE" />
-            <End Role="FLY" EntitySet="FLY" />
-          </AssociationSet>
-          <AssociationSet Name="FLY_CONNECTION" Association="Model.Store.FLY_CONNECTION">
+          <AssociationSet Name="FLY_CONNECTION_FK" Association="Model.Store.FLY_CONNECTION_FK">
             <End Role="CONNECTION" EntitySet="CONNECTION" />
             <End Role="FLY" EntitySet="FLY" />
           </AssociationSet>
-          <AssociationSet Name="RESERVATION_FLY" Association="Model.Store.RESERVATION_FLY">
+          <AssociationSet Name="RESERVATION_FLY_FK" Association="Model.Store.RESERVATION_FLY_FK">
             <End Role="FLY" EntitySet="FLY" />
             <End Role="RESERVATION" EntitySet="RESERVATION" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="AIRPLANE">
-          <Key>
-            <PropertyRef Name="SYMBOL" />
-          </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="PRODUCTIONDATE" Type="date" Nullable="false" />
-          <Property Name="MODELNAME" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="CARRIERSYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="AIRPLANEMODEL">
-          <Key>
-            <PropertyRef Name="NAME" />
-          </Key>
-          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="PRODUCERNAME" Type="varchar2" Nullable="false" MaxLength="20" />
-        </EntityType>
         <EntityType Name="AIRPORT">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="10" />
-          <Property Name="CITYNAME" Type="varchar2" Nullable="false" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="CARRIER">
-          <Key>
-            <PropertyRef Name="SYMBOL" />
-          </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="30" />
-          <Property Name="RATE" Type="float" Precision="126" />
+          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="30" />
+          <Property Name="CITY_ID" Type="number" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
         </EntityType>
         <EntityType Name="CITY">
           <Key>
-            <PropertyRef Name="NAME" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="number" Nullable="false" />
           <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="COUNTRYNAME" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="COUNTRY_ID" Type="number" Nullable="false" />
         </EntityType>
         <EntityType Name="CONNECTION">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
           <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="DEPARTURETIME" Type="date" Nullable="false" />
-          <Property Name="ARIVALTIME" Type="date" Nullable="false" />
+          <Property Name="DEPARTURE_TIME" Type="date" Nullable="false" />
+          <Property Name="ARIVAL_TIME" Type="date" Nullable="false" />
           <Property Name="WEEKDAY" Type="varchar2" Nullable="false" MaxLength="9" />
           <Property Name="PRICE" Type="number" Nullable="false" />
           <Property Name="TICKETS" Type="number" Nullable="false" />
-          <Property Name="CARRIERSYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="AIRPLANEMODELNAME" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="FROMAIRPORTSYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="TOAIRPORTSYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="FROM_AIRPORT_SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="TO_AIRPORT_SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
         </EntityType>
         <EntityType Name="COUNTRY">
           <Key>
-            <PropertyRef Name="NAME" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="number" Nullable="false" />
           <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
         </EntityType>
         <EntityType Name="FLY">
@@ -129,100 +78,49 @@
             <PropertyRef Name="SYMBOL" />
           </Key>
           <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="FLYDATE" Type="date" Nullable="false" />
-          <Property Name="AIRPLANESYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="CONNECTIONSYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="FREEPLACESNUMBER" Type="number" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PRODUCER">
-          <Key>
-            <PropertyRef Name="NAME" />
-          </Key>
-          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="FLY_DATE" Type="date" Nullable="false" />
+          <Property Name="CONNECTION_SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="FREE_PLACES_NUMBER" Type="number" Nullable="false" />
         </EntityType>
         <EntityType Name="RESERVATION">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
           <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="PLACENUMBER" Type="varchar2" MaxLength="20" />
-          <Property Name="ISPAID" Type="number" Precision="1" />
-          <Property Name="FLYSYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="CLIENTID" Type="number" />
+          <Property Name="PLACE_NUMBER" Type="varchar2" MaxLength="20" />
+          <Property Name="IS_PAID" Type="number" Precision="1" />
+          <Property Name="FLY_SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="CLIENT_ID" Type="number" />
         </EntityType>
-        <Association Name="AIRPLANE_AIRPLANEMODEL">
-          <End Role="AIRPLANEMODEL" Type="Model.Store.AIRPLANEMODEL" Multiplicity="1" />
-          <End Role="AIRPLANE" Type="Model.Store.AIRPLANE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AIRPLANEMODEL">
-              <PropertyRef Name="NAME" />
-            </Principal>
-            <Dependent Role="AIRPLANE">
-              <PropertyRef Name="MODELNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AIRPLANE_CARRIER">
-          <End Role="CARRIER" Type="Model.Store.CARRIER" Multiplicity="1" />
-          <End Role="AIRPLANE" Type="Model.Store.AIRPLANE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARRIER">
-              <PropertyRef Name="SYMBOL" />
-            </Principal>
-            <Dependent Role="AIRPLANE">
-              <PropertyRef Name="CARRIERSYMBOL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AIRPLANEMODEL_PRODUCER">
-          <End Role="PRODUCER" Type="Model.Store.PRODUCER" Multiplicity="1" />
-          <End Role="AIRPLANEMODEL" Type="Model.Store.AIRPLANEMODEL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCER">
-              <PropertyRef Name="NAME" />
-            </Principal>
-            <Dependent Role="AIRPLANEMODEL">
-              <PropertyRef Name="PRODUCERNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AIRPORT_CITY">
-          <End Role="CITY" Type="Model.Store.CITY" Multiplicity="1" />
+        <Association Name="AIRPORT_CITY_FK">
+          <End Role="CITY" Type="Model.Store.CITY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CITY">
-              <PropertyRef Name="NAME" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="AIRPORT">
-              <PropertyRef Name="CITYNAME" />
+              <PropertyRef Name="CITY_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CITY_COUNTRY">
-          <End Role="COUNTRY" Type="Model.Store.COUNTRY" Multiplicity="1" />
+        <Association Name="CITY_COUNTRY_FK">
+          <End Role="COUNTRY" Type="Model.Store.COUNTRY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CITY" Type="Model.Store.CITY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="COUNTRY">
-              <PropertyRef Name="NAME" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CITY">
-              <PropertyRef Name="COUNTRYNAME" />
+              <PropertyRef Name="COUNTRY_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_AIRPLANEMODEL">
-          <End Role="AIRPLANEMODEL" Type="Model.Store.AIRPLANEMODEL" Multiplicity="1" />
-          <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AIRPLANEMODEL">
-              <PropertyRef Name="NAME" />
-            </Principal>
-            <Dependent Role="CONNECTION">
-              <PropertyRef Name="AIRPLANEMODELNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CONNECTION_AIRPORT_FROM">
+        <Association Name="CONNECTION_AIRPORT_FROM_FK">
           <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1" />
           <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -230,11 +128,11 @@
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="CONNECTION">
-              <PropertyRef Name="FROMAIRPORTSYMBOL" />
+              <PropertyRef Name="FROM_AIRPORT_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_AIRPORT_TO">
+        <Association Name="CONNECTION_AIRPORT_TO_FK">
           <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1" />
           <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -242,35 +140,11 @@
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="CONNECTION">
-              <PropertyRef Name="TOAIRPORTSYMBOL" />
+              <PropertyRef Name="TO_AIRPORT_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_CARRIER">
-          <End Role="CARRIER" Type="Model.Store.CARRIER" Multiplicity="1" />
-          <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARRIER">
-              <PropertyRef Name="SYMBOL" />
-            </Principal>
-            <Dependent Role="CONNECTION">
-              <PropertyRef Name="CARRIERSYMBOL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FLY_AIRPLANE">
-          <End Role="AIRPLANE" Type="Model.Store.AIRPLANE" Multiplicity="1" />
-          <End Role="FLY" Type="Model.Store.FLY" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AIRPLANE">
-              <PropertyRef Name="SYMBOL" />
-            </Principal>
-            <Dependent Role="FLY">
-              <PropertyRef Name="AIRPLANESYMBOL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FLY_CONNECTION">
+        <Association Name="FLY_CONNECTION_FK">
           <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="1" />
           <End Role="FLY" Type="Model.Store.FLY" Multiplicity="*" />
           <ReferentialConstraint>
@@ -278,11 +152,11 @@
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="FLY">
-              <PropertyRef Name="CONNECTIONSYMBOL" />
+              <PropertyRef Name="CONNECTION_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RESERVATION_FLY">
+        <Association Name="RESERVATION_FLY_FK">
           <End Role="FLY" Type="Model.Store.FLY" Multiplicity="1" />
           <End Role="RESERVATION" Type="Model.Store.RESERVATION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -290,389 +164,252 @@
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="RESERVATION">
-              <PropertyRef Name="FLYSYMBOL" />
+              <PropertyRef Name="FLY_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="DBConnection" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AIRPLANE" EntityType="Model.AIRPLANE" />
-          <EntitySet Name="AIRPLANEMODEL" EntityType="Model.AIRPLANEMODEL" />
           <EntitySet Name="AIRPORT" EntityType="Model.AIRPORT" />
-          <EntitySet Name="CARRIER" EntityType="Model.CARRIER" />
           <EntitySet Name="CITY" EntityType="Model.CITY" />
           <EntitySet Name="CONNECTION" EntityType="Model.CONNECTION" />
           <EntitySet Name="COUNTRY" EntityType="Model.COUNTRY" />
           <EntitySet Name="FLY" EntityType="Model.FLY" />
-          <EntitySet Name="PRODUCER" EntityType="Model.PRODUCER" />
           <EntitySet Name="RESERVATION" EntityType="Model.RESERVATION" />
-          <AssociationSet Name="AIRPLANE_AIRPLANEMODEL" Association="Model.AIRPLANE_AIRPLANEMODEL">
-            <End Role="AIRPLANEMODEL" EntitySet="AIRPLANEMODEL" />
-            <End Role="AIRPLANE" EntitySet="AIRPLANE" />
-          </AssociationSet>
-          <AssociationSet Name="AIRPLANE_CARRIER" Association="Model.AIRPLANE_CARRIER">
-            <End Role="CARRIER" EntitySet="CARRIER" />
-            <End Role="AIRPLANE" EntitySet="AIRPLANE" />
-          </AssociationSet>
-          <AssociationSet Name="FLY_AIRPLANE" Association="Model.FLY_AIRPLANE">
-            <End Role="AIRPLANE" EntitySet="AIRPLANE" />
-            <End Role="FLY" EntitySet="FLY" />
-          </AssociationSet>
-          <AssociationSet Name="AIRPLANEMODEL_PRODUCER" Association="Model.AIRPLANEMODEL_PRODUCER">
-            <End Role="PRODUCER" EntitySet="PRODUCER" />
-            <End Role="AIRPLANEMODEL" EntitySet="AIRPLANEMODEL" />
-          </AssociationSet>
-          <AssociationSet Name="CONNECTION_AIRPLANEMODEL" Association="Model.CONNECTION_AIRPLANEMODEL">
-            <End Role="AIRPLANEMODEL" EntitySet="AIRPLANEMODEL" />
-            <End Role="CONNECTION" EntitySet="CONNECTION" />
-          </AssociationSet>
-          <AssociationSet Name="AIRPORT_CITY" Association="Model.AIRPORT_CITY">
+          <AssociationSet Name="AIRPORT_CITY_FK" Association="Model.AIRPORT_CITY_FK">
             <End Role="CITY" EntitySet="CITY" />
             <End Role="AIRPORT" EntitySet="AIRPORT" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_AIRPORT_FROM" Association="Model.CONNECTION_AIRPORT_FROM">
+          <AssociationSet Name="CONNECTION_AIRPORT_FROM_FK" Association="Model.CONNECTION_AIRPORT_FROM_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_AIRPORT_TO" Association="Model.CONNECTION_AIRPORT_TO">
+          <AssociationSet Name="CONNECTION_AIRPORT_TO_FK" Association="Model.CONNECTION_AIRPORT_TO_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_CARRIER" Association="Model.CONNECTION_CARRIER">
-            <End Role="CARRIER" EntitySet="CARRIER" />
-            <End Role="CONNECTION" EntitySet="CONNECTION" />
-          </AssociationSet>
-          <AssociationSet Name="CITY_COUNTRY" Association="Model.CITY_COUNTRY">
+          <AssociationSet Name="CITY_COUNTRY_FK" Association="Model.CITY_COUNTRY_FK">
             <End Role="COUNTRY" EntitySet="COUNTRY" />
             <End Role="CITY" EntitySet="CITY" />
           </AssociationSet>
-          <AssociationSet Name="FLY_CONNECTION" Association="Model.FLY_CONNECTION">
+          <AssociationSet Name="FLY_CONNECTION_FK" Association="Model.FLY_CONNECTION_FK">
             <End Role="CONNECTION" EntitySet="CONNECTION" />
             <End Role="FLY" EntitySet="FLY" />
           </AssociationSet>
-          <AssociationSet Name="RESERVATION_FLY" Association="Model.RESERVATION_FLY">
+          <AssociationSet Name="RESERVATION_FLY_FK" Association="Model.RESERVATION_FLY_FK">
             <End Role="FLY" EntitySet="FLY" />
             <End Role="RESERVATION" EntitySet="RESERVATION" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="AIRPLANE">
-          <Key>
-            <PropertyRef Name="SYMBOL" />
-          </Key>
-          <Property Name="SYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="PRODUCTIONDATE" Type="DateTime" Nullable="false" />
-          <Property Name="MODELNAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="CARRIERSYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="AIRPLANEMODEL" Relationship="Model.AIRPLANE_AIRPLANEMODEL" FromRole="AIRPLANE" ToRole="AIRPLANEMODEL" />
-          <NavigationProperty Name="CARRIER" Relationship="Model.AIRPLANE_CARRIER" FromRole="AIRPLANE" ToRole="CARRIER" />
-          <NavigationProperty Name="FLY" Relationship="Model.FLY_AIRPLANE" FromRole="AIRPLANE" ToRole="FLY" />
-        </EntityType>
-        <EntityType Name="AIRPLANEMODEL">
-          <Key>
-            <PropertyRef Name="NAME" />
-          </Key>
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="PRODUCERNAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="AIRPLANE" Relationship="Model.AIRPLANE_AIRPLANEMODEL" FromRole="AIRPLANEMODEL" ToRole="AIRPLANE" />
-          <NavigationProperty Name="PRODUCER" Relationship="Model.AIRPLANEMODEL_PRODUCER" FromRole="AIRPLANEMODEL" ToRole="PRODUCER" />
-          <NavigationProperty Name="CONNECTION" Relationship="Model.CONNECTION_AIRPLANEMODEL" FromRole="AIRPLANEMODEL" ToRole="CONNECTION" />
-        </EntityType>
         <EntityType Name="AIRPORT">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="CITYNAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="CITY" Relationship="Model.AIRPORT_CITY" FromRole="AIRPORT" ToRole="CITY" />
-          <NavigationProperty Name="CONNECTION" Relationship="Model.CONNECTION_AIRPORT_FROM" FromRole="AIRPORT" ToRole="CONNECTION" />
-          <NavigationProperty Name="CONNECTION1" Relationship="Model.CONNECTION_AIRPORT_TO" FromRole="AIRPORT" ToRole="CONNECTION" />
-        </EntityType>
-        <EntityType Name="CARRIER">
-          <Key>
-            <PropertyRef Name="SYMBOL" />
-          </Key>
-          <Property Name="SYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
-          <Property Name="RATE" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="AIRPLANE" Relationship="Model.AIRPLANE_CARRIER" FromRole="CARRIER" ToRole="AIRPLANE" />
-          <NavigationProperty Name="CONNECTION" Relationship="Model.CONNECTION_CARRIER" FromRole="CARRIER" ToRole="CONNECTION" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CITY_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CITY" Relationship="Model.AIRPORT_CITY_FK" FromRole="AIRPORT" ToRole="CITY" />
+          <NavigationProperty Name="CONNECTION" Relationship="Model.CONNECTION_AIRPORT_FROM_FK" FromRole="AIRPORT" ToRole="CONNECTION" />
+          <NavigationProperty Name="CONNECTION1" Relationship="Model.CONNECTION_AIRPORT_TO_FK" FromRole="AIRPORT" ToRole="CONNECTION" />
         </EntityType>
         <EntityType Name="CITY">
           <Key>
-            <PropertyRef Name="NAME" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="COUNTRYNAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="AIRPORT" Relationship="Model.AIRPORT_CITY" FromRole="CITY" ToRole="AIRPORT" />
-          <NavigationProperty Name="COUNTRY" Relationship="Model.CITY_COUNTRY" FromRole="CITY" ToRole="COUNTRY" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="COUNTRY_ID" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="AIRPORT" Relationship="Model.AIRPORT_CITY_FK" FromRole="CITY" ToRole="AIRPORT" />
+          <NavigationProperty Name="COUNTRY" Relationship="Model.CITY_COUNTRY_FK" FromRole="CITY" ToRole="COUNTRY" />
         </EntityType>
         <EntityType Name="CONNECTION">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="DEPARTURETIME" Type="DateTime" Nullable="false" />
-          <Property Name="ARIVALTIME" Type="DateTime" Nullable="false" />
-          <Property Name="WEEKDAY" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="false" />
-          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="TICKETS" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="CARRIERSYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="AIRPLANEMODELNAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="FROMAIRPORTSYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="TOAIRPORTSYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="AIRPLANEMODEL" Relationship="Model.CONNECTION_AIRPLANEMODEL" FromRole="CONNECTION" ToRole="AIRPLANEMODEL" />
-          <NavigationProperty Name="AIRPORT" Relationship="Model.CONNECTION_AIRPORT_FROM" FromRole="CONNECTION" ToRole="AIRPORT" />
-          <NavigationProperty Name="AIRPORT1" Relationship="Model.CONNECTION_AIRPORT_TO" FromRole="CONNECTION" ToRole="AIRPORT" />
-          <NavigationProperty Name="CARRIER" Relationship="Model.CONNECTION_CARRIER" FromRole="CONNECTION" ToRole="CARRIER" />
-          <NavigationProperty Name="FLY" Relationship="Model.FLY_CONNECTION" FromRole="CONNECTION" ToRole="FLY" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DEPARTURE_TIME" Nullable="false" />
+          <Property Type="DateTime" Name="ARIVAL_TIME" Nullable="false" />
+          <Property Type="String" Name="WEEKDAY" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="PRICE" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Decimal" Name="TICKETS" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="FROM_AIRPORT_SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TO_AIRPORT_SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AIRPORT" Relationship="Model.CONNECTION_AIRPORT_FROM_FK" FromRole="CONNECTION" ToRole="AIRPORT" />
+          <NavigationProperty Name="AIRPORT1" Relationship="Model.CONNECTION_AIRPORT_TO_FK" FromRole="CONNECTION" ToRole="AIRPORT" />
+          <NavigationProperty Name="FLY" Relationship="Model.FLY_CONNECTION_FK" FromRole="CONNECTION" ToRole="FLY" />
         </EntityType>
         <EntityType Name="COUNTRY">
           <Key>
-            <PropertyRef Name="NAME" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="CITY" Relationship="Model.CITY_COUNTRY" FromRole="COUNTRY" ToRole="CITY" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CITY" Relationship="Model.CITY_COUNTRY_FK" FromRole="COUNTRY" ToRole="CITY" />
         </EntityType>
         <EntityType Name="FLY">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="FLYDATE" Type="DateTime" Nullable="false" />
-          <Property Name="AIRPLANESYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="CONNECTIONSYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="FREEPLACESNUMBER" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <NavigationProperty Name="AIRPLANE" Relationship="Model.FLY_AIRPLANE" FromRole="FLY" ToRole="AIRPLANE" />
-          <NavigationProperty Name="CONNECTION" Relationship="Model.FLY_CONNECTION" FromRole="FLY" ToRole="CONNECTION" />
-          <NavigationProperty Name="RESERVATION" Relationship="Model.RESERVATION_FLY" FromRole="FLY" ToRole="RESERVATION" />
-        </EntityType>
-        <EntityType Name="PRODUCER">
-          <Key>
-            <PropertyRef Name="NAME" />
-          </Key>
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="AIRPLANEMODEL" Relationship="Model.AIRPLANEMODEL_PRODUCER" FromRole="PRODUCER" ToRole="AIRPLANEMODEL" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FLY_DATE" Nullable="false" />
+          <Property Type="String" Name="CONNECTION_SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="FREE_PLACES_NUMBER" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="CONNECTION" Relationship="Model.FLY_CONNECTION_FK" FromRole="FLY" ToRole="CONNECTION" />
+          <NavigationProperty Name="RESERVATION" Relationship="Model.RESERVATION_FLY_FK" FromRole="FLY" ToRole="RESERVATION" />
         </EntityType>
         <EntityType Name="RESERVATION">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="PLACENUMBER" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="ISPAID" Type="Int16" />
-          <Property Name="FLYSYMBOL" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="CLIENTID" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="FLY" Relationship="Model.RESERVATION_FLY" FromRole="RESERVATION" ToRole="FLY" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PLACE_NUMBER" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="IS_PAID" />
+          <Property Type="String" Name="FLY_SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CLIENT_ID" Precision="38" Scale="0" />
+          <NavigationProperty Name="FLY" Relationship="Model.RESERVATION_FLY_FK" FromRole="RESERVATION" ToRole="FLY" />
         </EntityType>
-        <Association Name="AIRPLANE_AIRPLANEMODEL">
-          <End Role="AIRPLANEMODEL" Type="Model.AIRPLANEMODEL" Multiplicity="1" />
-          <End Role="AIRPLANE" Type="Model.AIRPLANE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AIRPLANEMODEL">
-              <PropertyRef Name="NAME" />
-            </Principal>
-            <Dependent Role="AIRPLANE">
-              <PropertyRef Name="MODELNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AIRPLANE_CARRIER">
-          <End Role="CARRIER" Type="Model.CARRIER" Multiplicity="1" />
-          <End Role="AIRPLANE" Type="Model.AIRPLANE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARRIER">
-              <PropertyRef Name="SYMBOL" />
-            </Principal>
-            <Dependent Role="AIRPLANE">
-              <PropertyRef Name="CARRIERSYMBOL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FLY_AIRPLANE">
-          <End Role="AIRPLANE" Type="Model.AIRPLANE" Multiplicity="1" />
-          <End Role="FLY" Type="Model.FLY" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AIRPLANE">
-              <PropertyRef Name="SYMBOL" />
-            </Principal>
-            <Dependent Role="FLY">
-              <PropertyRef Name="AIRPLANESYMBOL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AIRPLANEMODEL_PRODUCER">
-          <End Role="PRODUCER" Type="Model.PRODUCER" Multiplicity="1" />
-          <End Role="AIRPLANEMODEL" Type="Model.AIRPLANEMODEL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCER">
-              <PropertyRef Name="NAME" />
-            </Principal>
-            <Dependent Role="AIRPLANEMODEL">
-              <PropertyRef Name="PRODUCERNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CONNECTION_AIRPLANEMODEL">
-          <End Role="AIRPLANEMODEL" Type="Model.AIRPLANEMODEL" Multiplicity="1" />
-          <End Role="CONNECTION" Type="Model.CONNECTION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AIRPLANEMODEL">
-              <PropertyRef Name="NAME" />
-            </Principal>
-            <Dependent Role="CONNECTION">
-              <PropertyRef Name="AIRPLANEMODELNAME" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AIRPORT_CITY">
-          <End Role="CITY" Type="Model.CITY" Multiplicity="1" />
-          <End Role="AIRPORT" Type="Model.AIRPORT" Multiplicity="*" />
+        <Association Name="AIRPORT_CITY_FK">
+          <End Type="Model.CITY" Role="CITY" Multiplicity="1" />
+          <End Type="Model.AIRPORT" Role="AIRPORT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CITY">
-              <PropertyRef Name="NAME" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="AIRPORT">
-              <PropertyRef Name="CITYNAME" />
+              <PropertyRef Name="CITY_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_AIRPORT_FROM">
-          <End Role="AIRPORT" Type="Model.AIRPORT" Multiplicity="1" />
-          <End Role="CONNECTION" Type="Model.CONNECTION" Multiplicity="*" />
+        <Association Name="CONNECTION_AIRPORT_FROM_FK">
+          <End Type="Model.AIRPORT" Role="AIRPORT" Multiplicity="1" />
+          <End Type="Model.CONNECTION" Role="CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AIRPORT">
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="CONNECTION">
-              <PropertyRef Name="FROMAIRPORTSYMBOL" />
+              <PropertyRef Name="FROM_AIRPORT_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_AIRPORT_TO">
-          <End Role="AIRPORT" Type="Model.AIRPORT" Multiplicity="1" />
-          <End Role="CONNECTION" Type="Model.CONNECTION" Multiplicity="*" />
+        <Association Name="CONNECTION_AIRPORT_TO_FK">
+          <End Type="Model.AIRPORT" Role="AIRPORT" Multiplicity="1" />
+          <End Type="Model.CONNECTION" Role="CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AIRPORT">
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="CONNECTION">
-              <PropertyRef Name="TOAIRPORTSYMBOL" />
+              <PropertyRef Name="TO_AIRPORT_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_CARRIER">
-          <End Role="CARRIER" Type="Model.CARRIER" Multiplicity="1" />
-          <End Role="CONNECTION" Type="Model.CONNECTION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARRIER">
-              <PropertyRef Name="SYMBOL" />
-            </Principal>
-            <Dependent Role="CONNECTION">
-              <PropertyRef Name="CARRIERSYMBOL" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CITY_COUNTRY">
-          <End Role="COUNTRY" Type="Model.COUNTRY" Multiplicity="1" />
-          <End Role="CITY" Type="Model.CITY" Multiplicity="*" />
+        <Association Name="CITY_COUNTRY_FK">
+          <End Type="Model.COUNTRY" Role="COUNTRY" Multiplicity="1" />
+          <End Type="Model.CITY" Role="CITY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="COUNTRY">
-              <PropertyRef Name="NAME" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CITY">
-              <PropertyRef Name="COUNTRYNAME" />
+              <PropertyRef Name="COUNTRY_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FLY_CONNECTION">
-          <End Role="CONNECTION" Type="Model.CONNECTION" Multiplicity="1" />
-          <End Role="FLY" Type="Model.FLY" Multiplicity="*" />
+        <Association Name="FLY_CONNECTION_FK">
+          <End Type="Model.CONNECTION" Role="CONNECTION" Multiplicity="1" />
+          <End Type="Model.FLY" Role="FLY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CONNECTION">
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="FLY">
-              <PropertyRef Name="CONNECTIONSYMBOL" />
+              <PropertyRef Name="CONNECTION_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RESERVATION_FLY">
-          <End Role="FLY" Type="Model.FLY" Multiplicity="1" />
-          <End Role="RESERVATION" Type="Model.RESERVATION" Multiplicity="*" />
+        <Association Name="RESERVATION_FLY_FK">
+          <End Type="Model.FLY" Role="FLY" Multiplicity="1" />
+          <End Type="Model.RESERVATION" Role="RESERVATION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FLY">
               <PropertyRef Name="SYMBOL" />
             </Principal>
             <Dependent Role="RESERVATION">
-              <PropertyRef Name="FLYSYMBOL" />
+              <PropertyRef Name="FLY_SYMBOL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DBConnection">
-          <EntitySetMapping Name="AIRPLANE"><EntityTypeMapping TypeName="Model.AIRPLANE"><MappingFragment StoreEntitySet="AIRPLANE">
-            <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
-            <ScalarProperty Name="PRODUCTIONDATE" ColumnName="PRODUCTIONDATE" />
-            <ScalarProperty Name="MODELNAME" ColumnName="MODELNAME" />
-            <ScalarProperty Name="CARRIERSYMBOL" ColumnName="CARRIERSYMBOL" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="AIRPLANEMODEL"><EntityTypeMapping TypeName="Model.AIRPLANEMODEL"><MappingFragment StoreEntitySet="AIRPLANEMODEL">
-            <ScalarProperty Name="NAME" ColumnName="NAME" />
-            <ScalarProperty Name="PRODUCERNAME" ColumnName="PRODUCERNAME" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="AIRPORT"><EntityTypeMapping TypeName="Model.AIRPORT"><MappingFragment StoreEntitySet="AIRPORT">
-            <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
-            <ScalarProperty Name="CITYNAME" ColumnName="CITYNAME" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CARRIER"><EntityTypeMapping TypeName="Model.CARRIER"><MappingFragment StoreEntitySet="CARRIER">
-            <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
-            <ScalarProperty Name="NAME" ColumnName="NAME" />
-            <ScalarProperty Name="RATE" ColumnName="RATE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CITY"><EntityTypeMapping TypeName="Model.CITY"><MappingFragment StoreEntitySet="CITY">
-            <ScalarProperty Name="NAME" ColumnName="NAME" />
-            <ScalarProperty Name="COUNTRYNAME" ColumnName="COUNTRYNAME" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CONNECTION"><EntityTypeMapping TypeName="Model.CONNECTION"><MappingFragment StoreEntitySet="CONNECTION">
-            <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
-            <ScalarProperty Name="DEPARTURETIME" ColumnName="DEPARTURETIME" />
-            <ScalarProperty Name="ARIVALTIME" ColumnName="ARIVALTIME" />
-            <ScalarProperty Name="WEEKDAY" ColumnName="WEEKDAY" />
-            <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-            <ScalarProperty Name="TICKETS" ColumnName="TICKETS" />
-            <ScalarProperty Name="CARRIERSYMBOL" ColumnName="CARRIERSYMBOL" />
-            <ScalarProperty Name="AIRPLANEMODELNAME" ColumnName="AIRPLANEMODELNAME" />
-            <ScalarProperty Name="FROMAIRPORTSYMBOL" ColumnName="FROMAIRPORTSYMBOL" />
-            <ScalarProperty Name="TOAIRPORTSYMBOL" ColumnName="TOAIRPORTSYMBOL" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="COUNTRY"><EntityTypeMapping TypeName="Model.COUNTRY"><MappingFragment StoreEntitySet="COUNTRY">
-            <ScalarProperty Name="NAME" ColumnName="NAME" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="FLY"><EntityTypeMapping TypeName="Model.FLY"><MappingFragment StoreEntitySet="FLY">
-            <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
-            <ScalarProperty Name="FLYDATE" ColumnName="FLYDATE" />
-            <ScalarProperty Name="AIRPLANESYMBOL" ColumnName="AIRPLANESYMBOL" />
-            <ScalarProperty Name="CONNECTIONSYMBOL" ColumnName="CONNECTIONSYMBOL" />
-            <ScalarProperty Name="FREEPLACESNUMBER" ColumnName="FREEPLACESNUMBER" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="PRODUCER"><EntityTypeMapping TypeName="Model.PRODUCER"><MappingFragment StoreEntitySet="PRODUCER">
-            <ScalarProperty Name="NAME" ColumnName="NAME" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="RESERVATION"><EntityTypeMapping TypeName="Model.RESERVATION"><MappingFragment StoreEntitySet="RESERVATION">
-            <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
-            <ScalarProperty Name="PLACENUMBER" ColumnName="PLACENUMBER" />
-            <ScalarProperty Name="ISPAID" ColumnName="ISPAID" />
-            <ScalarProperty Name="FLYSYMBOL" ColumnName="FLYSYMBOL" />
-            <ScalarProperty Name="CLIENTID" ColumnName="CLIENTID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="AIRPORT">
+            <EntityTypeMapping TypeName="Model.AIRPORT">
+              <MappingFragment StoreEntitySet="AIRPORT">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+                <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CITY">
+            <EntityTypeMapping TypeName="Model.CITY">
+              <MappingFragment StoreEntitySet="CITY">
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONNECTION">
+            <EntityTypeMapping TypeName="Model.CONNECTION">
+              <MappingFragment StoreEntitySet="CONNECTION">
+                <ScalarProperty Name="TO_AIRPORT_SYMBOL" ColumnName="TO_AIRPORT_SYMBOL" />
+                <ScalarProperty Name="FROM_AIRPORT_SYMBOL" ColumnName="FROM_AIRPORT_SYMBOL" />
+                <ScalarProperty Name="TICKETS" ColumnName="TICKETS" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="WEEKDAY" ColumnName="WEEKDAY" />
+                <ScalarProperty Name="ARIVAL_TIME" ColumnName="ARIVAL_TIME" />
+                <ScalarProperty Name="DEPARTURE_TIME" ColumnName="DEPARTURE_TIME" />
+                <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COUNTRY">
+            <EntityTypeMapping TypeName="Model.COUNTRY">
+              <MappingFragment StoreEntitySet="COUNTRY">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FLY">
+            <EntityTypeMapping TypeName="Model.FLY">
+              <MappingFragment StoreEntitySet="FLY">
+                <ScalarProperty Name="FREE_PLACES_NUMBER" ColumnName="FREE_PLACES_NUMBER" />
+                <ScalarProperty Name="CONNECTION_SYMBOL" ColumnName="CONNECTION_SYMBOL" />
+                <ScalarProperty Name="FLY_DATE" ColumnName="FLY_DATE" />
+                <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESERVATION">
+            <EntityTypeMapping TypeName="Model.RESERVATION">
+              <MappingFragment StoreEntitySet="RESERVATION">
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="FLY_SYMBOL" ColumnName="FLY_SYMBOL" />
+                <ScalarProperty Name="IS_PAID" ColumnName="IS_PAID" />
+                <ScalarProperty Name="PLACE_NUMBER" ColumnName="PLACE_NUMBER" />
+                <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -693,72 +430,36 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model" ZoomLevel="55">
-        <EntityTypeShape EntityType="Model.AIRPLANE" Width="1.5" PointX="11.25" PointY="9.625" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AIRPLANEMODEL" Width="1.5" PointX="11.125" PointY="7.25" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AIRPORT" Width="1.5" PointX="3.75" PointY="7.125" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CARRIER" Width="1.5" PointX="7.75" PointY="3.5" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CITY" Width="1.5" PointX="3.625" PointY="9.625" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CONNECTION" Width="1.5" PointX="7.5" PointY="7.25" Height="3.9033007812499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.COUNTRY" Width="1.5" PointX="3.625" PointY="12.125" Height="1.4033821614583317" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.FLY" Width="1.5" PointX="7.5" PointY="11.625" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PRODUCER" Width="1.5" PointX="11.125" PointY="5.5" Height="1.4033821614583308" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RESERVATION" Width="1.5" PointX="10.625" PointY="13.125" Height="2.1725878906249996" IsExpanded="true" />
-        <AssociationConnector Association="Model.AIRPLANE_AIRPLANEMODEL" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.9375" PointY="9.2302864583333335" />
-          <ConnectorPoint PointX="11.9375" PointY="9.625" />
+      <Diagram Name="Model" ZoomLevel="82">
+        <EntityTypeShape EntityType="Model.AIRPORT" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="Model.CITY" Width="1.5" PointX="3" PointY="1.5" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="Model.CONNECTION" Width="1.5" PointX="7.5" PointY="1" Height="3.1340950520833313" />
+        <EntityTypeShape EntityType="Model.COUNTRY" Width="1.5" PointX="0.75" PointY="1.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Model.FLY" Width="1.5" PointX="9.75" PointY="1.5" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="Model.RESERVATION" Width="1.5" PointX="12" PointY="1.5" Height="2.1725878906250031" />
+        <AssociationConnector Association="Model.AIRPORT_CITY_FK" >
+          <ConnectorPoint PointX="4.5" PointY="2.4901432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="2.4901432291666659" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.AIRPLANE_CARRIER" ManuallyRouted="true">
-          <ConnectorPoint PointX="9.15625" PointY="5.4802864583333335" />
-          <ConnectorPoint PointX="9.15625" PointY="6.1237617405598961" />
-          <ConnectorPoint PointX="10.071022925544373" PointY="6.1237617405598961" />
-          <ConnectorPoint PointX="10.071022925544373" PointY="11.389150390625" />
-          <ConnectorPoint PointX="11.25" PointY="11.389150390625" />
+        <AssociationConnector Association="Model.CONNECTION_AIRPORT_FROM_FK" >
+          <ConnectorPoint PointX="6.75" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="7.5" PointY="2.5862939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.FLY_AIRPLANE" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.25" PointY="11.807444661458334" />
-          <ConnectorPoint PointX="9" PointY="11.807444661458334" />
+        <AssociationConnector Association="Model.CONNECTION_AIRPORT_TO_FK" >
+          <ConnectorPoint PointX="6.75" PointY="1.98064697265625" />
+          <ConnectorPoint PointX="7.5" PointY="1.98064697265625" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.AIRPLANEMODEL_PRODUCER" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.875" PointY="6.9033821614583308" />
-          <ConnectorPoint PointX="11.875" PointY="7.25" />
+        <AssociationConnector Association="Model.CITY_COUNTRY_FK" >
+          <ConnectorPoint PointX="2.25" PointY="2.547841796875" />
+          <ConnectorPoint PointX="3" PointY="2.547841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.CONNECTION_AIRPLANEMODEL" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.125" PointY="8.2401432291666659" />
-          <ConnectorPoint PointX="10.154356258877707" PointY="8.2401432291666659" />
-          <ConnectorPoint PointX="9.9876895922110389" PointY="8.2401432291666659" />
-          <ConnectorPoint PointX="9" PointY="8.2401432291666659" />
+        <AssociationConnector Association="Model.FLY_CONNECTION_FK" >
+          <ConnectorPoint PointX="9" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="9.75" PointY="2.5862939453125016" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.AIRPORT_CITY" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4375" PointY="9.625" />
-          <ConnectorPoint PointX="4.4375" PointY="9.1052864583333317" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.CONNECTION_AIRPORT_FROM" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="8.1776432291666659" />
-          <ConnectorPoint PointX="7.5" PointY="8.1776432291666659" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.CONNECTION_AIRPORT_TO" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="7.6513216145833329" />
-          <ConnectorPoint PointX="7.5" PointY="7.6513216145833329" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.CONNECTION_CARRIER" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.375" PointY="5.4802864583333335" />
-          <ConnectorPoint PointX="8.375" PointY="7.25" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.CITY_COUNTRY" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.125" PointY="12.33907634285287" />
-          <ConnectorPoint PointX="5.375" PointY="12.33907634285287" />
-          <ConnectorPoint PointX="5.375" PointY="11.875" />
-          <ConnectorPoint PointX="4.375" PointY="11.875" />
-          <ConnectorPoint PointX="4.375" PointY="11.412985026041667" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.FLY_CONNECTION" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="11.15330078125" />
-          <ConnectorPoint PointX="8.25" PointY="11.625" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.RESERVATION_FLY" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="13.653595377604166" />
-          <ConnectorPoint PointX="10.625" PointY="13.653595377604166" />
+        <AssociationConnector Association="Model.RESERVATION_FLY_FK" >
+          <ConnectorPoint PointX="11.25" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="12" PointY="2.5862939453125016" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

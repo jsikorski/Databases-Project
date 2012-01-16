@@ -47,6 +47,7 @@
     <Compile Include="ConnectionProvider.cs" />
     <Compile Include="Exceptions\AuthenticationException.cs" />
     <Compile Include="Exceptions\ConnectionException.cs" />
+    <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\NotLoggedException.cs" />
     <Compile Include="IConnectionProvider.cs" />
     <Compile Include="Model.Designer.cs">
@@ -64,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

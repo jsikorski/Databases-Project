@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Administration.Commands;
+using Administration.Features;
 using Administration.Utils;
 using Caliburn.Micro;
+using Connection.Exceptions;
 using Action = System.Action;
 
 namespace Administration.Infrastucture
@@ -20,7 +22,7 @@ namespace Administration.Infrastucture
             }
             catch (Exception exception)
             {
-                MessageBoxService.ShowError(exception);
+                ShowErrorMessage(exception);
             }
         }
 
@@ -34,7 +36,7 @@ namespace Administration.Infrastucture
                                                  }
                                                  catch (Exception exception)
                                                  {
-                                                     MessageBoxService.ShowError(exception);
+                                                     ShowErrorMessage(exception);
                                                  }
 
                                                  if (onComplete != null)
@@ -42,6 +44,39 @@ namespace Administration.Infrastucture
                                                      onComplete();                                                     
                                                  }
                                              });
+        }
+
+        private static void ShowErrorMessage(Exception exception)
+        {
+            if (exception.InnerException == null)
+            {
+                MessageBoxService.ShowError(exception);
+                return;
+            }
+            
+            if (exception.InnerException.Message.StartsWith("ORA"))
+            {
+                MessageBoxService.ShowError(GetOracleErrorTranslation(exception.InnerException));
+            }
+            else
+            {
+                MessageBoxService.ShowError(exception.InnerException);                           
+            }
+        }
+
+        private static string GetOracleErrorTranslation(Exception exception)
+        {
+            if (exception.Message.StartsWith("ORA-00001"))
+            {
+                return "Constraint violated. Check inserted data.";
+            }
+
+            if (exception.Message.StartsWith("ORA-01031"))
+            {
+                return "You don't have sufficient privileges to complete this operation.";
+            }
+
+            return "Unknown database error occured.";
         }
     }
 }

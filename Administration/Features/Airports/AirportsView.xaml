@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Administration.Features.Airports.AirportsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Style="{StaticResource FeatureTabStyle}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0"
+                  ItemsSource="{Binding Airports}"
+                  SelectedItem="{Binding SelectedAirport, Mode=OneWayToSource}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                    Width="*"
+                                    Binding="{Binding NAME}" />
+                <DataGridTextColumn Header="City name"
+                                    Width="*"
+                                    Binding="{Binding CITY.NAME}" />
+                <DataGridTextColumn Header="Country name"
+                                    Width="*"
+                                    Binding="{Binding CITY.COUNTRY.NAME}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="1"
+                    Orientation="Vertical"
+                    Margin="10">
+            <Label Content="Airport name" />
+            <TextBox Text="{Binding AirportName, Mode=OneWayToSource}" />
+
+            <Label Content="City name" />
+            <TextBox Text="{Binding CityName, Mode=OneWayToSource}" />
+
+            <Label Content="Country name" />
+            <TextBox Text="{Binding CountryName, Mode=OneWayToSource}" />
+
+            <Button Name="SearchAirports"
+                    Content="Search"
+                    Margin="0 10 0 0"></Button>
+
+            <Separator Margin="0 10" />
+            <Button Name="NewAirport"
+                    Content="Add new" />
+            <Button Name="RemoveAirport"
+                    Content="Remove"
+                    Margin="0 7 0 0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -49,6 +49,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\packages\Caliburn.Micro.1.2.0\lib\Net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -72,19 +73,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\Airports\AddAirport.cs" />
+    <Compile Include="Commands\Airports\NewAirport.cs" />
+    <Compile Include="Commands\Airports\RemoveAirport.cs" />
+    <Compile Include="Commands\Airports\SearchAirports.cs" />
+    <Compile Include="Commands\Connections\NewConnection.cs" />
+    <Compile Include="Commands\Connections\SearchConnections.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Login.cs" />
+    <Compile Include="Features\Airports\AirportCreationData.cs" />
+    <Compile Include="Features\Airports\AirportsSearchData.cs" />
+    <Compile Include="Features\Airports\AirportsView.xaml.cs">
+      <DependentUpon>AirportsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Airports\AirportsViewModel.cs" />
+    <Compile Include="Features\Airports\NewAirportView.xaml.cs">
+      <DependentUpon>NewAirportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Airports\NewAirportViewModel.cs" />
+    <Compile Include="Features\Connections\ConnectionsSearchData.cs" />
+    <Compile Include="Features\Connections\ConnectionsView.xaml.cs">
+      <DependentUpon>ConnectionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Connections\ConnectionsViewModel.cs" />
+    <Compile Include="Features\Connections\NewConnectionView.xaml.cs">
+      <DependentUpon>NewConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Connections\NewConnectionViewModel.cs" />
     <Compile Include="Features\MainViewModel.cs" />
-    <Compile Include="Features\ReservationsView.xaml.cs">
+    <Compile Include="Features\Reservations\ReservationsView.xaml.cs">
       <DependentUpon>ReservationsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Features\ReservationsViewModel.cs" />
+    <Compile Include="Features\Reservations\ReservationsViewModel.cs" />
     <Compile Include="Infrastucture\CommandInvoker.cs" />
     <Compile Include="Infrastucture\CommandResult.cs" />
     <Compile Include="Infrastucture\IBusyScope.cs" />
     <Compile Include="Features\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\IBusyScopeSubscreen.cs" />
+    <Compile Include="Infrastucture\MainViewCommandResult.cs" />
+    <Compile Include="Messages\AirportRemoved.cs" />
+    <Compile Include="Messages\AirportsFounded.cs" />
+    <Compile Include="Messages\ConnectionsFounded.cs" />
     <Compile Include="Messages\LoggedIn.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -94,7 +125,23 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Utils\MessageBoxService.cs" />
-    <Page Include="Features\ReservationsView.xaml">
+    <Page Include="Features\Airports\AirportsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Airports\NewAirportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Connections\ConnectionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Connections\NewConnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Reservations\ReservationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,10 +150,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShellView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\BureauBlue.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -145,10 +188,17 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Connection\Connection.csproj">
       <Project>{DE720842-0F5C-4A99-8765-C9C715DD84AE}</Project>
       <Name>Connection</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Flights\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

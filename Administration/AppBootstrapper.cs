@@ -1,9 +1,11 @@
 ﻿using System.Reflection;
+using Administration.Features;
 using Administration.Utils;
 using Autofac;
 using System;
 using System.Collections.Generic;
 using Caliburn.Micro;
+using Common;
 using Connection;
 
 namespace Administration
@@ -27,12 +29,6 @@ namespace Administration
             return _container.Resolve(serviceType.MakeArrayType()) as IEnumerable<object>;
         }
 
-        protected override void OnUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
-        {
-            MessageBoxService.ShowError(e.Exception.InnerException);
-            e.Handled = true;
-        }
-
         private IContainer CreateContainer()
         {
             var containerBuilder = new ContainerBuilder();
@@ -40,8 +36,9 @@ namespace Administration
             containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AsImplementedInterfaces().AsSelf().PropertiesAutowired(
                     PropertyWiringFlags.PreserveSetValues);
+            containerBuilder.RegisterType<SymbolsProvider>().AsImplementedInterfaces();
             containerBuilder.RegisterType<ConnectionProvider>().SingleInstance().AsImplementedInterfaces();
-
+            containerBuilder.RegisterType<MainViewModel>().SingleInstance().AsSelf().AsImplementedInterfaces();
             containerBuilder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
             containerBuilder.RegisterType<WindowManager>().As<IWindowManager>();
             containerBuilder.Register(cc => _container).ExternallyOwned();

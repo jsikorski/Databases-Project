@@ -9,17 +9,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Administration.Features
+namespace Administration.Features.Airports
 {
     /// <summary>
-    /// Interaction logic for ReservationsView.xaml
+    /// Interaction logic for NewAirportView.xaml
     /// </summary>
-    public partial class ReservationsView : UserControl
+    public partial class NewAirportView : Window
     {
-        public ReservationsView()
+        public NewAirportView()
         {
             InitializeComponent();
         }

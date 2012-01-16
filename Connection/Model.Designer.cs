@@ -18,18 +18,12 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Model", "AIRPLANE_AIRPLANEMODEL", "AIRPLANEMODEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPLANEMODEL), "AIRPLANE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPLANE), true)]
-[assembly: EdmRelationshipAttribute("Model", "AIRPLANE_CARRIER", "CARRIER", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CARRIER), "AIRPLANE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPLANE), true)]
-[assembly: EdmRelationshipAttribute("Model", "FLY_AIRPLANE", "AIRPLANE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPLANE), "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.FLY), true)]
-[assembly: EdmRelationshipAttribute("Model", "AIRPLANEMODEL_PRODUCER", "PRODUCER", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.PRODUCER), "AIRPLANEMODEL", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPLANEMODEL), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPLANEMODEL", "AIRPLANEMODEL", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPLANEMODEL), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
-[assembly: EdmRelationshipAttribute("Model", "AIRPORT_CITY", "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CITY), "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPORT), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_FROM", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_TO", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_CARRIER", "CARRIER", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CARRIER), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
-[assembly: EdmRelationshipAttribute("Model", "CITY_COUNTRY", "COUNTRY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.COUNTRY), "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CITY), true)]
-[assembly: EdmRelationshipAttribute("Model", "FLY_CONNECTION", "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CONNECTION), "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.FLY), true)]
-[assembly: EdmRelationshipAttribute("Model", "RESERVATION_FLY", "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.FLY), "RESERVATION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.RESERVATION), true)]
+[assembly: EdmRelationshipAttribute("Model", "AIRPORT_CITY_FK", "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CITY), "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPORT), true)]
+[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
+[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
+[assembly: EdmRelationshipAttribute("Model", "CITY_COUNTRY_FK", "COUNTRY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.COUNTRY), "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CITY), true)]
+[assembly: EdmRelationshipAttribute("Model", "FLY_CONNECTION_FK", "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CONNECTION), "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.FLY), true)]
+[assembly: EdmRelationshipAttribute("Model", "RESERVATION_FLY_FK", "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.FLY), "RESERVATION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.RESERVATION), true)]
 
 #endregion
 
@@ -84,38 +78,6 @@ namespace Connection
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AIRPLANE> AIRPLANE
-        {
-            get
-            {
-                if ((_AIRPLANE == null))
-                {
-                    _AIRPLANE = base.CreateObjectSet<AIRPLANE>("AIRPLANE");
-                }
-                return _AIRPLANE;
-            }
-        }
-        private ObjectSet<AIRPLANE> _AIRPLANE;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<AIRPLANEMODEL> AIRPLANEMODEL
-        {
-            get
-            {
-                if ((_AIRPLANEMODEL == null))
-                {
-                    _AIRPLANEMODEL = base.CreateObjectSet<AIRPLANEMODEL>("AIRPLANEMODEL");
-                }
-                return _AIRPLANEMODEL;
-            }
-        }
-        private ObjectSet<AIRPLANEMODEL> _AIRPLANEMODEL;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<AIRPORT> AIRPORT
         {
             get
@@ -128,22 +90,6 @@ namespace Connection
             }
         }
         private ObjectSet<AIRPORT> _AIRPORT;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CARRIER> CARRIER
-        {
-            get
-            {
-                if ((_CARRIER == null))
-                {
-                    _CARRIER = base.CreateObjectSet<CARRIER>("CARRIER");
-                }
-                return _CARRIER;
-            }
-        }
-        private ObjectSet<CARRIER> _CARRIER;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -212,22 +158,6 @@ namespace Connection
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<PRODUCER> PRODUCER
-        {
-            get
-            {
-                if ((_PRODUCER == null))
-                {
-                    _PRODUCER = base.CreateObjectSet<PRODUCER>("PRODUCER");
-                }
-                return _PRODUCER;
-            }
-        }
-        private ObjectSet<PRODUCER> _PRODUCER;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<RESERVATION> RESERVATION
         {
             get
@@ -245,35 +175,11 @@ namespace Connection
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the AIRPLANE EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAIRPLANE(AIRPLANE aIRPLANE)
-        {
-            base.AddObject("AIRPLANE", aIRPLANE);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the AIRPLANEMODEL EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAIRPLANEMODEL(AIRPLANEMODEL aIRPLANEMODEL)
-        {
-            base.AddObject("AIRPLANEMODEL", aIRPLANEMODEL);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the AIRPORT EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToAIRPORT(AIRPORT aIRPORT)
         {
             base.AddObject("AIRPORT", aIRPORT);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CARRIER EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCARRIER(CARRIER cARRIER)
-        {
-            base.AddObject("CARRIER", cARRIER);
         }
     
         /// <summary>
@@ -309,14 +215,6 @@ namespace Connection
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the PRODUCER EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPRODUCER(PRODUCER pRODUCER)
-        {
-            base.AddObject("PRODUCER", pRODUCER);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the RESERVATION EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRESERVATION(RESERVATION rESERVATION)
@@ -335,406 +233,6 @@ namespace Connection
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="AIRPLANE")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class AIRPLANE : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new AIRPLANE object.
-        /// </summary>
-        /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
-        /// <param name="pRODUCTIONDATE">Initial value of the PRODUCTIONDATE property.</param>
-        /// <param name="mODELNAME">Initial value of the MODELNAME property.</param>
-        /// <param name="cARRIERSYMBOL">Initial value of the CARRIERSYMBOL property.</param>
-        public static AIRPLANE CreateAIRPLANE(global::System.String sYMBOL, global::System.DateTime pRODUCTIONDATE, global::System.String mODELNAME, global::System.String cARRIERSYMBOL)
-        {
-            AIRPLANE aIRPLANE = new AIRPLANE();
-            aIRPLANE.SYMBOL = sYMBOL;
-            aIRPLANE.PRODUCTIONDATE = pRODUCTIONDATE;
-            aIRPLANE.MODELNAME = mODELNAME;
-            aIRPLANE.CARRIERSYMBOL = cARRIERSYMBOL;
-            return aIRPLANE;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String SYMBOL
-        {
-            get
-            {
-                return _SYMBOL;
-            }
-            set
-            {
-                if (_SYMBOL != value)
-                {
-                    OnSYMBOLChanging(value);
-                    ReportPropertyChanging("SYMBOL");
-                    _SYMBOL = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("SYMBOL");
-                    OnSYMBOLChanged();
-                }
-            }
-        }
-        private global::System.String _SYMBOL;
-        partial void OnSYMBOLChanging(global::System.String value);
-        partial void OnSYMBOLChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime PRODUCTIONDATE
-        {
-            get
-            {
-                return _PRODUCTIONDATE;
-            }
-            set
-            {
-                OnPRODUCTIONDATEChanging(value);
-                ReportPropertyChanging("PRODUCTIONDATE");
-                _PRODUCTIONDATE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PRODUCTIONDATE");
-                OnPRODUCTIONDATEChanged();
-            }
-        }
-        private global::System.DateTime _PRODUCTIONDATE;
-        partial void OnPRODUCTIONDATEChanging(global::System.DateTime value);
-        partial void OnPRODUCTIONDATEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String MODELNAME
-        {
-            get
-            {
-                return _MODELNAME;
-            }
-            set
-            {
-                OnMODELNAMEChanging(value);
-                ReportPropertyChanging("MODELNAME");
-                _MODELNAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("MODELNAME");
-                OnMODELNAMEChanged();
-            }
-        }
-        private global::System.String _MODELNAME;
-        partial void OnMODELNAMEChanging(global::System.String value);
-        partial void OnMODELNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String CARRIERSYMBOL
-        {
-            get
-            {
-                return _CARRIERSYMBOL;
-            }
-            set
-            {
-                OnCARRIERSYMBOLChanging(value);
-                ReportPropertyChanging("CARRIERSYMBOL");
-                _CARRIERSYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CARRIERSYMBOL");
-                OnCARRIERSYMBOLChanged();
-            }
-        }
-        private global::System.String _CARRIERSYMBOL;
-        partial void OnCARRIERSYMBOLChanging(global::System.String value);
-        partial void OnCARRIERSYMBOLChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPLANE_AIRPLANEMODEL", "AIRPLANEMODEL")]
-        public AIRPLANEMODEL AIRPLANEMODEL
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANEMODEL>("Model.AIRPLANE_AIRPLANEMODEL", "AIRPLANEMODEL").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANEMODEL>("Model.AIRPLANE_AIRPLANEMODEL", "AIRPLANEMODEL").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AIRPLANEMODEL> AIRPLANEMODELReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANEMODEL>("Model.AIRPLANE_AIRPLANEMODEL", "AIRPLANEMODEL");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPLANEMODEL>("Model.AIRPLANE_AIRPLANEMODEL", "AIRPLANEMODEL", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPLANE_CARRIER", "CARRIER")]
-        public CARRIER CARRIER
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CARRIER>("Model.AIRPLANE_CARRIER", "CARRIER").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CARRIER>("Model.AIRPLANE_CARRIER", "CARRIER").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CARRIER> CARRIERReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CARRIER>("Model.AIRPLANE_CARRIER", "CARRIER");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CARRIER>("Model.AIRPLANE_CARRIER", "CARRIER", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "FLY_AIRPLANE", "FLY")]
-        public EntityCollection<FLY> FLY
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FLY>("Model.FLY_AIRPLANE", "FLY");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FLY>("Model.FLY_AIRPLANE", "FLY", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="AIRPLANEMODEL")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class AIRPLANEMODEL : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new AIRPLANEMODEL object.
-        /// </summary>
-        /// <param name="nAME">Initial value of the NAME property.</param>
-        /// <param name="pRODUCERNAME">Initial value of the PRODUCERNAME property.</param>
-        public static AIRPLANEMODEL CreateAIRPLANEMODEL(global::System.String nAME, global::System.String pRODUCERNAME)
-        {
-            AIRPLANEMODEL aIRPLANEMODEL = new AIRPLANEMODEL();
-            aIRPLANEMODEL.NAME = nAME;
-            aIRPLANEMODEL.PRODUCERNAME = pRODUCERNAME;
-            return aIRPLANEMODEL;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String NAME
-        {
-            get
-            {
-                return _NAME;
-            }
-            set
-            {
-                if (_NAME != value)
-                {
-                    OnNAMEChanging(value);
-                    ReportPropertyChanging("NAME");
-                    _NAME = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("NAME");
-                    OnNAMEChanged();
-                }
-            }
-        }
-        private global::System.String _NAME;
-        partial void OnNAMEChanging(global::System.String value);
-        partial void OnNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String PRODUCERNAME
-        {
-            get
-            {
-                return _PRODUCERNAME;
-            }
-            set
-            {
-                OnPRODUCERNAMEChanging(value);
-                ReportPropertyChanging("PRODUCERNAME");
-                _PRODUCERNAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("PRODUCERNAME");
-                OnPRODUCERNAMEChanged();
-            }
-        }
-        private global::System.String _PRODUCERNAME;
-        partial void OnPRODUCERNAMEChanging(global::System.String value);
-        partial void OnPRODUCERNAMEChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPLANE_AIRPLANEMODEL", "AIRPLANE")]
-        public EntityCollection<AIRPLANE> AIRPLANE
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AIRPLANE>("Model.AIRPLANE_AIRPLANEMODEL", "AIRPLANE");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AIRPLANE>("Model.AIRPLANE_AIRPLANEMODEL", "AIRPLANE", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPLANEMODEL_PRODUCER", "PRODUCER")]
-        public PRODUCER PRODUCER
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUCER>("Model.AIRPLANEMODEL_PRODUCER", "PRODUCER").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUCER>("Model.AIRPLANEMODEL_PRODUCER", "PRODUCER").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<PRODUCER> PRODUCERReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUCER>("Model.AIRPLANEMODEL_PRODUCER", "PRODUCER");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRODUCER>("Model.AIRPLANEMODEL_PRODUCER", "PRODUCER", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPLANEMODEL", "CONNECTION")]
-        public EntityCollection<CONNECTION> CONNECTION
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPLANEMODEL", "CONNECTION");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPLANEMODEL", "CONNECTION", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Model", Name="AIRPORT")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -746,12 +244,14 @@ namespace Connection
         /// Create a new AIRPORT object.
         /// </summary>
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
-        /// <param name="cITYNAME">Initial value of the CITYNAME property.</param>
-        public static AIRPORT CreateAIRPORT(global::System.String sYMBOL, global::System.String cITYNAME)
+        /// <param name="cITY_ID">Initial value of the CITY_ID property.</param>
+        /// <param name="nAME">Initial value of the NAME property.</param>
+        public static AIRPORT CreateAIRPORT(global::System.String sYMBOL, global::System.Decimal cITY_ID, global::System.String nAME)
         {
             AIRPORT aIRPORT = new AIRPORT();
             aIRPORT.SYMBOL = sYMBOL;
-            aIRPORT.CITYNAME = cITYNAME;
+            aIRPORT.CITY_ID = cITY_ID;
+            aIRPORT.NAME = nAME;
             return aIRPORT;
         }
 
@@ -790,24 +290,48 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CITYNAME
+        public global::System.Decimal CITY_ID
         {
             get
             {
-                return _CITYNAME;
+                return _CITY_ID;
             }
             set
             {
-                OnCITYNAMEChanging(value);
-                ReportPropertyChanging("CITYNAME");
-                _CITYNAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CITYNAME");
-                OnCITYNAMEChanged();
+                OnCITY_IDChanging(value);
+                ReportPropertyChanging("CITY_ID");
+                _CITY_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CITY_ID");
+                OnCITY_IDChanged();
             }
         }
-        private global::System.String _CITYNAME;
-        partial void OnCITYNAMEChanging(global::System.String value);
-        partial void OnCITYNAMEChanged();
+        private global::System.Decimal _CITY_ID;
+        partial void OnCITY_IDChanging(global::System.Decimal value);
+        partial void OnCITY_IDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NAME
+        {
+            get
+            {
+                return _NAME;
+            }
+            set
+            {
+                OnNAMEChanging(value);
+                ReportPropertyChanging("NAME");
+                _NAME = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NAME");
+                OnNAMEChanged();
+            }
+        }
+        private global::System.String _NAME;
+        partial void OnNAMEChanging(global::System.String value);
+        partial void OnNAMEChanged();
 
         #endregion
     
@@ -819,16 +343,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPORT_CITY", "CITY")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPORT_CITY_FK", "CITY")]
         public CITY CITY
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITY>("Model.AIRPORT_CITY", "CITY").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITY>("Model.AIRPORT_CITY_FK", "CITY").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITY>("Model.AIRPORT_CITY", "CITY").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITY>("Model.AIRPORT_CITY_FK", "CITY").Value = value;
             }
         }
         /// <summary>
@@ -840,13 +364,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITY>("Model.AIRPORT_CITY", "CITY");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITY>("Model.AIRPORT_CITY_FK", "CITY");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CITY>("Model.AIRPORT_CITY", "CITY", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CITY>("Model.AIRPORT_CITY_FK", "CITY", value);
                 }
             }
         }
@@ -857,18 +381,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "CONNECTION")]
         public EntityCollection<CONNECTION> CONNECTION
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM_FK", "CONNECTION", value);
                 }
             }
         }
@@ -879,18 +403,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "CONNECTION")]
         public EntityCollection<CONNECTION> CONNECTION1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO_FK", "CONNECTION", value);
                 }
             }
         }
@@ -901,24 +425,26 @@ namespace Connection
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="CARRIER")]
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="CITY")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CARRIER : EntityObject
+    public partial class CITY : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CARRIER object.
+        /// Create a new CITY object.
         /// </summary>
-        /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
+        /// <param name="id">Initial value of the ID property.</param>
         /// <param name="nAME">Initial value of the NAME property.</param>
-        public static CARRIER CreateCARRIER(global::System.String sYMBOL, global::System.String nAME)
+        /// <param name="cOUNTRY_ID">Initial value of the COUNTRY_ID property.</param>
+        public static CITY CreateCITY(global::System.Decimal id, global::System.String nAME, global::System.Decimal cOUNTRY_ID)
         {
-            CARRIER cARRIER = new CARRIER();
-            cARRIER.SYMBOL = sYMBOL;
-            cARRIER.NAME = nAME;
-            return cARRIER;
+            CITY cITY = new CITY();
+            cITY.ID = id;
+            cITY.NAME = nAME;
+            cITY.COUNTRY_ID = cOUNTRY_ID;
+            return cITY;
         }
 
         #endregion
@@ -929,27 +455,27 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String SYMBOL
+        public global::System.Decimal ID
         {
             get
             {
-                return _SYMBOL;
+                return _ID;
             }
             set
             {
-                if (_SYMBOL != value)
+                if (_ID != value)
                 {
-                    OnSYMBOLChanging(value);
-                    ReportPropertyChanging("SYMBOL");
-                    _SYMBOL = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("SYMBOL");
-                    OnSYMBOLChanged();
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
                 }
             }
         }
-        private global::System.String _SYMBOL;
-        partial void OnSYMBOLChanging(global::System.String value);
-        partial void OnSYMBOLChanged();
+        private global::System.Decimal _ID;
+        partial void OnIDChanging(global::System.Decimal value);
+        partial void OnIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -978,154 +504,26 @@ namespace Connection
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> RATE
-        {
-            get
-            {
-                return _RATE;
-            }
-            set
-            {
-                OnRATEChanging(value);
-                ReportPropertyChanging("RATE");
-                _RATE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("RATE");
-                OnRATEChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _RATE;
-        partial void OnRATEChanging(Nullable<global::System.Decimal> value);
-        partial void OnRATEChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPLANE_CARRIER", "AIRPLANE")]
-        public EntityCollection<AIRPLANE> AIRPLANE
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AIRPLANE>("Model.AIRPLANE_CARRIER", "AIRPLANE");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AIRPLANE>("Model.AIRPLANE_CARRIER", "AIRPLANE", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_CARRIER", "CONNECTION")]
-        public EntityCollection<CONNECTION> CONNECTION
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_CARRIER", "CONNECTION");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_CARRIER", "CONNECTION", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="CITY")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class CITY : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CITY object.
-        /// </summary>
-        /// <param name="nAME">Initial value of the NAME property.</param>
-        /// <param name="cOUNTRYNAME">Initial value of the COUNTRYNAME property.</param>
-        public static CITY CreateCITY(global::System.String nAME, global::System.String cOUNTRYNAME)
-        {
-            CITY cITY = new CITY();
-            cITY.NAME = nAME;
-            cITY.COUNTRYNAME = cOUNTRYNAME;
-            return cITY;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String NAME
-        {
-            get
-            {
-                return _NAME;
-            }
-            set
-            {
-                if (_NAME != value)
-                {
-                    OnNAMEChanging(value);
-                    ReportPropertyChanging("NAME");
-                    _NAME = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("NAME");
-                    OnNAMEChanged();
-                }
-            }
-        }
-        private global::System.String _NAME;
-        partial void OnNAMEChanging(global::System.String value);
-        partial void OnNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String COUNTRYNAME
+        public global::System.Decimal COUNTRY_ID
         {
             get
             {
-                return _COUNTRYNAME;
+                return _COUNTRY_ID;
             }
             set
             {
-                OnCOUNTRYNAMEChanging(value);
-                ReportPropertyChanging("COUNTRYNAME");
-                _COUNTRYNAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("COUNTRYNAME");
-                OnCOUNTRYNAMEChanged();
+                OnCOUNTRY_IDChanging(value);
+                ReportPropertyChanging("COUNTRY_ID");
+                _COUNTRY_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("COUNTRY_ID");
+                OnCOUNTRY_IDChanged();
             }
         }
-        private global::System.String _COUNTRYNAME;
-        partial void OnCOUNTRYNAMEChanging(global::System.String value);
-        partial void OnCOUNTRYNAMEChanged();
+        private global::System.Decimal _COUNTRY_ID;
+        partial void OnCOUNTRY_IDChanging(global::System.Decimal value);
+        partial void OnCOUNTRY_IDChanged();
 
         #endregion
     
@@ -1137,18 +535,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPORT_CITY", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPORT_CITY_FK", "AIRPORT")]
         public EntityCollection<AIRPORT> AIRPORT
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AIRPORT>("Model.AIRPORT_CITY", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AIRPORT>("Model.AIRPORT_CITY_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AIRPORT>("Model.AIRPORT_CITY", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AIRPORT>("Model.AIRPORT_CITY_FK", "AIRPORT", value);
                 }
             }
         }
@@ -1159,16 +557,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CITY_COUNTRY", "COUNTRY")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CITY_COUNTRY_FK", "COUNTRY")]
         public COUNTRY COUNTRY
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<COUNTRY>("Model.CITY_COUNTRY", "COUNTRY").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<COUNTRY>("Model.CITY_COUNTRY_FK", "COUNTRY").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<COUNTRY>("Model.CITY_COUNTRY", "COUNTRY").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<COUNTRY>("Model.CITY_COUNTRY_FK", "COUNTRY").Value = value;
             }
         }
         /// <summary>
@@ -1180,13 +578,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<COUNTRY>("Model.CITY_COUNTRY", "COUNTRY");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<COUNTRY>("Model.CITY_COUNTRY_FK", "COUNTRY");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<COUNTRY>("Model.CITY_COUNTRY", "COUNTRY", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<COUNTRY>("Model.CITY_COUNTRY_FK", "COUNTRY", value);
                 }
             }
         }
@@ -1208,28 +606,24 @@ namespace Connection
         /// Create a new CONNECTION object.
         /// </summary>
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
-        /// <param name="dEPARTURETIME">Initial value of the DEPARTURETIME property.</param>
-        /// <param name="aRIVALTIME">Initial value of the ARIVALTIME property.</param>
+        /// <param name="dEPARTURE_TIME">Initial value of the DEPARTURE_TIME property.</param>
+        /// <param name="aRIVAL_TIME">Initial value of the ARIVAL_TIME property.</param>
         /// <param name="wEEKDAY">Initial value of the WEEKDAY property.</param>
         /// <param name="pRICE">Initial value of the PRICE property.</param>
         /// <param name="tICKETS">Initial value of the TICKETS property.</param>
-        /// <param name="cARRIERSYMBOL">Initial value of the CARRIERSYMBOL property.</param>
-        /// <param name="aIRPLANEMODELNAME">Initial value of the AIRPLANEMODELNAME property.</param>
-        /// <param name="fROMAIRPORTSYMBOL">Initial value of the FROMAIRPORTSYMBOL property.</param>
-        /// <param name="tOAIRPORTSYMBOL">Initial value of the TOAIRPORTSYMBOL property.</param>
-        public static CONNECTION CreateCONNECTION(global::System.String sYMBOL, global::System.DateTime dEPARTURETIME, global::System.DateTime aRIVALTIME, global::System.String wEEKDAY, global::System.Decimal pRICE, global::System.Decimal tICKETS, global::System.String cARRIERSYMBOL, global::System.String aIRPLANEMODELNAME, global::System.String fROMAIRPORTSYMBOL, global::System.String tOAIRPORTSYMBOL)
+        /// <param name="fROM_AIRPORT_SYMBOL">Initial value of the FROM_AIRPORT_SYMBOL property.</param>
+        /// <param name="tO_AIRPORT_SYMBOL">Initial value of the TO_AIRPORT_SYMBOL property.</param>
+        public static CONNECTION CreateCONNECTION(global::System.String sYMBOL, global::System.DateTime dEPARTURE_TIME, global::System.DateTime aRIVAL_TIME, global::System.String wEEKDAY, global::System.Decimal pRICE, global::System.Decimal tICKETS, global::System.String fROM_AIRPORT_SYMBOL, global::System.String tO_AIRPORT_SYMBOL)
         {
             CONNECTION cONNECTION = new CONNECTION();
             cONNECTION.SYMBOL = sYMBOL;
-            cONNECTION.DEPARTURETIME = dEPARTURETIME;
-            cONNECTION.ARIVALTIME = aRIVALTIME;
+            cONNECTION.DEPARTURE_TIME = dEPARTURE_TIME;
+            cONNECTION.ARIVAL_TIME = aRIVAL_TIME;
             cONNECTION.WEEKDAY = wEEKDAY;
             cONNECTION.PRICE = pRICE;
             cONNECTION.TICKETS = tICKETS;
-            cONNECTION.CARRIERSYMBOL = cARRIERSYMBOL;
-            cONNECTION.AIRPLANEMODELNAME = aIRPLANEMODELNAME;
-            cONNECTION.FROMAIRPORTSYMBOL = fROMAIRPORTSYMBOL;
-            cONNECTION.TOAIRPORTSYMBOL = tOAIRPORTSYMBOL;
+            cONNECTION.FROM_AIRPORT_SYMBOL = fROM_AIRPORT_SYMBOL;
+            cONNECTION.TO_AIRPORT_SYMBOL = tO_AIRPORT_SYMBOL;
             return cONNECTION;
         }
 
@@ -1268,48 +662,48 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime DEPARTURETIME
+        public global::System.DateTime DEPARTURE_TIME
         {
             get
             {
-                return _DEPARTURETIME;
+                return _DEPARTURE_TIME;
             }
             set
             {
-                OnDEPARTURETIMEChanging(value);
-                ReportPropertyChanging("DEPARTURETIME");
-                _DEPARTURETIME = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DEPARTURETIME");
-                OnDEPARTURETIMEChanged();
+                OnDEPARTURE_TIMEChanging(value);
+                ReportPropertyChanging("DEPARTURE_TIME");
+                _DEPARTURE_TIME = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DEPARTURE_TIME");
+                OnDEPARTURE_TIMEChanged();
             }
         }
-        private global::System.DateTime _DEPARTURETIME;
-        partial void OnDEPARTURETIMEChanging(global::System.DateTime value);
-        partial void OnDEPARTURETIMEChanged();
+        private global::System.DateTime _DEPARTURE_TIME;
+        partial void OnDEPARTURE_TIMEChanging(global::System.DateTime value);
+        partial void OnDEPARTURE_TIMEChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime ARIVALTIME
+        public global::System.DateTime ARIVAL_TIME
         {
             get
             {
-                return _ARIVALTIME;
+                return _ARIVAL_TIME;
             }
             set
             {
-                OnARIVALTIMEChanging(value);
-                ReportPropertyChanging("ARIVALTIME");
-                _ARIVALTIME = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ARIVALTIME");
-                OnARIVALTIMEChanged();
+                OnARIVAL_TIMEChanging(value);
+                ReportPropertyChanging("ARIVAL_TIME");
+                _ARIVAL_TIME = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ARIVAL_TIME");
+                OnARIVAL_TIMEChanged();
             }
         }
-        private global::System.DateTime _ARIVALTIME;
-        partial void OnARIVALTIMEChanging(global::System.DateTime value);
-        partial void OnARIVALTIMEChanged();
+        private global::System.DateTime _ARIVAL_TIME;
+        partial void OnARIVAL_TIMEChanging(global::System.DateTime value);
+        partial void OnARIVAL_TIMEChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1388,96 +782,48 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CARRIERSYMBOL
+        public global::System.String FROM_AIRPORT_SYMBOL
         {
             get
             {
-                return _CARRIERSYMBOL;
+                return _FROM_AIRPORT_SYMBOL;
             }
             set
             {
-                OnCARRIERSYMBOLChanging(value);
-                ReportPropertyChanging("CARRIERSYMBOL");
-                _CARRIERSYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CARRIERSYMBOL");
-                OnCARRIERSYMBOLChanged();
+                OnFROM_AIRPORT_SYMBOLChanging(value);
+                ReportPropertyChanging("FROM_AIRPORT_SYMBOL");
+                _FROM_AIRPORT_SYMBOL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FROM_AIRPORT_SYMBOL");
+                OnFROM_AIRPORT_SYMBOLChanged();
             }
         }
-        private global::System.String _CARRIERSYMBOL;
-        partial void OnCARRIERSYMBOLChanging(global::System.String value);
-        partial void OnCARRIERSYMBOLChanged();
+        private global::System.String _FROM_AIRPORT_SYMBOL;
+        partial void OnFROM_AIRPORT_SYMBOLChanging(global::System.String value);
+        partial void OnFROM_AIRPORT_SYMBOLChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String AIRPLANEMODELNAME
+        public global::System.String TO_AIRPORT_SYMBOL
         {
             get
             {
-                return _AIRPLANEMODELNAME;
+                return _TO_AIRPORT_SYMBOL;
             }
             set
             {
-                OnAIRPLANEMODELNAMEChanging(value);
-                ReportPropertyChanging("AIRPLANEMODELNAME");
-                _AIRPLANEMODELNAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("AIRPLANEMODELNAME");
-                OnAIRPLANEMODELNAMEChanged();
+                OnTO_AIRPORT_SYMBOLChanging(value);
+                ReportPropertyChanging("TO_AIRPORT_SYMBOL");
+                _TO_AIRPORT_SYMBOL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TO_AIRPORT_SYMBOL");
+                OnTO_AIRPORT_SYMBOLChanged();
             }
         }
-        private global::System.String _AIRPLANEMODELNAME;
-        partial void OnAIRPLANEMODELNAMEChanging(global::System.String value);
-        partial void OnAIRPLANEMODELNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String FROMAIRPORTSYMBOL
-        {
-            get
-            {
-                return _FROMAIRPORTSYMBOL;
-            }
-            set
-            {
-                OnFROMAIRPORTSYMBOLChanging(value);
-                ReportPropertyChanging("FROMAIRPORTSYMBOL");
-                _FROMAIRPORTSYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("FROMAIRPORTSYMBOL");
-                OnFROMAIRPORTSYMBOLChanged();
-            }
-        }
-        private global::System.String _FROMAIRPORTSYMBOL;
-        partial void OnFROMAIRPORTSYMBOLChanging(global::System.String value);
-        partial void OnFROMAIRPORTSYMBOLChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String TOAIRPORTSYMBOL
-        {
-            get
-            {
-                return _TOAIRPORTSYMBOL;
-            }
-            set
-            {
-                OnTOAIRPORTSYMBOLChanging(value);
-                ReportPropertyChanging("TOAIRPORTSYMBOL");
-                _TOAIRPORTSYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TOAIRPORTSYMBOL");
-                OnTOAIRPORTSYMBOLChanged();
-            }
-        }
-        private global::System.String _TOAIRPORTSYMBOL;
-        partial void OnTOAIRPORTSYMBOLChanging(global::System.String value);
-        partial void OnTOAIRPORTSYMBOLChanged();
+        private global::System.String _TO_AIRPORT_SYMBOL;
+        partial void OnTO_AIRPORT_SYMBOLChanging(global::System.String value);
+        partial void OnTO_AIRPORT_SYMBOLChanged();
 
         #endregion
     
@@ -1489,54 +835,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPLANEMODEL", "AIRPLANEMODEL")]
-        public AIRPLANEMODEL AIRPLANEMODEL
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANEMODEL>("Model.CONNECTION_AIRPLANEMODEL", "AIRPLANEMODEL").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANEMODEL>("Model.CONNECTION_AIRPLANEMODEL", "AIRPLANEMODEL").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AIRPLANEMODEL> AIRPLANEMODELReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANEMODEL>("Model.CONNECTION_AIRPLANEMODEL", "AIRPLANEMODEL");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPLANEMODEL>("Model.CONNECTION_AIRPLANEMODEL", "AIRPLANEMODEL", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "AIRPORT")]
         public AIRPORT AIRPORT
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM", "AIRPORT").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM", "AIRPORT").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT").Value = value;
             }
         }
         /// <summary>
@@ -1548,13 +856,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT", value);
                 }
             }
         }
@@ -1565,16 +873,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT")]
         public AIRPORT AIRPORT1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO", "AIRPORT").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO", "AIRPORT").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT").Value = value;
             }
         }
         /// <summary>
@@ -1586,13 +894,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT", value);
                 }
             }
         }
@@ -1603,56 +911,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_CARRIER", "CARRIER")]
-        public CARRIER CARRIER
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CARRIER>("Model.CONNECTION_CARRIER", "CARRIER").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CARRIER>("Model.CONNECTION_CARRIER", "CARRIER").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CARRIER> CARRIERReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CARRIER>("Model.CONNECTION_CARRIER", "CARRIER");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CARRIER>("Model.CONNECTION_CARRIER", "CARRIER", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "FLY_CONNECTION", "FLY")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "FLY_CONNECTION_FK", "FLY")]
         public EntityCollection<FLY> FLY
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FLY>("Model.FLY_CONNECTION", "FLY");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FLY>("Model.FLY_CONNECTION_FK", "FLY");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FLY>("Model.FLY_CONNECTION", "FLY", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FLY>("Model.FLY_CONNECTION_FK", "FLY", value);
                 }
             }
         }
@@ -1673,10 +943,12 @@ namespace Connection
         /// <summary>
         /// Create a new COUNTRY object.
         /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
         /// <param name="nAME">Initial value of the NAME property.</param>
-        public static COUNTRY CreateCOUNTRY(global::System.String nAME)
+        public static COUNTRY CreateCOUNTRY(global::System.Decimal id, global::System.String nAME)
         {
             COUNTRY cOUNTRY = new COUNTRY();
+            cOUNTRY.ID = id;
             cOUNTRY.NAME = nAME;
             return cOUNTRY;
         }
@@ -1689,6 +961,33 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Decimal ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Decimal _ID;
+        partial void OnIDChanging(global::System.Decimal value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String NAME
         {
             get
@@ -1697,14 +996,11 @@ namespace Connection
             }
             set
             {
-                if (_NAME != value)
-                {
-                    OnNAMEChanging(value);
-                    ReportPropertyChanging("NAME");
-                    _NAME = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("NAME");
-                    OnNAMEChanged();
-                }
+                OnNAMEChanging(value);
+                ReportPropertyChanging("NAME");
+                _NAME = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NAME");
+                OnNAMEChanged();
             }
         }
         private global::System.String _NAME;
@@ -1721,18 +1017,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CITY_COUNTRY", "CITY")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CITY_COUNTRY_FK", "CITY")]
         public EntityCollection<CITY> CITY
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CITY>("Model.CITY_COUNTRY", "CITY");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CITY>("Model.CITY_COUNTRY_FK", "CITY");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CITY>("Model.CITY_COUNTRY", "CITY", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CITY>("Model.CITY_COUNTRY_FK", "CITY", value);
                 }
             }
         }
@@ -1754,18 +1050,16 @@ namespace Connection
         /// Create a new FLY object.
         /// </summary>
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
-        /// <param name="fLYDATE">Initial value of the FLYDATE property.</param>
-        /// <param name="aIRPLANESYMBOL">Initial value of the AIRPLANESYMBOL property.</param>
-        /// <param name="cONNECTIONSYMBOL">Initial value of the CONNECTIONSYMBOL property.</param>
-        /// <param name="fREEPLACESNUMBER">Initial value of the FREEPLACESNUMBER property.</param>
-        public static FLY CreateFLY(global::System.String sYMBOL, global::System.DateTime fLYDATE, global::System.String aIRPLANESYMBOL, global::System.String cONNECTIONSYMBOL, global::System.Decimal fREEPLACESNUMBER)
+        /// <param name="fLY_DATE">Initial value of the FLY_DATE property.</param>
+        /// <param name="cONNECTION_SYMBOL">Initial value of the CONNECTION_SYMBOL property.</param>
+        /// <param name="fREE_PLACES_NUMBER">Initial value of the FREE_PLACES_NUMBER property.</param>
+        public static FLY CreateFLY(global::System.String sYMBOL, global::System.DateTime fLY_DATE, global::System.String cONNECTION_SYMBOL, global::System.Decimal fREE_PLACES_NUMBER)
         {
             FLY fLY = new FLY();
             fLY.SYMBOL = sYMBOL;
-            fLY.FLYDATE = fLYDATE;
-            fLY.AIRPLANESYMBOL = aIRPLANESYMBOL;
-            fLY.CONNECTIONSYMBOL = cONNECTIONSYMBOL;
-            fLY.FREEPLACESNUMBER = fREEPLACESNUMBER;
+            fLY.FLY_DATE = fLY_DATE;
+            fLY.CONNECTION_SYMBOL = cONNECTION_SYMBOL;
+            fLY.FREE_PLACES_NUMBER = fREE_PLACES_NUMBER;
             return fLY;
         }
 
@@ -1804,96 +1098,72 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime FLYDATE
+        public global::System.DateTime FLY_DATE
         {
             get
             {
-                return _FLYDATE;
+                return _FLY_DATE;
             }
             set
             {
-                OnFLYDATEChanging(value);
-                ReportPropertyChanging("FLYDATE");
-                _FLYDATE = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FLYDATE");
-                OnFLYDATEChanged();
+                OnFLY_DATEChanging(value);
+                ReportPropertyChanging("FLY_DATE");
+                _FLY_DATE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FLY_DATE");
+                OnFLY_DATEChanged();
             }
         }
-        private global::System.DateTime _FLYDATE;
-        partial void OnFLYDATEChanging(global::System.DateTime value);
-        partial void OnFLYDATEChanged();
+        private global::System.DateTime _FLY_DATE;
+        partial void OnFLY_DATEChanging(global::System.DateTime value);
+        partial void OnFLY_DATEChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String AIRPLANESYMBOL
+        public global::System.String CONNECTION_SYMBOL
         {
             get
             {
-                return _AIRPLANESYMBOL;
+                return _CONNECTION_SYMBOL;
             }
             set
             {
-                OnAIRPLANESYMBOLChanging(value);
-                ReportPropertyChanging("AIRPLANESYMBOL");
-                _AIRPLANESYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("AIRPLANESYMBOL");
-                OnAIRPLANESYMBOLChanged();
+                OnCONNECTION_SYMBOLChanging(value);
+                ReportPropertyChanging("CONNECTION_SYMBOL");
+                _CONNECTION_SYMBOL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CONNECTION_SYMBOL");
+                OnCONNECTION_SYMBOLChanged();
             }
         }
-        private global::System.String _AIRPLANESYMBOL;
-        partial void OnAIRPLANESYMBOLChanging(global::System.String value);
-        partial void OnAIRPLANESYMBOLChanged();
+        private global::System.String _CONNECTION_SYMBOL;
+        partial void OnCONNECTION_SYMBOLChanging(global::System.String value);
+        partial void OnCONNECTION_SYMBOLChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CONNECTIONSYMBOL
+        public global::System.Decimal FREE_PLACES_NUMBER
         {
             get
             {
-                return _CONNECTIONSYMBOL;
+                return _FREE_PLACES_NUMBER;
             }
             set
             {
-                OnCONNECTIONSYMBOLChanging(value);
-                ReportPropertyChanging("CONNECTIONSYMBOL");
-                _CONNECTIONSYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("CONNECTIONSYMBOL");
-                OnCONNECTIONSYMBOLChanged();
+                OnFREE_PLACES_NUMBERChanging(value);
+                ReportPropertyChanging("FREE_PLACES_NUMBER");
+                _FREE_PLACES_NUMBER = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FREE_PLACES_NUMBER");
+                OnFREE_PLACES_NUMBERChanged();
             }
         }
-        private global::System.String _CONNECTIONSYMBOL;
-        partial void OnCONNECTIONSYMBOLChanging(global::System.String value);
-        partial void OnCONNECTIONSYMBOLChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal FREEPLACESNUMBER
-        {
-            get
-            {
-                return _FREEPLACESNUMBER;
-            }
-            set
-            {
-                OnFREEPLACESNUMBERChanging(value);
-                ReportPropertyChanging("FREEPLACESNUMBER");
-                _FREEPLACESNUMBER = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FREEPLACESNUMBER");
-                OnFREEPLACESNUMBERChanged();
-            }
-        }
-        private global::System.Decimal _FREEPLACESNUMBER;
-        partial void OnFREEPLACESNUMBERChanging(global::System.Decimal value);
-        partial void OnFREEPLACESNUMBERChanged();
+        private global::System.Decimal _FREE_PLACES_NUMBER;
+        partial void OnFREE_PLACES_NUMBERChanging(global::System.Decimal value);
+        partial void OnFREE_PLACES_NUMBERChanged();
 
         #endregion
     
@@ -1905,54 +1175,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "FLY_AIRPLANE", "AIRPLANE")]
-        public AIRPLANE AIRPLANE
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANE>("Model.FLY_AIRPLANE", "AIRPLANE").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANE>("Model.FLY_AIRPLANE", "AIRPLANE").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<AIRPLANE> AIRPLANEReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPLANE>("Model.FLY_AIRPLANE", "AIRPLANE");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPLANE>("Model.FLY_AIRPLANE", "AIRPLANE", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "FLY_CONNECTION", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "FLY_CONNECTION_FK", "CONNECTION")]
         public CONNECTION CONNECTION
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CONNECTION>("Model.FLY_CONNECTION", "CONNECTION").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CONNECTION>("Model.FLY_CONNECTION_FK", "CONNECTION").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CONNECTION>("Model.FLY_CONNECTION", "CONNECTION").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CONNECTION>("Model.FLY_CONNECTION_FK", "CONNECTION").Value = value;
             }
         }
         /// <summary>
@@ -1964,13 +1196,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CONNECTION>("Model.FLY_CONNECTION", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CONNECTION>("Model.FLY_CONNECTION_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CONNECTION>("Model.FLY_CONNECTION", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CONNECTION>("Model.FLY_CONNECTION_FK", "CONNECTION", value);
                 }
             }
         }
@@ -1981,98 +1213,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "RESERVATION_FLY", "RESERVATION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RESERVATION_FLY_FK", "RESERVATION")]
         public EntityCollection<RESERVATION> RESERVATION
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RESERVATION>("Model.RESERVATION_FLY", "RESERVATION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<RESERVATION>("Model.RESERVATION_FLY_FK", "RESERVATION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RESERVATION>("Model.RESERVATION_FLY", "RESERVATION", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="PRODUCER")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class PRODUCER : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new PRODUCER object.
-        /// </summary>
-        /// <param name="nAME">Initial value of the NAME property.</param>
-        public static PRODUCER CreatePRODUCER(global::System.String nAME)
-        {
-            PRODUCER pRODUCER = new PRODUCER();
-            pRODUCER.NAME = nAME;
-            return pRODUCER;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String NAME
-        {
-            get
-            {
-                return _NAME;
-            }
-            set
-            {
-                if (_NAME != value)
-                {
-                    OnNAMEChanging(value);
-                    ReportPropertyChanging("NAME");
-                    _NAME = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("NAME");
-                    OnNAMEChanged();
-                }
-            }
-        }
-        private global::System.String _NAME;
-        partial void OnNAMEChanging(global::System.String value);
-        partial void OnNAMEChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "AIRPLANEMODEL_PRODUCER", "AIRPLANEMODEL")]
-        public EntityCollection<AIRPLANEMODEL> AIRPLANEMODEL
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<AIRPLANEMODEL>("Model.AIRPLANEMODEL_PRODUCER", "AIRPLANEMODEL");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<AIRPLANEMODEL>("Model.AIRPLANEMODEL_PRODUCER", "AIRPLANEMODEL", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<RESERVATION>("Model.RESERVATION_FLY_FK", "RESERVATION", value);
                 }
             }
         }
@@ -2094,12 +1246,12 @@ namespace Connection
         /// Create a new RESERVATION object.
         /// </summary>
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
-        /// <param name="fLYSYMBOL">Initial value of the FLYSYMBOL property.</param>
-        public static RESERVATION CreateRESERVATION(global::System.String sYMBOL, global::System.String fLYSYMBOL)
+        /// <param name="fLY_SYMBOL">Initial value of the FLY_SYMBOL property.</param>
+        public static RESERVATION CreateRESERVATION(global::System.String sYMBOL, global::System.String fLY_SYMBOL)
         {
             RESERVATION rESERVATION = new RESERVATION();
             rESERVATION.SYMBOL = sYMBOL;
-            rESERVATION.FLYSYMBOL = fLYSYMBOL;
+            rESERVATION.FLY_SYMBOL = fLY_SYMBOL;
             return rESERVATION;
         }
 
@@ -2138,96 +1290,96 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String PLACENUMBER
+        public global::System.String PLACE_NUMBER
         {
             get
             {
-                return _PLACENUMBER;
+                return _PLACE_NUMBER;
             }
             set
             {
-                OnPLACENUMBERChanging(value);
-                ReportPropertyChanging("PLACENUMBER");
-                _PLACENUMBER = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PLACENUMBER");
-                OnPLACENUMBERChanged();
+                OnPLACE_NUMBERChanging(value);
+                ReportPropertyChanging("PLACE_NUMBER");
+                _PLACE_NUMBER = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PLACE_NUMBER");
+                OnPLACE_NUMBERChanged();
             }
         }
-        private global::System.String _PLACENUMBER;
-        partial void OnPLACENUMBERChanging(global::System.String value);
-        partial void OnPLACENUMBERChanged();
+        private global::System.String _PLACE_NUMBER;
+        partial void OnPLACE_NUMBERChanging(global::System.String value);
+        partial void OnPLACE_NUMBERChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int16> ISPAID
+        public Nullable<global::System.Int16> IS_PAID
         {
             get
             {
-                return _ISPAID;
+                return _IS_PAID;
             }
             set
             {
-                OnISPAIDChanging(value);
-                ReportPropertyChanging("ISPAID");
-                _ISPAID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ISPAID");
-                OnISPAIDChanged();
+                OnIS_PAIDChanging(value);
+                ReportPropertyChanging("IS_PAID");
+                _IS_PAID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IS_PAID");
+                OnIS_PAIDChanged();
             }
         }
-        private Nullable<global::System.Int16> _ISPAID;
-        partial void OnISPAIDChanging(Nullable<global::System.Int16> value);
-        partial void OnISPAIDChanged();
+        private Nullable<global::System.Int16> _IS_PAID;
+        partial void OnIS_PAIDChanging(Nullable<global::System.Int16> value);
+        partial void OnIS_PAIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String FLYSYMBOL
+        public global::System.String FLY_SYMBOL
         {
             get
             {
-                return _FLYSYMBOL;
+                return _FLY_SYMBOL;
             }
             set
             {
-                OnFLYSYMBOLChanging(value);
-                ReportPropertyChanging("FLYSYMBOL");
-                _FLYSYMBOL = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("FLYSYMBOL");
-                OnFLYSYMBOLChanged();
+                OnFLY_SYMBOLChanging(value);
+                ReportPropertyChanging("FLY_SYMBOL");
+                _FLY_SYMBOL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FLY_SYMBOL");
+                OnFLY_SYMBOLChanged();
             }
         }
-        private global::System.String _FLYSYMBOL;
-        partial void OnFLYSYMBOLChanging(global::System.String value);
-        partial void OnFLYSYMBOLChanged();
+        private global::System.String _FLY_SYMBOL;
+        partial void OnFLY_SYMBOLChanging(global::System.String value);
+        partial void OnFLY_SYMBOLChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> CLIENTID
+        public Nullable<global::System.Decimal> CLIENT_ID
         {
             get
             {
-                return _CLIENTID;
+                return _CLIENT_ID;
             }
             set
             {
-                OnCLIENTIDChanging(value);
-                ReportPropertyChanging("CLIENTID");
-                _CLIENTID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CLIENTID");
-                OnCLIENTIDChanged();
+                OnCLIENT_IDChanging(value);
+                ReportPropertyChanging("CLIENT_ID");
+                _CLIENT_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CLIENT_ID");
+                OnCLIENT_IDChanged();
             }
         }
-        private Nullable<global::System.Decimal> _CLIENTID;
-        partial void OnCLIENTIDChanging(Nullable<global::System.Decimal> value);
-        partial void OnCLIENTIDChanged();
+        private Nullable<global::System.Decimal> _CLIENT_ID;
+        partial void OnCLIENT_IDChanging(Nullable<global::System.Decimal> value);
+        partial void OnCLIENT_IDChanged();
 
         #endregion
     
@@ -2239,16 +1391,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "RESERVATION_FLY", "FLY")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "RESERVATION_FLY_FK", "FLY")]
         public FLY FLY
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FLY>("Model.RESERVATION_FLY", "FLY").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FLY>("Model.RESERVATION_FLY_FK", "FLY").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FLY>("Model.RESERVATION_FLY", "FLY").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FLY>("Model.RESERVATION_FLY_FK", "FLY").Value = value;
             }
         }
         /// <summary>
@@ -2260,13 +1412,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FLY>("Model.RESERVATION_FLY", "FLY");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FLY>("Model.RESERVATION_FLY_FK", "FLY");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FLY>("Model.RESERVATION_FLY", "FLY", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FLY>("Model.RESERVATION_FLY_FK", "FLY", value);
                 }
             }
         }

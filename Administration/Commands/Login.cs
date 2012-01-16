@@ -16,14 +16,14 @@ namespace Administration.Commands
         private readonly IEventAggregator _eventAggregator;
         private readonly string _username;
         private readonly string _password;
-        private readonly IBusyScope _busyScope;
+        private readonly ShellViewModel _busyScope;
 
         public Login(
             IConnectionProvider connectionProvider,
             IEventAggregator eventAggregator,
             string username, 
             string password,
-            IBusyScope busyScope)
+            ShellViewModel busyScope)
         {
             _connectionProvider = connectionProvider;
             _eventAggregator = eventAggregator;

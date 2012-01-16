@@ -97,4 +97,8 @@
   <Module PersistentId="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="System.Web_1" />
   <Module PersistentId="System.Runtime.Serialization.Formatters.Soap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="System.Runtime.Serialization.Formatters.Soap_1" />
   <Module PersistentId="Connection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" ModuleId="Connection_1" />
+  <Module PersistentId="AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF" ModuleId="Common" />
+  <Module PersistentId="WPFToolkit.Extended, Version=1.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4" ModuleId="WPFToolkit.Extended_1" />
+  <Module PersistentId="Autofac, Version=2.5.2.830, Culture=neutral, PublicKeyToken=17863af14b0044da" ModuleId="Autofac_1" />
+  <Module PersistentId="Caliburn.Micro, Version=1.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f" ModuleId="Caliburn.Micro_1" />
 </Modules>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Administration.Features
+﻿namespace Administration.Features.Reservations
 {
     public class ReservationsViewModel
     {
