@@ -79,6 +79,7 @@
     <Compile Include="Commands\Airports\SearchAirports.cs" />
     <Compile Include="Commands\Connections\AddConnection.cs" />
     <Compile Include="Commands\Connections\NewConnection.cs" />
+    <Compile Include="Commands\Connections\RemoveConnection.cs" />
     <Compile Include="Commands\Connections\SearchConnections.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Login.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Utils\MessageBoxService.cs" />
+    <Compile Include="Utils\ObjectParameter.cs" />
     <Page Include="Features\Airports\AirportsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

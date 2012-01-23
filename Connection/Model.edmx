@@ -121,7 +121,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CONNECTION_FROM_AIRPORT_FK">
-          <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1" />
+          <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AIRPORT">
@@ -133,7 +135,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CONNECTION_TO_AIRPORT_FK">
-          <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1" />
+          <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AIRPORT">
@@ -431,35 +435,35 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model" ZoomLevel="82">
-        <EntityTypeShape EntityType="Model.AIRPORT" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="Model.CITY" Width="1.5" PointX="3" PointY="1.5" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="Model.CONNECTION" Width="1.5" PointX="7.5" PointY="1" Height="3.1340950520833388" />
-        <EntityTypeShape EntityType="Model.COUNTRY" Width="1.5" PointX="0.75" PointY="1.75" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="Model.FLY" Width="1.5" PointX="9.75" PointY="1.5" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="Model.AIRPORT" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="Model.CITY" Width="1.5" PointX="3" PointY="1.5" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="Model.CONNECTION" Width="1.5" PointX="7.5" PointY="1" Height="3.1340950520833313" />
+        <EntityTypeShape EntityType="Model.COUNTRY" Width="1.5" PointX="0.75" PointY="1.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Model.FLY" Width="1.5" PointX="9.75" PointY="1.5" Height="2.1725878906250031" />
         <EntityTypeShape EntityType="Model.RESERVATION" Width="1.5" PointX="12" PointY="1.5" Height="2.1725878906250031" />
         <AssociationConnector Association="Model.AIRPORT_CITY_FK" >
-          <ConnectorPoint PointX="4.5" PointY="2.4901432291666694" />
-          <ConnectorPoint PointX="5.25" PointY="2.4901432291666694" />
+          <ConnectorPoint PointX="4.5" PointY="2.4901432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="2.4901432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="Model.CONNECTION_FROM_AIRPORT_FK" >
-          <ConnectorPoint PointX="6.75" PointY="2.5862939453125016" />
-          <ConnectorPoint PointX="7.5" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="6.75" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="7.5" PointY="2.5862939453125" />
         </AssociationConnector>
         <AssociationConnector Association="Model.CONNECTION_TO_AIRPORT_FK" >
-          <ConnectorPoint PointX="6.75" PointY="1.9806469726562508" />
-          <ConnectorPoint PointX="7.5" PointY="1.9806469726562508" />
+          <ConnectorPoint PointX="6.75" PointY="1.98064697265625" />
+          <ConnectorPoint PointX="7.5" PointY="1.98064697265625" />
         </AssociationConnector>
         <AssociationConnector Association="Model.CITY_COUNTRY_FK" >
-          <ConnectorPoint PointX="2.25" PointY="2.5478417968750016" />
-          <ConnectorPoint PointX="3" PointY="2.5478417968750016" />
+          <ConnectorPoint PointX="2.25" PointY="2.547841796875" />
+          <ConnectorPoint PointX="3" PointY="2.547841796875" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FLY_CONNECTION_FK" >
-          <ConnectorPoint PointX="9" PointY="2.586293945312498" />
-          <ConnectorPoint PointX="9.75" PointY="2.586293945312498" />
+          <ConnectorPoint PointX="9" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="9.75" PointY="2.5862939453125016" />
         </AssociationConnector>
         <AssociationConnector Association="Model.RESERVATION_FLY_FK" >
-          <ConnectorPoint PointX="11.25" PointY="2.586293945312498" />
-          <ConnectorPoint PointX="12" PointY="2.586293945312498" />
+          <ConnectorPoint PointX="11.25" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="12" PointY="2.5862939453125016" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

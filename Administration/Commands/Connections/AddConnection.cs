@@ -27,17 +27,15 @@ namespace Administration.Commands.Connections
         public void Execute()
         {
             DBConnection dbConnection = _connectionProvider.GetConnection();
-            var connection = new CONNECTION
-                                 {
-                                     SYMBOL = _symbolsProvider.GetConnectionSymbol(),
-                                     DEPARTURE_TIME = DateTime.Parse(_connectionCreationData.DepartureTime),
-                                     ARIVAL_TIME = DateTime.Parse(_connectionCreationData.ArivalTime),
-                                     WEEKDAY = _connectionCreationData.WeekDay,
-                                     PRICE = Convert.ToInt32(_connectionCreationData.Price.Trim('_')),
-                                     TICKETS = Convert.ToInt32(_connectionCreationData.NumberOfTickets.Trim()),
-                                     FROM_AIRPORT_SYMBOL = _connectionCreationData.From.SYMBOL,
-                                     TO_AIRPORT_SYMBOL = _connectionCreationData.To.SYMBOL
-                                 };
+            var connection = new CONNECTION();
+            connection.SYMBOL = _symbolsProvider.GetConnectionSymbol();
+            connection.DEPARTURE_TIME = DateTime.Parse(_connectionCreationData.DepartureTime);
+            connection.ARIVAL_TIME = DateTime.Parse(_connectionCreationData.ArivalTime);
+            connection.WEEKDAY = _connectionCreationData.WeekDay;
+            connection.PRICE = Convert.ToInt32(_connectionCreationData.Price.Trim('_'));
+            connection.TICKETS = Convert.ToInt32(_connectionCreationData.NumberOfTickets.Trim('_'));
+            connection.FROM_AIRPORT_SYMBOL = _connectionCreationData.From.SYMBOL;
+            connection.TO_AIRPORT_SYMBOL = _connectionCreationData.To.SYMBOL;
             dbConnection.CONNECTION.AddObject(connection);
             dbConnection.SaveChanges();
         }

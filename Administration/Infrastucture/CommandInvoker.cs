@@ -77,6 +77,11 @@ namespace Administration.Infrastucture
                 return "Constraint violated. Check inserted data.";
             }
 
+            if (exception.Message.StartsWith("ORA-02292"))
+            {
+                return "Constraint violated. Cannot complete this operation.";
+            }
+
             if (exception.Message.StartsWith("ORA-01031"))
             {
                 return "You don't have sufficient privileges to complete this operation.";

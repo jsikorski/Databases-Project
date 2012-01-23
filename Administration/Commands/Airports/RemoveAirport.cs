@@ -32,6 +32,13 @@ namespace Administration.Commands.Airports
             }
 
             DBConnection dbConnection = _connectionProvider.GetConnection();
+
+            
+            //foreach (var airportInCity in dbConnection.AIRPORT.Where(a => a.CITY_ID == _airport.CITY_ID))
+            //{
+                
+            //}
+
             var airport = dbConnection.AIRPORT.Single(a => a.SYMBOL == _airport.SYMBOL);
             dbConnection.AIRPORT.DeleteObject(airport);
             dbConnection.SaveChanges();
