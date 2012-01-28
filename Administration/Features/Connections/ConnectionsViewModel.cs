@@ -16,21 +16,34 @@ namespace Administration.Features.Connections
     public class ConnectionsViewModel : IBusyScopeSubscreen, IHandle<ConnectionsFounded>
     {
         private readonly IContainer _container;
+        private readonly Func<ConnectionsSearchData, SearchConnections> _searchConnectionsFactory;
         private readonly Func<CONNECTION, RemoveConnection> _removeConnectionFactory;
         private IBusyScope _busyScope;
 
         public BindableCollection<CONNECTION> Connections { get; set; }
         public CONNECTION SelectedConnection { get; set; }
 
+        public string ConnectionSymbol { get; set; }
+        public string DepartureTime { get; set; }
+        public string ArivalTime { get; set; }
+        public IEnumerable<string> Days { get; private set; }
+        public string SelectedDay { get; set; }
+        public string FromAirportName { get; set; }
+        public string ToAirportName { get; set; }
+
         public ConnectionsViewModel(
             IEventAggregator eventAggregator,
             IContainer container,
+            Func<ConnectionsSearchData, SearchConnections> searchConnectionsFactory, 
             Func<CONNECTION, RemoveConnection> removeConnectionFactory)
         {
             _container = container;
+            _searchConnectionsFactory = searchConnectionsFactory;
             _removeConnectionFactory = removeConnectionFactory;
             eventAggregator.Subscribe(this);
             Connections = new BindableCollection<CONNECTION>();
+
+            Days = new[] { "Monday", "Tuesday", "Thursday", "Wednesday", "Saturday", "Sunday", "Friday" };
         }
 
         public void NewConnection()
@@ -39,10 +52,13 @@ namespace Administration.Features.Connections
             CommandInvoker.Execute(command);
         }
 
-        public IResult SearchConnections()
+        public void SearchConnections()
         {
-            ICommand command = _container.Resolve<SearchConnections>();
-            return new BusyCommandResult(command, _busyScope);
+            var connectionsSearchData = new ConnectionsSearchData(ConnectionSymbol, 
+                Convert.ToDateTime(DepartureTime), Convert.ToDateTime(ArivalTime), 
+                SelectedDay, FromAirportName, ToAirportName);
+            ICommand command = _searchConnectionsFactory(connectionsSearchData);
+            CommandInvoker.InvokeBusy(command, _busyScope);
         }
 
         public void RemoveConnection()

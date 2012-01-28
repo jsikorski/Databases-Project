@@ -4,7 +4,8 @@
         Title="NewAirportView"
         Width="300"
         SizeToContent="Height"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}">
     <StackPanel Orientation="Vertical"
                 Margin="10">
         <Label Content="Name" />

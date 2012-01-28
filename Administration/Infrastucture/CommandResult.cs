@@ -25,6 +25,6 @@ namespace Administration.Infrastucture
             CommandInvoker.Invoke(_command, _onComplete);
         }
 
-        public event EventHandler<ResultCompletionEventArgs> Completed;
+        public event EventHandler<ResultCompletionEventArgs> Completed = (sender, args) => { };
     }
 }

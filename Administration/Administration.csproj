@@ -86,7 +86,6 @@
     <Compile Include="Commands\Connections\SearchConnections.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Login.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Features\Airports\AirportCreationData.cs" />
     <Compile Include="Features\Airports\AirportsSearchData.cs" />
     <Compile Include="Features\Airports\AirportsView.xaml.cs">

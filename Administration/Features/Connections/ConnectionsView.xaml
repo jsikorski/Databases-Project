@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
              Style="{StaticResource FeatureTabStyle}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,6 +23,9 @@
                 <DataGridTextColumn Header="Arival time"
                                     Width="*"
                                     Binding="{Binding ARIVAL_TIME.TimeOfDay}" />
+                <DataGridTextColumn Header="Day"
+                                    Width="*"
+                                    Binding="{Binding WEEKDAY}" />
                 <DataGridTextColumn Header="From"
                                     Width="*"
                                     Binding="{Binding AIRPORT.NAME}" />
@@ -34,14 +38,24 @@
         <StackPanel Grid.Column="1"
                     Orientation="Vertical"
                     Margin="10">
-            <Label Content="Airport name" />
-            <TextBox Text="{Binding AirportName, Mode=OneWayToSource}" />
+            <Label Content="Connection symbol" />
+            <TextBox Text="{Binding ConnectionSymbol, Mode=OneWayToSource}" />
 
-            <Label Content="City name" />
-            <TextBox Text="{Binding CityName, Mode=OneWayToSource}" />
+            <Label Content="Departure time" />
+            <extToolkit:TimePicker Value="{Binding DepartureTime, Mode=OneWayToSource}" />
 
-            <Label Content="Country name" />
-            <TextBox Text="{Binding CountryName, Mode=OneWayToSource}" />
+            <Label Content="Arival time" />
+            <extToolkit:TimePicker Value="{Binding ArivalTime, Mode=OneWayToSource}" />
+
+            <Label Content="Day" />
+            <ComboBox ItemsSource="{Binding Days}"
+                      SelectedItem="{Binding SelectedDay, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Content="Source airport name" />
+            <TextBox Text="{Binding FromAirportName, Mode=OneWayToSource}" />
+
+            <Label Content="Destination airport name" />
+            <TextBox Text="{Binding ToAirportName, Mode=OneWayToSource}" />
 
             <Button Name="SearchConnections"
                     Content="Search"

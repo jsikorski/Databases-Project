@@ -4,7 +4,8 @@
         xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         Title="MainView"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}">
     <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
             <Grid Margin="10">

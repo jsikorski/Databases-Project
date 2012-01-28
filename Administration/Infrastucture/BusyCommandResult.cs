@@ -23,6 +23,6 @@ namespace Administration.Infrastucture
             CommandInvoker.InvokeBusy(_command, _busyScope);
         }
 
-        public event EventHandler<ResultCompletionEventArgs> Completed;
+        public event EventHandler<ResultCompletionEventArgs> Completed = (sender, args) => { };
     }
 }

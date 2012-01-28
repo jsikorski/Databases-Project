@@ -24,6 +24,6 @@ namespace Administration.Infrastucture
             CommandInvoker.Invoke(_command, () => MainViewModel.IsBusy = false);
         }
 
-        public event EventHandler<ResultCompletionEventArgs> Completed;
+        public event EventHandler<ResultCompletionEventArgs> Completed = (sender, args) => { };
     }
 }

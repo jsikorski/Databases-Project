@@ -42,7 +42,7 @@ namespace Administration.Features.Connections
             }
         }
 
-        public IEnumerable<string> Days { get; set; }
+        public IEnumerable<string> Days { get; private set; }
         private string _selectedDay;
         public string SelectedDay
         {
