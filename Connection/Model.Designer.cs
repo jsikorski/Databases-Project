@@ -19,8 +19,8 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("Model", "AIRPORT_CITY_FK", "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CITY), "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.AIRPORT), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_FROM_AIRPORT_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
-[assembly: EdmRelationshipAttribute("Model", "CONNECTION_TO_AIRPORT_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
+[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
+[assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
 [assembly: EdmRelationshipAttribute("Model", "CITY_COUNTRY_FK", "COUNTRY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.COUNTRY), "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CITY), true)]
 [assembly: EdmRelationshipAttribute("Model", "FLY_CONNECTION_FK", "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CONNECTION), "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.FLY), true)]
 [assembly: EdmRelationshipAttribute("Model", "RESERVATION_FLY_FK", "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.FLY), "RESERVATION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.RESERVATION), true)]
@@ -246,7 +246,7 @@ namespace Connection
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
         /// <param name="cITY_ID">Initial value of the CITY_ID property.</param>
         /// <param name="nAME">Initial value of the NAME property.</param>
-        public static AIRPORT CreateAIRPORT(global::System.String sYMBOL, global::System.Decimal cITY_ID, global::System.String nAME)
+        public static AIRPORT CreateAIRPORT(global::System.String sYMBOL, global::System.Guid cITY_ID, global::System.String nAME)
         {
             AIRPORT aIRPORT = new AIRPORT();
             aIRPORT.SYMBOL = sYMBOL;
@@ -290,7 +290,7 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal CITY_ID
+        public global::System.Guid CITY_ID
         {
             get
             {
@@ -305,8 +305,8 @@ namespace Connection
                 OnCITY_IDChanged();
             }
         }
-        private global::System.Decimal _CITY_ID;
-        partial void OnCITY_IDChanging(global::System.Decimal value);
+        private global::System.Guid _CITY_ID;
+        partial void OnCITY_IDChanging(global::System.Guid value);
         partial void OnCITY_IDChanged();
     
         /// <summary>
@@ -381,18 +381,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_FROM_AIRPORT_FK", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "CONNECTION")]
         public EntityCollection<CONNECTION> CONNECTION
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_FROM_AIRPORT_FK", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_FROM_AIRPORT_FK", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_FROM_FK", "CONNECTION", value);
                 }
             }
         }
@@ -403,18 +403,18 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_TO_AIRPORT_FK", "CONNECTION")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "CONNECTION")]
         public EntityCollection<CONNECTION> CONNECTION1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_TO_AIRPORT_FK", "CONNECTION");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO_FK", "CONNECTION");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_TO_AIRPORT_FK", "CONNECTION", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CONNECTION>("Model.CONNECTION_AIRPORT_TO_FK", "CONNECTION", value);
                 }
             }
         }
@@ -438,7 +438,7 @@ namespace Connection
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="nAME">Initial value of the NAME property.</param>
         /// <param name="cOUNTRY_ID">Initial value of the COUNTRY_ID property.</param>
-        public static CITY CreateCITY(global::System.Decimal id, global::System.String nAME, global::System.Decimal cOUNTRY_ID)
+        public static CITY CreateCITY(global::System.Guid id, global::System.String nAME, global::System.Guid cOUNTRY_ID)
         {
             CITY cITY = new CITY();
             cITY.ID = id;
@@ -455,7 +455,7 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal ID
+        public global::System.Guid ID
         {
             get
             {
@@ -473,8 +473,8 @@ namespace Connection
                 }
             }
         }
-        private global::System.Decimal _ID;
-        partial void OnIDChanging(global::System.Decimal value);
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -506,7 +506,7 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal COUNTRY_ID
+        public global::System.Guid COUNTRY_ID
         {
             get
             {
@@ -521,8 +521,8 @@ namespace Connection
                 OnCOUNTRY_IDChanged();
             }
         }
-        private global::System.Decimal _COUNTRY_ID;
-        partial void OnCOUNTRY_IDChanging(global::System.Decimal value);
+        private global::System.Guid _COUNTRY_ID;
+        partial void OnCOUNTRY_IDChanging(global::System.Guid value);
         partial void OnCOUNTRY_IDChanged();
 
         #endregion
@@ -835,16 +835,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_FROM_AIRPORT_FK", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_FROM_FK", "AIRPORT")]
         public AIRPORT AIRPORT
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT").Value = value;
             }
         }
         /// <summary>
@@ -856,13 +856,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_FROM_AIRPORT_FK", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_FROM_FK", "AIRPORT", value);
                 }
             }
         }
@@ -873,16 +873,16 @@ namespace Connection
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_TO_AIRPORT_FK", "AIRPORT")]
+        [EdmRelationshipNavigationPropertyAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT")]
         public AIRPORT AIRPORT1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT").Value = value;
             }
         }
         /// <summary>
@@ -894,13 +894,13 @@ namespace Connection
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_TO_AIRPORT_FK", "AIRPORT", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AIRPORT>("Model.CONNECTION_AIRPORT_TO_FK", "AIRPORT", value);
                 }
             }
         }
@@ -945,7 +945,7 @@ namespace Connection
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="nAME">Initial value of the NAME property.</param>
-        public static COUNTRY CreateCOUNTRY(global::System.Decimal id, global::System.String nAME)
+        public static COUNTRY CreateCOUNTRY(global::System.Guid id, global::System.String nAME)
         {
             COUNTRY cOUNTRY = new COUNTRY();
             cOUNTRY.ID = id;
@@ -961,7 +961,7 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal ID
+        public global::System.Guid ID
         {
             get
             {
@@ -979,8 +979,8 @@ namespace Connection
                 }
             }
         }
-        private global::System.Decimal _ID;
-        partial void OnIDChanging(global::System.Decimal value);
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1246,12 +1246,16 @@ namespace Connection
         /// Create a new RESERVATION object.
         /// </summary>
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
+        /// <param name="iS_PAID">Initial value of the IS_PAID property.</param>
         /// <param name="fLY_SYMBOL">Initial value of the FLY_SYMBOL property.</param>
-        public static RESERVATION CreateRESERVATION(global::System.String sYMBOL, global::System.String fLY_SYMBOL)
+        /// <param name="cLIENT_ID">Initial value of the CLIENT_ID property.</param>
+        public static RESERVATION CreateRESERVATION(global::System.String sYMBOL, global::System.Int16 iS_PAID, global::System.String fLY_SYMBOL, global::System.Decimal cLIENT_ID)
         {
             RESERVATION rESERVATION = new RESERVATION();
             rESERVATION.SYMBOL = sYMBOL;
+            rESERVATION.IS_PAID = iS_PAID;
             rESERVATION.FLY_SYMBOL = fLY_SYMBOL;
+            rESERVATION.CLIENT_ID = cLIENT_ID;
             return rESERVATION;
         }
 
@@ -1290,31 +1294,31 @@ namespace Connection
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String PLACE_NUMBER
+        public global::System.String PLACE_SYMBOL
         {
             get
             {
-                return _PLACE_NUMBER;
+                return _PLACE_SYMBOL;
             }
             set
             {
-                OnPLACE_NUMBERChanging(value);
-                ReportPropertyChanging("PLACE_NUMBER");
-                _PLACE_NUMBER = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PLACE_NUMBER");
-                OnPLACE_NUMBERChanged();
+                OnPLACE_SYMBOLChanging(value);
+                ReportPropertyChanging("PLACE_SYMBOL");
+                _PLACE_SYMBOL = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PLACE_SYMBOL");
+                OnPLACE_SYMBOLChanged();
             }
         }
-        private global::System.String _PLACE_NUMBER;
-        partial void OnPLACE_NUMBERChanging(global::System.String value);
-        partial void OnPLACE_NUMBERChanged();
+        private global::System.String _PLACE_SYMBOL;
+        partial void OnPLACE_SYMBOLChanging(global::System.String value);
+        partial void OnPLACE_SYMBOLChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int16> IS_PAID
+        public global::System.Int16 IS_PAID
         {
             get
             {
@@ -1329,8 +1333,8 @@ namespace Connection
                 OnIS_PAIDChanged();
             }
         }
-        private Nullable<global::System.Int16> _IS_PAID;
-        partial void OnIS_PAIDChanging(Nullable<global::System.Int16> value);
+        private global::System.Int16 _IS_PAID;
+        partial void OnIS_PAIDChanging(global::System.Int16 value);
         partial void OnIS_PAIDChanged();
     
         /// <summary>
@@ -1360,9 +1364,9 @@ namespace Connection
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> CLIENT_ID
+        public global::System.Decimal CLIENT_ID
         {
             get
             {
@@ -1377,8 +1381,8 @@ namespace Connection
                 OnCLIENT_IDChanged();
             }
         }
-        private Nullable<global::System.Decimal> _CLIENT_ID;
-        partial void OnCLIENT_IDChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _CLIENT_ID;
+        partial void OnCLIENT_IDChanging(global::System.Decimal value);
         partial void OnCLIENT_IDChanged();
 
         #endregion

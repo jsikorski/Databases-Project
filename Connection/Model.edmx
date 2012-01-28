@@ -20,11 +20,11 @@
             <End Role="COUNTRY" EntitySet="COUNTRY" />
             <End Role="CITY" EntitySet="CITY" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_FROM_AIRPORT_FK" Association="Model.Store.CONNECTION_FROM_AIRPORT_FK">
+          <AssociationSet Name="CONNECTION_AIRPORT_FROM_FK" Association="Model.Store.CONNECTION_AIRPORT_FROM_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_TO_AIRPORT_FK" Association="Model.Store.CONNECTION_TO_AIRPORT_FK">
+          <AssociationSet Name="CONNECTION_AIRPORT_TO_FK" Association="Model.Store.CONNECTION_AIRPORT_TO_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
@@ -41,56 +41,56 @@
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="30" />
-          <Property Name="CITY_ID" Type="number" Nullable="false" />
-          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="CITY_ID" Type="raw" Nullable="false" MaxLength="16" />
+          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="30" />
         </EntityType>
         <EntityType Name="CITY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Nullable="false" />
-          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="COUNTRY_ID" Type="number" Nullable="false" />
+          <Property Name="ID" Type="raw" Nullable="false" MaxLength="16" />
+          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="30" />
+          <Property Name="COUNTRY_ID" Type="raw" Nullable="false" MaxLength="16" />
         </EntityType>
         <EntityType Name="CONNECTION">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="30" />
+          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
           <Property Name="DEPARTURE_TIME" Type="date" Nullable="false" />
           <Property Name="ARIVAL_TIME" Type="date" Nullable="false" />
           <Property Name="WEEKDAY" Type="varchar2" Nullable="false" MaxLength="9" />
           <Property Name="PRICE" Type="number" Nullable="false" />
           <Property Name="TICKETS" Type="number" Nullable="false" />
-          <Property Name="FROM_AIRPORT_SYMBOL" Type="varchar2" Nullable="false" MaxLength="30" />
-          <Property Name="TO_AIRPORT_SYMBOL" Type="varchar2" Nullable="false" MaxLength="30" />
+          <Property Name="FROM_AIRPORT_SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="TO_AIRPORT_SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="COUNTRY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Nullable="false" />
-          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="ID" Type="raw" Nullable="false" MaxLength="16" />
+          <Property Name="NAME" Type="varchar2" Nullable="false" MaxLength="30" />
         </EntityType>
         <EntityType Name="FLY">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
           <Property Name="FLY_DATE" Type="date" Nullable="false" />
-          <Property Name="CONNECTION_SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
+          <Property Name="CONNECTION_SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
           <Property Name="FREE_PLACES_NUMBER" Type="number" Nullable="false" />
         </EntityType>
         <EntityType Name="RESERVATION">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="PLACE_NUMBER" Type="varchar2" MaxLength="20" />
-          <Property Name="IS_PAID" Type="number" Precision="1" />
-          <Property Name="FLY_SYMBOL" Type="varchar2" Nullable="false" MaxLength="20" />
-          <Property Name="CLIENT_ID" Type="number" />
+          <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="PLACE_SYMBOL" Type="varchar2" MaxLength="5" />
+          <Property Name="IS_PAID" Type="number" Nullable="false" Precision="1" />
+          <Property Name="FLY_SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="CLIENT_ID" Type="number" Nullable="false" />
         </EntityType>
         <Association Name="AIRPORT_CITY_FK">
           <End Role="CITY" Type="Model.Store.CITY" Multiplicity="1">
@@ -120,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_FROM_AIRPORT_FK">
+        <Association Name="CONNECTION_AIRPORT_FROM_FK">
           <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -134,7 +134,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_TO_AIRPORT_FK">
+        <Association Name="CONNECTION_AIRPORT_TO_FK">
           <End Role="AIRPORT" Type="Model.Store.AIRPORT" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -149,7 +149,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FLY_CONNECTION_FK">
-          <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="1" />
+          <End Role="CONNECTION" Type="Model.Store.CONNECTION" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="FLY" Type="Model.Store.FLY" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CONNECTION">
@@ -187,11 +189,11 @@
             <End Role="CITY" EntitySet="CITY" />
             <End Role="AIRPORT" EntitySet="AIRPORT" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_FROM_AIRPORT_FK" Association="Model.CONNECTION_FROM_AIRPORT_FK">
+          <AssociationSet Name="CONNECTION_AIRPORT_FROM_FK" Association="Model.CONNECTION_AIRPORT_FROM_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
-          <AssociationSet Name="CONNECTION_TO_AIRPORT_FK" Association="Model.CONNECTION_TO_AIRPORT_FK">
+          <AssociationSet Name="CONNECTION_AIRPORT_TO_FK" Association="Model.CONNECTION_AIRPORT_TO_FK">
             <End Role="AIRPORT" EntitySet="AIRPORT" />
             <End Role="CONNECTION" EntitySet="CONNECTION" />
           </AssociationSet>
@@ -212,20 +214,20 @@
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="CITY_ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="CITY_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CITY" Relationship="Model.AIRPORT_CITY_FK" FromRole="AIRPORT" ToRole="CITY" />
-          <NavigationProperty Name="CONNECTION" Relationship="Model.CONNECTION_FROM_AIRPORT_FK" FromRole="AIRPORT" ToRole="CONNECTION" />
-          <NavigationProperty Name="CONNECTION1" Relationship="Model.CONNECTION_TO_AIRPORT_FK" FromRole="AIRPORT" ToRole="CONNECTION" />
+          <NavigationProperty Name="CONNECTION" Relationship="Model.CONNECTION_AIRPORT_FROM_FK" FromRole="AIRPORT" ToRole="CONNECTION" />
+          <NavigationProperty Name="CONNECTION1" Relationship="Model.CONNECTION_AIRPORT_TO_FK" FromRole="AIRPORT" ToRole="CONNECTION" />
         </EntityType>
         <EntityType Name="CITY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="COUNTRY_ID" Nullable="false" Precision="38" Scale="0" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="COUNTRY_ID" Nullable="false" />
           <NavigationProperty Name="AIRPORT" Relationship="Model.AIRPORT_CITY_FK" FromRole="CITY" ToRole="AIRPORT" />
           <NavigationProperty Name="COUNTRY" Relationship="Model.CITY_COUNTRY_FK" FromRole="CITY" ToRole="COUNTRY" />
         </EntityType>
@@ -233,33 +235,33 @@
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="DEPARTURE_TIME" Nullable="false" />
           <Property Type="DateTime" Name="ARIVAL_TIME" Nullable="false" />
           <Property Type="String" Name="WEEKDAY" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="PRICE" Nullable="false" Precision="38" Scale="0" />
           <Property Type="Decimal" Name="TICKETS" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="FROM_AIRPORT_SYMBOL" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="TO_AIRPORT_SYMBOL" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AIRPORT" Relationship="Model.CONNECTION_FROM_AIRPORT_FK" FromRole="CONNECTION" ToRole="AIRPORT" />
-          <NavigationProperty Name="AIRPORT1" Relationship="Model.CONNECTION_TO_AIRPORT_FK" FromRole="CONNECTION" ToRole="AIRPORT" />
+          <Property Type="String" Name="FROM_AIRPORT_SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TO_AIRPORT_SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AIRPORT" Relationship="Model.CONNECTION_AIRPORT_FROM_FK" FromRole="CONNECTION" ToRole="AIRPORT" />
+          <NavigationProperty Name="AIRPORT1" Relationship="Model.CONNECTION_AIRPORT_TO_FK" FromRole="CONNECTION" ToRole="AIRPORT" />
           <NavigationProperty Name="FLY" Relationship="Model.FLY_CONNECTION_FK" FromRole="CONNECTION" ToRole="FLY" />
         </EntityType>
         <EntityType Name="COUNTRY">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Decimal" Name="ID" Nullable="false" Precision="38" Scale="0" />
-          <Property Type="String" Name="NAME" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CITY" Relationship="Model.CITY_COUNTRY_FK" FromRole="COUNTRY" ToRole="CITY" />
         </EntityType>
         <EntityType Name="FLY">
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="FLY_DATE" Nullable="false" />
-          <Property Type="String" Name="CONNECTION_SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CONNECTION_SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="FREE_PLACES_NUMBER" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="CONNECTION" Relationship="Model.FLY_CONNECTION_FK" FromRole="FLY" ToRole="CONNECTION" />
           <NavigationProperty Name="RESERVATION" Relationship="Model.RESERVATION_FLY_FK" FromRole="FLY" ToRole="RESERVATION" />
@@ -268,11 +270,11 @@
           <Key>
             <PropertyRef Name="SYMBOL" />
           </Key>
-          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PLACE_NUMBER" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int16" Name="IS_PAID" />
-          <Property Type="String" Name="FLY_SYMBOL" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="CLIENT_ID" Precision="38" Scale="0" />
+          <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PLACE_SYMBOL" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="IS_PAID" Nullable="false" />
+          <Property Type="String" Name="FLY_SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CLIENT_ID" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="FLY" Relationship="Model.RESERVATION_FLY_FK" FromRole="RESERVATION" ToRole="FLY" />
         </EntityType>
         <Association Name="AIRPORT_CITY_FK">
@@ -287,7 +289,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_FROM_AIRPORT_FK">
+        <Association Name="CONNECTION_AIRPORT_FROM_FK">
           <End Type="Model.AIRPORT" Role="AIRPORT" Multiplicity="1" />
           <End Type="Model.CONNECTION" Role="CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -299,7 +301,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CONNECTION_TO_AIRPORT_FK">
+        <Association Name="CONNECTION_AIRPORT_TO_FK">
           <End Type="Model.AIRPORT" Role="AIRPORT" Multiplicity="1" />
           <End Type="Model.CONNECTION" Role="CONNECTION" Multiplicity="*" />
           <ReferentialConstraint>
@@ -409,7 +411,7 @@
                 <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
                 <ScalarProperty Name="FLY_SYMBOL" ColumnName="FLY_SYMBOL" />
                 <ScalarProperty Name="IS_PAID" ColumnName="IS_PAID" />
-                <ScalarProperty Name="PLACE_NUMBER" ColumnName="PLACE_NUMBER" />
+                <ScalarProperty Name="PLACE_SYMBOL" ColumnName="PLACE_SYMBOL" />
                 <ScalarProperty Name="SYMBOL" ColumnName="SYMBOL" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -435,35 +437,35 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model" ZoomLevel="82">
-        <EntityTypeShape EntityType="Model.AIRPORT" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="Model.CITY" Width="1.5" PointX="3" PointY="1.5" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="Model.CONNECTION" Width="1.5" PointX="7.5" PointY="1" Height="3.1340950520833313" />
-        <EntityTypeShape EntityType="Model.COUNTRY" Width="1.5" PointX="0.75" PointY="1.75" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="Model.FLY" Width="1.5" PointX="9.75" PointY="1.5" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="Model.AIRPORT" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="Model.CITY" Width="1.5" PointX="3" PointY="1.5" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Model.CONNECTION" Width="1.5" PointX="7.5" PointY="1" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="Model.COUNTRY" Width="1.5" PointX="0.75" PointY="1.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Model.FLY" Width="1.5" PointX="9.75" PointY="1.5" Height="2.172587890624996" />
         <EntityTypeShape EntityType="Model.RESERVATION" Width="1.5" PointX="12" PointY="1.5" Height="2.1725878906250031" />
         <AssociationConnector Association="Model.AIRPORT_CITY_FK" >
-          <ConnectorPoint PointX="4.5" PointY="2.4901432291666659" />
-          <ConnectorPoint PointX="5.25" PointY="2.4901432291666659" />
+          <ConnectorPoint PointX="4.5" PointY="2.4901432291666694" />
+          <ConnectorPoint PointX="5.25" PointY="2.4901432291666694" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.CONNECTION_FROM_AIRPORT_FK" >
-          <ConnectorPoint PointX="6.75" PointY="2.5862939453125" />
-          <ConnectorPoint PointX="7.5" PointY="2.5862939453125" />
+        <AssociationConnector Association="Model.CONNECTION_AIRPORT_FROM_FK" >
+          <ConnectorPoint PointX="6.75" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="7.5" PointY="2.5862939453125016" />
         </AssociationConnector>
-        <AssociationConnector Association="Model.CONNECTION_TO_AIRPORT_FK" >
-          <ConnectorPoint PointX="6.75" PointY="1.98064697265625" />
-          <ConnectorPoint PointX="7.5" PointY="1.98064697265625" />
+        <AssociationConnector Association="Model.CONNECTION_AIRPORT_TO_FK" >
+          <ConnectorPoint PointX="6.75" PointY="1.9806469726562508" />
+          <ConnectorPoint PointX="7.5" PointY="1.9806469726562508" />
         </AssociationConnector>
         <AssociationConnector Association="Model.CITY_COUNTRY_FK" >
-          <ConnectorPoint PointX="2.25" PointY="2.547841796875" />
-          <ConnectorPoint PointX="3" PointY="2.547841796875" />
+          <ConnectorPoint PointX="2.25" PointY="2.5478417968750016" />
+          <ConnectorPoint PointX="3" PointY="2.5478417968750016" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FLY_CONNECTION_FK" >
-          <ConnectorPoint PointX="9" PointY="2.5862939453125016" />
-          <ConnectorPoint PointX="9.75" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="9" PointY="2.586293945312498" />
+          <ConnectorPoint PointX="9.75" PointY="2.586293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="Model.RESERVATION_FLY_FK" >
-          <ConnectorPoint PointX="11.25" PointY="2.5862939453125016" />
-          <ConnectorPoint PointX="12" PointY="2.5862939453125016" />
+          <ConnectorPoint PointX="11.25" PointY="2.586293945312498" />
+          <ConnectorPoint PointX="12" PointY="2.586293945312498" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -16,6 +16,7 @@ namespace Administration.Features.Connections
     public class ConnectionsViewModel : IBusyScopeSubscreen, IHandle<ConnectionsFounded>
     {
         private readonly IContainer _container;
+        private readonly Func<CONNECTION, RemoveConnection> _removeConnectionFactory;
         private IBusyScope _busyScope;
 
         public BindableCollection<CONNECTION> Connections { get; set; }
@@ -23,9 +24,11 @@ namespace Administration.Features.Connections
 
         public ConnectionsViewModel(
             IEventAggregator eventAggregator,
-            IContainer container)
+            IContainer container,
+            Func<CONNECTION, RemoveConnection> removeConnectionFactory)
         {
             _container = container;
+            _removeConnectionFactory = removeConnectionFactory;
             eventAggregator.Subscribe(this);
             Connections = new BindableCollection<CONNECTION>();
         }
@@ -44,8 +47,7 @@ namespace Administration.Features.Connections
 
         public void RemoveConnection()
         {
-            ICommand command = _container.Resolve<RemoveConnection>(
-                new ObjectParameter(SelectedConnection));
+            ICommand command = _removeConnectionFactory(SelectedConnection);
             CommandInvoker.Invoke(command);
         }
 

@@ -8,8 +8,8 @@
                 <ResourceDictionary>
                     <Administration:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
-                <ResourceDictionary Source="Styles/Styles.xaml" />
                 <ResourceDictionary Source="Styles/WhistlerBlue.xaml" />
+                <ResourceDictionary Source="Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

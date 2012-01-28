@@ -8,7 +8,6 @@ using Administration.Commands.Connections;
 using Administration.Features.Airports;
 using Administration.Infrastucture;
 using Administration.Messages;
-using Autofac;
 using Caliburn.Micro;
 using Connection;
 
@@ -16,9 +15,10 @@ namespace Administration.Features.Connections
 {
     public class NewConnectionViewModel : Screen, IHandle<AirportsFounded>, IBusyScope
     {
-        private readonly IContainer _container;
         private readonly IEventAggregator _eventAggregator;
         private readonly MainViewModel _mainViewModel;
+        private readonly Func<ConnectionCreationData, AddConnection> _addConnectionFactory;
+        private readonly Func<AirportsSearchData, SearchAirports> _searchAirportsFactory;
 
         private string _departureTime;
         public string DepartureTime
@@ -125,30 +125,35 @@ namespace Administration.Features.Connections
             }
         }
 
-        public NewConnectionViewModel(IContainer container, 
+        public NewConnectionViewModel(
             IEventAggregator eventAggregator,
-            MainViewModel mainViewModel)
+            MainViewModel mainViewModel,
+            Func<ConnectionCreationData, AddConnection> addConnectionFactory, 
+            Func<AirportsSearchData, SearchAirports> searchAirportsFactory)
         {
-            _container = container;
             _eventAggregator = eventAggregator;
             _mainViewModel = mainViewModel;
+            _addConnectionFactory = addConnectionFactory;
+            _searchAirportsFactory = searchAirportsFactory;
             _eventAggregator.Subscribe(this);
 
             base.DisplayName = "Add connection";
                 
             Days = new[] {"Monday", "Tuesday", "Thursday", "Wednesday", "Saturday", "Sunday", "Friday"};
+        }
+
+        protected override void OnActivate()
+        {
             GetAirports();
         }
 
-        public IResult AddConnection()
+        public void AddConnection()
         {
             TryClose();
             var connectionCreationData = new ConnectionCreationData(DepartureTime, ArivalTime, 
                 SelectedDay, Price, NumberOfTickets, SelectedFromAirport, SelectedToAirport);
-            ICommand command =
-                _container.Resolve<AddConnection>(new TypedParameter(typeof (ConnectionCreationData),
-                                                                     connectionCreationData));
-            return new BusyCommandResult(command, _mainViewModel);
+            ICommand command = _addConnectionFactory(connectionCreationData);
+            CommandInvoker.InvokeBusy(command, _mainViewModel);
         }
 
         public void Handle(AirportsFounded message)
@@ -159,9 +164,9 @@ namespace Administration.Features.Connections
         private void GetAirports()
         {
             Airports = new BindableCollection<AIRPORT>();            
-            var airportsSearchData = new AirportsSearchData(string.Empty, string.Empty, string.Empty);
-            ICommand command = _container
-                .Resolve<SearchAirports>(new TypedParameter(typeof(AirportsSearchData), airportsSearchData));
+            var airportsSearchData = new AirportsSearchData(
+                string.Empty, string.Empty, string.Empty, string.Empty);
+            ICommand command = _searchAirportsFactory(airportsSearchData);
             CommandInvoker.InvokeBusy(command, this);
         }
     }

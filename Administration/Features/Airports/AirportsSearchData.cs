@@ -7,12 +7,14 @@ namespace Administration.Features.Airports
 {
     public class AirportsSearchData
     {
+        public string AirportSymbol { get; private set; }
         public string AirportName { get; private set; }
         public string CityName { get; private set; }
         public string CountryName { get; private set; }
 
-        public AirportsSearchData(string airportName, string cityName, string countryName)
+        public AirportsSearchData(string airportSymbol, string airportName, string cityName, string countryName)
         {
+            AirportSymbol = airportSymbol;
             CountryName = countryName;
             CityName = cityName;
             AirportName = airportName;

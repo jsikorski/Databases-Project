@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.EntityClient;
 using System.Data.Odbc;
@@ -10,15 +11,17 @@ using Administration.Infrastucture;
 using Administration.Messages;
 using Autofac;
 using Caliburn.Micro;
+using Connection;
 
 namespace Administration
 {
     public class ShellViewModel : Screen, IShell, IHandle<LoggedIn>, IBusyScope
     {
-        private readonly IContainer _container;
         private readonly IEventAggregator _eventAggregator;
         private readonly IWindowManager _windowManager;
         private readonly MainViewModel _mainViewModel;
+        private readonly Func<LoginData, Login> _loginFactory;
+
         public string Username { get; set; }
         public string Password { get; set; }
 
@@ -34,31 +37,30 @@ namespace Administration
         }
 
         public ShellViewModel(
-            IContainer container,
             IEventAggregator eventAggregator,
             IWindowManager windowManager,
-            MainViewModel mainViewModel)
+            MainViewModel mainViewModel, 
+            Func<LoginData, Login> loginFactory)
         {
             base.DisplayName = "Login";
 
-            _container = container;
             _eventAggregator = eventAggregator;
             _windowManager = windowManager;
             _mainViewModel = mainViewModel;
+            _loginFactory = loginFactory;
 
             _eventAggregator.Subscribe(this);
 
-#if DEBUG
-            Username = "SampleAdmin";
-            Password = "asd";
-#endif
+            #if DEBUG
+                Username = "SampleAdmin";
+                Password = "asd";
+            #endif
         }
 
-        public IResult Login()
+        public void Login()
         {
-            ICommand command = _container.Resolve<Login>(new NamedParameter("username", Username),
-                                                         new NamedParameter("password", Password));
-            return new BusyCommandResult(command, this);
+            ICommand command = _loginFactory(new LoginData(Username, Password));
+            CommandInvoker.InvokeBusy(command, this);
         }
 
         public void Handle(LoggedIn message)

@@ -14,24 +14,23 @@ namespace Administration.Commands
     {
         private readonly IConnectionProvider _connectionProvider;
         private readonly IEventAggregator _eventAggregator;
-        private readonly string _username;
-        private readonly string _password;
+        private readonly LoginData _connectionData;
 
         public Login(
             IConnectionProvider connectionProvider,
             IEventAggregator eventAggregator,
-            string username, 
-            string password)
+            LoginData connectionData)
         {
             _connectionProvider = connectionProvider;
             _eventAggregator = eventAggregator;
-            _username = username;
-            _password = password;
+            _connectionData = connectionData;
         }
 
         public void Execute()
         {
-            _connectionProvider.Login(_username, _password, "Administrator");
+            _connectionProvider.Login(_connectionData.UserName,
+                                      _connectionData.Password,
+                                      "Administrator");
             _eventAggregator.Publish(new LoggedIn());
         }
     }

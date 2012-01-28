@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Administration.Commands;
 using Administration.Commands.Airports;
 using Administration.Infrastucture;
@@ -15,6 +16,8 @@ namespace Administration.Features.Airports
     {
         private readonly IContainer _container;
         private readonly IEventAggregator _eventAggregator;
+        private readonly Func<AirportsSearchData, SearchAirports> _searchAirportsFactory;
+        private readonly Func<AIRPORT, RemoveAirport> _removeAirportFactory;
         private IBusyScope _busyScope;
 
         public BindableCollection<AIRPORT> Airports { get; set; }
@@ -38,28 +41,38 @@ namespace Administration.Features.Airports
             }
         }
 
+        public string AirportSymbol { get; set; }
         public string AirportName { get; set; }
         public string CityName { get; set; }
         public string CountryName { get; set; }
 
         public AirportsViewModel(
             IContainer container,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            Func<AirportsSearchData, SearchAirports> searchAirportsFactory,
+            Func<AIRPORT, RemoveAirport> removeAirportFactory)
         {
             _container = container;
             _eventAggregator = eventAggregator;
+            _searchAirportsFactory = searchAirportsFactory;
+            _removeAirportFactory = removeAirportFactory;
 
             Airports = new BindableCollection<AIRPORT>();
         }
 
-        public IResult SearchAirports()
+        public void SetBusyScope(IBusyScope busyScope)
+        {
+            _busyScope = busyScope;
+        }
+
+        public void SearchAirports()
         {
             _eventAggregator.Subscribe(this);
 
-            var airportsSearchData = new AirportsSearchData(AirportName, CityName, CountryName);
-            ICommand command = _container.Resolve<SearchAirports>(
-                new NamedParameter("airportsSearchData", airportsSearchData));
-            return new BusyCommandResult(command, _busyScope);
+            var airportsSearchData = new AirportsSearchData(
+                AirportSymbol, AirportName, CityName, CountryName);
+            ICommand command = _searchAirportsFactory(airportsSearchData);
+            CommandInvoker.InvokeBusy(command, _busyScope);
         }
 
         public void NewAirport()
@@ -68,17 +81,12 @@ namespace Administration.Features.Airports
             CommandInvoker.Execute(command);
         }
 
-        public IResult RemoveAirport()
+        public void RemoveAirport()
         {
             _eventAggregator.Subscribe(this);
 
-            ICommand command = _container.Resolve<RemoveAirport>(new TypedParameter(typeof(AIRPORT), SelectedAirport));
-            return new CommandResult(command);
-        }
-
-        public void SetBusyScope(IBusyScope busyScope)
-        {
-            _busyScope = busyScope;
+            ICommand command = _removeAirportFactory(SelectedAirport);
+            CommandInvoker.Execute(command);
         }
 
         public void Handle(AirportsFounded message)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Administration.Extensions;
 using Administration.Features.Airports;
 using Administration.Messages;
 using Caliburn.Micro;
@@ -27,9 +28,10 @@ namespace Administration.Commands.Airports
         {
             DBConnection dbConnection = _connectionProvider.GetConnection();
             IEnumerable<AIRPORT> airports = dbConnection.AIRPORT.Where(
-                airport => airport.NAME.Contains(_airportsSearchData.AirportName) &&
-                           airport.CITY.NAME.Contains(_airportsSearchData.CityName) &&
-                           airport.CITY.COUNTRY.NAME.Contains(_airportsSearchData.CountryName));
+                airport => airport.SYMBOL.ContainsToLower(_airportsSearchData.AirportSymbol) &&
+                           airport.NAME.ContainsToLower(_airportsSearchData.AirportName) &&
+                           airport.CITY.NAME.ContainsToLower(_airportsSearchData.CityName) &&
+                           airport.CITY.COUNTRY.NAME.ContainsToLower(_airportsSearchData.CountryName));
             _eventAggregator.Publish(new AirportsFounded(airports));
         }
     }

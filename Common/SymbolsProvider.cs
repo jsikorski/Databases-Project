@@ -9,12 +9,17 @@ namespace Common
     {
         public string GetAirportSymbol()
         {
-            return string.Format("{0}_{1}", "AIRPORT", DateTime.Now);
+            return GetSymbol("AIRPORT");
         }
 
         public string GetConnectionSymbol()
         {
-            return string.Format("{0}_{1}", "CONNECTION", DateTime.Now);
+            return GetSymbol("CONNECTION");
+        }
+
+        private string GetSymbol(string objectType)
+        {
+            return objectType + "_" + Guid.NewGuid().ToString();
         }
     }
 }

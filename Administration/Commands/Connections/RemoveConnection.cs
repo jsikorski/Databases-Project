@@ -10,14 +10,14 @@ namespace Administration.Commands.Connections
 {
     public class RemoveConnection : ICommand
     {
-        private readonly CONNECTION _connection;
+        private readonly CONNECTION _connectionToRemove;
         private readonly IConnectionProvider _connectionProvider;
 
         public RemoveConnection(
-            CONNECTION connection, 
+            CONNECTION connectionToRemove, 
             IConnectionProvider connectionProvider)
         {
-            _connection = connection;
+            _connectionToRemove = connectionToRemove;
             _connectionProvider = connectionProvider;
         }
 
@@ -30,7 +30,7 @@ namespace Administration.Commands.Connections
             }
 
             DBConnection dbConnection = _connectionProvider.GetConnection();
-            var connection = dbConnection.CONNECTION.Single(c => c.SYMBOL == _connection.SYMBOL);
+            var connection = dbConnection.CONNECTION.Single(c => c.SYMBOL == _connectionToRemove.SYMBOL);
             dbConnection.CONNECTION.DeleteObject(connection);
             dbConnection.SaveChanges();
         }

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Administration.Features.Airports;
 using Common;
@@ -31,7 +32,7 @@ namespace Administration.Commands.Airports
             {
                 country = new COUNTRY
                 {
-                    ID = dbConnection.COUNTRY.Max(c => c.ID) + 1,
+                    ID = Guid.NewGuid(),
                     NAME = _airportCreationData.CountryName
                 };
                 dbConnection.COUNTRY.AddObject(country);
@@ -42,7 +43,7 @@ namespace Administration.Commands.Airports
             {
                 city = new CITY
                            {
-                               ID = dbConnection.CITY.Max(c => c.ID) + 1,
+                               ID = Guid.NewGuid(),
                                NAME = _airportCreationData.AirportName,
                                COUNTRY_ID = country.ID,                               
                            };

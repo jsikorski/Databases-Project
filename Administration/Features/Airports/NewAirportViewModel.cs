@@ -5,7 +5,6 @@ using System.Text;
 using Administration.Commands;
 using Administration.Commands.Airports;
 using Administration.Infrastucture;
-using Autofac;
 using Caliburn.Micro;
 using Common;
 
@@ -13,8 +12,8 @@ namespace Administration.Features.Airports
 {
     public class NewAirportViewModel : Screen
     {
-        private readonly IContainer _container;
         private readonly MainViewModel _mainViewModel;
+        private readonly Func<AirportCreationData, AddAirport> _addAirportFactory;
 
         private string _airportName;
         public string AirportName
@@ -62,21 +61,21 @@ namespace Administration.Features.Airports
         public ISymbolsProvider SymbolsProvider { get; set; }
 
         public NewAirportViewModel(
-            IContainer container,
-            MainViewModel mainViewModel)
+            MainViewModel mainViewModel,
+            Func<AirportCreationData, AddAirport> addAirportFactory)
         {
             base.DisplayName = "Add airport";
 
-            _container = container;
             _mainViewModel = mainViewModel;
+            _addAirportFactory = addAirportFactory;
         }
 
-        public IResult AddAirport()
+        public void AddAirport()
         {
             TryClose();
             var airportCreationData = new AirportCreationData(AirportName, CityName, CountryName);
-            ICommand addAirport = _container.Resolve<AddAirport>(new NamedParameter("airportCreationData", airportCreationData));
-            return new BusyCommandResult(addAirport, _mainViewModel);
+            ICommand addAirport = _addAirportFactory(airportCreationData);
+            CommandInvoker.InvokeBusy(addAirport, _mainViewModel);
         }
     }
 }

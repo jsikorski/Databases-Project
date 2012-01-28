@@ -10,16 +10,16 @@ namespace Administration.Commands.Airports
     public class RemoveAirport : ICommand
     {
         private readonly IConnectionProvider _connectionProvider;
-        private readonly AIRPORT _airport;
+        private readonly AIRPORT _airportToRemove;
         private readonly IEventAggregator _eventAggregator;
 
         public RemoveAirport(
             IConnectionProvider connectionProvider,
-            AIRPORT airport, 
+            AIRPORT airportToRemove, 
             IEventAggregator eventAggregator)
         {
             _connectionProvider = connectionProvider;
-            _airport = airport;
+            _airportToRemove = airportToRemove;
             _eventAggregator = eventAggregator;
         }
 
@@ -33,13 +33,7 @@ namespace Administration.Commands.Airports
 
             DBConnection dbConnection = _connectionProvider.GetConnection();
 
-            
-            //foreach (var airportInCity in dbConnection.AIRPORT.Where(a => a.CITY_ID == _airport.CITY_ID))
-            //{
-                
-            //}
-
-            var airport = dbConnection.AIRPORT.Single(a => a.SYMBOL == _airport.SYMBOL);
+            var airport = dbConnection.AIRPORT.Single(a => a.SYMBOL == _airportToRemove.SYMBOL);
             dbConnection.AIRPORT.DeleteObject(airport);
             dbConnection.SaveChanges();
 

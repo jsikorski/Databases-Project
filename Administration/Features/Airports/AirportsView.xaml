@@ -33,6 +33,9 @@
         <StackPanel Grid.Column="1"
                     Orientation="Vertical"
                     Margin="10">
+            <Label Content="Airport symbol" />
+            <TextBox Text="{Binding AirportSymbol, Mode=OneWayToSource}" />
+            
             <Label Content="Airport name" />
             <TextBox Text="{Binding AirportName, Mode=OneWayToSource}" />
 
