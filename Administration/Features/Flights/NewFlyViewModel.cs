@@ -54,7 +54,16 @@ namespace Administration.Features.Flights
             }
         }
 
-        public bool IsBusy { get; set; }
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                NotifyOfPropertyChange(() => IsBusy);
+            }
+        }
 
         public bool CanAddFly
         {

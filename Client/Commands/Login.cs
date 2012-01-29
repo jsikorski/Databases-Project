@@ -1,37 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using Administration.Messages;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Common.Infrastucture;
 using Common.Messages;
 using Connection;
 
-namespace Administration.Commands
+namespace Client.Commands
 {
     public class Login : ICommand
     {
         private readonly IConnectionProvider _connectionProvider;
         private readonly IEventAggregator _eventAggregator;
         private readonly LoginData _connectionData;
+        private readonly bool _loginAsGuest;
 
         public Login(
             IConnectionProvider connectionProvider,
             IEventAggregator eventAggregator,
-            LoginData connectionData)
+            LoginData connectionData,
+            bool loginAsGuest)
         {
             _connectionProvider = connectionProvider;
             _eventAggregator = eventAggregator;
             _connectionData = connectionData;
+            _loginAsGuest = loginAsGuest;
         }
 
         public void Execute()
         {
-            _connectionProvider.Login(_connectionData.UserName,
-                                      _connectionData.Password,
-                                      "Administrator");
+            string userName = _connectionData.UserName;
+            string password = _connectionData.Password;
+            string role = "Client";
+             
+            if (_loginAsGuest)
+            {
+                userName = "GlobalUser";
+                password = "asd";
+                role = "NotLoggedClient";
+            }
+
+            _connectionProvider.Login(userName, password, role);
             _eventAggregator.Publish(new LoggedIn());
         }
     }

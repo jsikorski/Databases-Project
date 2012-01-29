@@ -7,6 +7,7 @@ using Administration.Features.Flights;
 using Administration.Messages;
 using Caliburn.Micro;
 using Common.Infrastucture;
+using Common.Messages;
 using Connection;
 
 namespace Administration.Commands.Flights

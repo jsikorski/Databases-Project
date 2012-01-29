@@ -2,24 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Administration.Commands;
-using Administration.Commands.Flights;
-using Administration.Messages;
 using Autofac;
 using Caliburn.Micro;
+using Client.Commands.Flights;
 using Common.Infrastucture;
 using Common.Messages;
 using Connection;
 
-namespace Administration.Features.Flights
+namespace Client.Features.Flights
 {
-    public class FlightsViewModel : Screen, IBusyScopeSubscreen, IHandle<FlightsFounded>, IHandle<FlyRemoved>
+    public class FlightsViewModel : Screen, IBusyScopeSubscreen, IHandle<FlightsFounded>
     {
+        private IBusyScope _busyScope;
         private readonly IEventAggregator _eventAggregator;
         private readonly Func<FlightsSearchData, SearchFlights> _searchFlightsFactory;
-        private readonly Func<FLY, RemoveFly> _removeFlyFactory;
         private readonly IContainer _container;
-        private IBusyScope _busyScope;
 
         public BindableCollection<FlyViewModel> Flights { get; private set; }
         private FlyViewModel _selectedFly;
@@ -29,59 +26,48 @@ namespace Administration.Features.Flights
             set
             {
                 _selectedFly = value;
-                NotifyOfPropertyChange(() => CanRemoveFly);
+                NotifyOfPropertyChange(() => CanShowFlyDetails);
             }
         }
 
-        public string FlightSymbol { get; set; }
-        public DateTime DisplayDate { get; private set; }
-        public DateTime FlightDate { get; set; }
-        public string ConnectionSymbol { get; set; }
+        public string FromCityName { get; set; }
+        public string ToCityName { get; set; }
+        public string MaximumPrice { get; set; }
+        public DateTime DisplayDate { get; set; }
+        public DateTime SelectedDate { get; set; }
 
-        public bool CanRemoveFly
+        public bool CanShowFlyDetails
         {
             get { return SelectedFly != null; }
         }
 
         public FlightsViewModel(
-            IEventAggregator eventAggregator, 
+            IEventAggregator eventAggregator,
             Func<FlightsSearchData, SearchFlights> searchFlightsFactory,
-            Func<FLY, RemoveFly> removeFlyFactory,
             IContainer container)
         {
             _eventAggregator = eventAggregator;
             _searchFlightsFactory = searchFlightsFactory;
-            _removeFlyFactory = removeFlyFactory;
             _container = container;
             DisplayDate = DateTime.Now;
-     
+            SelectedDate = DisplayDate;
+
             Flights = new BindableCollection<FlyViewModel>();
         }
 
-        public void SetBusyScope(IBusyScope busyScope)
+        public void ShowFlyDetails()
         {
-            _busyScope = busyScope;
+
         }
 
         public void SearchFlights()
         {
             _eventAggregator.Subscribe(this);
-            var flightsSearchData = new FlightsSearchData(FlightSymbol, FlightDate, ConnectionSymbol);
+            int? maximumPrice = !string.IsNullOrEmpty(MaximumPrice) ? Convert.ToInt32(MaximumPrice) : (int?) null;
+            var flightsSearchData = new FlightsSearchData(FromCityName, 
+                ToCityName, maximumPrice, SelectedDate);
             ICommand command = _searchFlightsFactory(flightsSearchData);
             CommandInvoker.InvokeBusy(command, _busyScope);
-        }
-
-        public void NewFly()
-        {
-            ICommand newFly = _container.Resolve<NewFly>();
-            CommandInvoker.Execute(newFly);
-        }
-
-        public void RemoveFly()
-        {
-            _eventAggregator.Subscribe(this);
-            ICommand removeFly = _removeFlyFactory(SelectedFly.Fly);
-            CommandInvoker.Execute(removeFly);
         }
 
         public void Handle(FlightsFounded message)
@@ -91,10 +77,9 @@ namespace Administration.Features.Flights
             Flights.AddRange(message.Flights.Select(fly => new FlyViewModel(fly)));
         }
 
-        public void Handle(FlyRemoved message)
+        public void SetBusyScope(IBusyScope busyScope)
         {
-            _eventAggregator.Unsubscribe(this);
-            Flights.Remove(SelectedFly);
+            _busyScope = busyScope;
         }
     }
 }

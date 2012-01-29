@@ -29,12 +29,14 @@ namespace Administration.Commands.Reservations
 
         public void Execute()
         {
+            short isPaidOracle = Convert.ToInt16(_reservationsSearchData.IsPaid);
+
             DBConnection dbConnection = _connectionProvider.GetConnection();
             IQueryable<RESERVATION> reservations = dbConnection.RESERVATION.Where(
                 reservation => reservation.SYMBOL.Contains(_reservationsSearchData.Symbol) &&
                                reservation.PLACE_SYMBOL.Contains(_reservationsSearchData.PlaceSymbol) &&
-                               reservation.CLIENT_ID == _reservationsSearchData.ClientId && 
-                               //reservation.IS_PAID == _reservationsSearchData.IsPaid &&
+                               reservation.CLIENT_ID == _reservationsSearchData.ClientId &&
+                               reservation.IS_PAID == isPaidOracle &&
                                reservation.FLY_SYMBOL.Contains(_reservationsSearchData.FlySymbol));
 
             _eventAggregator.Publish(new ReservationsFounded(reservations.ToList()));

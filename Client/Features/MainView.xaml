@@ -1,0 +1,20 @@
+﻿<Window x:Class="Client.Features.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        Title="MainView"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource WindowStyle}">
+    <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
+        <Grid>
+            <Grid Margin="10">
+                <TabControl>
+                    <TabItem Header="Flights">
+                        <ContentControl x:Name="FlightsViewModel" />
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Grid>
+    </extToolkit:BusyIndicator>
+</Window>

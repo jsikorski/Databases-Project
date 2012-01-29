@@ -11,6 +11,7 @@ using Administration.Messages;
 using Autofac;
 using Caliburn.Micro;
 using Common.Infrastucture;
+using Common.Messages;
 using Connection;
 
 namespace Administration

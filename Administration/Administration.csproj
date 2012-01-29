@@ -136,9 +136,7 @@
     <Compile Include="Messages\AirportsFounded.cs" />
     <Compile Include="Messages\ConnectionRemoved.cs" />
     <Compile Include="Messages\ConnectionsFounded.cs" />
-    <Compile Include="Messages\FlightsFounded.cs" />
     <Compile Include="Messages\FlyRemoved.cs" />
-    <Compile Include="Messages\LoggedIn.cs" />
     <Compile Include="Messages\ReservationRemoved.cs" />
     <Compile Include="Messages\ReservationsFounded.cs" />
     <Compile Include="ShellViewModel.cs" />

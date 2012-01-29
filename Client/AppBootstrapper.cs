@@ -1,19 +1,15 @@
 ﻿using System.Reflection;
 using Autofac;
+using Client.Features.Flights;
 using Common;
 using Connection;
+using System;
+using System.Collections.Generic;
+using Caliburn.Micro;
 
 namespace Client
 {
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel.Composition;
-	using System.ComponentModel.Composition.Hosting;
-	using System.ComponentModel.Composition.Primitives;
-	using System.Linq;
-	using Caliburn.Micro;
-
-    public class AppBootstrapper : Bootstrapper<IShell>
+	public class AppBootstrapper : Bootstrapper<IShell>
     {
         private IContainer _container;
 
@@ -36,12 +32,11 @@ namespace Client
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(type => type != typeof(FlyViewModel))
                 .AsImplementedInterfaces().AsSelf().PropertiesAutowired(
                     PropertyWiringFlags.PreserveSetValues);
             containerBuilder.RegisterType<SymbolsProvider>().AsImplementedInterfaces();
             containerBuilder.RegisterType<ConnectionProvider>().SingleInstance().AsImplementedInterfaces();
-            //containerBuilder.RegisterType<MainViewModel>().SingleInstance().AsSelf().AsImplementedInterfaces();
             containerBuilder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
             containerBuilder.RegisterType<WindowManager>().As<IWindowManager>();
             containerBuilder.Register(cc => _container).ExternallyOwned();
