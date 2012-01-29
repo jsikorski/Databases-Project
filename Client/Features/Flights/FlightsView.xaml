@@ -37,10 +37,12 @@
                     Margin="10 10 10 0">
 
             <Label Content="From city" />
-            <Controls:AutoCompleteBox Text="{Binding FromCityName, Mode=OneWayToSource}" />
+            <Controls:AutoCompleteBox Text="{Binding FromCityName, Mode=OneWayToSource}"
+                                      ItemsSource="{Binding CitiesNames}" />
 
             <Label Content="To city" />
-            <Controls:AutoCompleteBox Text="{Binding ToCityName, Mode=OneWayToSource}" />
+            <Controls:AutoCompleteBox Text="{Binding ToCityName, Mode=OneWayToSource}"
+                                      ItemsSource="{Binding CitiesNames}" />
 
             <Label Content="Maximum price" />
             <Utils:DigitOnlyTextBox Text="{Binding MaximumPrice, Mode=OneWayToSource}" />

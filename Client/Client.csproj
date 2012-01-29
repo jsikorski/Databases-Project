@@ -81,18 +81,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\Cities\GetCitiesNames.cs" />
     <Compile Include="Commands\Flights\SearchFlights.cs" />
+    <Compile Include="Commands\Flights\ShowFlyDetails.cs" />
     <Compile Include="Commands\Login.cs" />
     <Compile Include="Features\Flights\FlightsSearchData.cs" />
     <Compile Include="Features\Flights\FlightsView.xaml.cs">
       <DependentUpon>FlightsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Flights\FlightsViewModel.cs" />
+    <Compile Include="Features\Flights\FlyDetailsView.xaml.cs">
+      <DependentUpon>FlyDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Flights\FlyDetailsViewModel.cs" />
     <Compile Include="Features\Flights\FlyViewModel.cs" />
     <Compile Include="Features\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\MainViewModel.cs" />
+    <Compile Include="Messages\CitiesNamesFounded.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -103,6 +110,10 @@
     <Page Include="Features\Flights\FlightsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Features\Flights\FlyDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Features\MainView.xaml">
       <SubType>Designer</SubType>

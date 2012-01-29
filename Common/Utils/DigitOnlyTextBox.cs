@@ -13,7 +13,8 @@ namespace Common.Utils
 
         private void NumberTextBoxPreviewInput(object sender, TextCompositionEventArgs textCompositionEventArgs)
         {
-            if (!char.IsDigit(textCompositionEventArgs.Text.ToCharArray().First()))
+            char lastChar = textCompositionEventArgs.Text.ToCharArray().First();
+            if (!char.IsDigit(lastChar) || lastChar == ' ')
             {
                 textCompositionEventArgs.Handled = true;
             }

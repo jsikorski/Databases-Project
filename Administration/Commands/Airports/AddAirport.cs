@@ -45,7 +45,7 @@ namespace Administration.Commands.Airports
                 city = new CITY
                            {
                                ID = Guid.NewGuid(),
-                               NAME = _airportCreationData.AirportName,
+                               NAME = _airportCreationData.CityName,
                                COUNTRY_ID = country.ID,                               
                            };
                 dbConnection.CITY.AddObject(city);

@@ -57,6 +57,7 @@
     <Compile Include="Infrastucture\IBusyScope.cs" />
     <Compile Include="Infrastucture\IBusyScopeSubscreen.cs" />
     <Compile Include="Infrastucture\ICommand.cs" />
+    <Compile Include="Infrastucture\INeedCitiesNames.cs" />
     <Compile Include="Messages\FlightsFounded.cs" />
     <Compile Include="SymbolsProvider.cs" />
     <Compile Include="ISymbolsProvider.cs" />
