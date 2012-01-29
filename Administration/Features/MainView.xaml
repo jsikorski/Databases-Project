@@ -9,7 +9,6 @@
     <extToolkit:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
             <Grid Margin="10">
-
                 <TabControl>
                     <TabItem Header="Airports">
                         <ContentControl x:Name="AirportsViewModel" />
@@ -19,6 +18,9 @@
                     </TabItem>
                     <TabItem Header="Flights">
                         <ContentControl x:Name="FlightsViewModel" />
+                    </TabItem>
+                    <TabItem Header="Reservations">
+                        <ContentControl x:Name="ReservationsViewModel" />
                     </TabItem>
                 </TabControl>
             </Grid>

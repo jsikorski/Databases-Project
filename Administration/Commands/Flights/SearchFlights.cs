@@ -34,7 +34,7 @@ namespace Administration.Commands.Flights
                        fly.FLY_DATE == _flightsSearchData.Date &&
                        fly.CONNECTION_SYMBOL.Contains(_flightsSearchData.ConnectionSymbol));
             
-            _eventAggregator.Publish(new FlightsFounded(flights));
+            _eventAggregator.Publish(new FlightsFounded(flights.ToList()));
         }
     }
 }
