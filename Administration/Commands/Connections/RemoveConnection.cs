@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using Administration.Messages;
 using Administration.Utils;
+using Caliburn.Micro;
 using Connection;
 
 namespace Administration.Commands.Connections
@@ -12,13 +14,16 @@ namespace Administration.Commands.Connections
     {
         private readonly CONNECTION _connectionToRemove;
         private readonly IConnectionProvider _connectionProvider;
+        private readonly IEventAggregator _eventAggregator;
 
         public RemoveConnection(
             CONNECTION connectionToRemove, 
-            IConnectionProvider connectionProvider)
+            IConnectionProvider connectionProvider, 
+            IEventAggregator eventAggregator)
         {
             _connectionToRemove = connectionToRemove;
             _connectionProvider = connectionProvider;
+            _eventAggregator = eventAggregator;
         }
 
         public void Execute()
@@ -33,6 +38,8 @@ namespace Administration.Commands.Connections
             var connection = dbConnection.CONNECTION.Single(c => c.SYMBOL == _connectionToRemove.SYMBOL);
             dbConnection.CONNECTION.DeleteObject(connection);
             dbConnection.SaveChanges();
+
+            _eventAggregator.Publish(new ConnectionRemoved());
         }
     }
 }

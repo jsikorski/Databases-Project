@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Administration.Commands;
 using Administration.Commands.Connections;
 using Administration.Infrastucture;
@@ -13,7 +14,7 @@ using Connection;
 
 namespace Administration.Features.Connections
 {
-    public class ConnectionsViewModel : IBusyScopeSubscreen, IHandle<ConnectionsFounded>
+    public class ConnectionsViewModel : Screen, IBusyScopeSubscreen, IHandle<ConnectionsFounded>, IHandle<ConnectionRemoved>
     {
         private readonly IContainer _container;
         private readonly Func<ConnectionsSearchData, SearchConnections> _searchConnectionsFactory;
@@ -21,7 +22,16 @@ namespace Administration.Features.Connections
         private IBusyScope _busyScope;
 
         public BindableCollection<CONNECTION> Connections { get; set; }
-        public CONNECTION SelectedConnection { get; set; }
+        private CONNECTION _selectedConnection;
+        public CONNECTION SelectedConnection
+        {
+            get { return _selectedConnection; }
+            set
+            {
+                _selectedConnection = value;
+                NotifyOfPropertyChange(() => CanRemoveConnection);
+            }
+        }
 
         public string ConnectionSymbol { get; set; }
         public string DepartureTime { get; set; }
@@ -30,6 +40,11 @@ namespace Administration.Features.Connections
         public string SelectedDay { get; set; }
         public string FromAirportName { get; set; }
         public string ToAirportName { get; set; }
+
+        public bool CanRemoveConnection
+        {
+            get { return SelectedConnection != null; }
+        }
 
         public ConnectionsViewModel(
             IEventAggregator eventAggregator,
@@ -64,7 +79,7 @@ namespace Administration.Features.Connections
         public void RemoveConnection()
         {
             ICommand command = _removeConnectionFactory(SelectedConnection);
-            CommandInvoker.Invoke(command);
+            CommandInvoker.Execute(command);
         }
 
         public void SetBusyScope(IBusyScope busyScope)
@@ -76,6 +91,11 @@ namespace Administration.Features.Connections
         {
             Connections.Clear();
             Connections.AddRange(message.Connections);
+        }
+
+        public void Handle(ConnectionRemoved message)
+        {
+            Connections.Remove(SelectedConnection);
         }
     }
 }

@@ -8,31 +8,31 @@ namespace Administration.Features.Flights
 {
     public class FlyViewModel
     {
-        private readonly FLY _fly;
+        public FLY Fly { get; private set; }
 
         public string Symbol
         {
-            get { return _fly.SYMBOL; }
+            get { return Fly.SYMBOL; }
         }
 
         public string Date
         {
-            get { return _fly.FLY_DATE.ToShortDateString(); }
+            get { return Fly.FLY_DATE.ToShortDateString(); }
         }
 
         public string NumberOfPlaces
         {
-            get { return string.Format("{0} / {1}", _fly.FREE_PLACES_NUMBER, _fly.CONNECTION.TICKETS); }
+            get { return string.Format("{0} / {1}", Fly.FREE_PLACES_NUMBER, Fly.CONNECTION.TICKETS); }
         }
 
         public string ConnectionSymbol
         {
-            get { return _fly.CONNECTION_SYMBOL; }
+            get { return Fly.CONNECTION_SYMBOL; }
         }
 
         public FlyViewModel(FLY fly)
         {
-            _fly = fly;
+            Fly = fly;
         }
     }
 }

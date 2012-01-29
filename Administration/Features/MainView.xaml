@@ -11,11 +11,11 @@
             <Grid Margin="10">
 
                 <TabControl>
-                    <TabItem Header="Connections">
-                        <ContentControl x:Name="ConnectionsViewModel" />
-                    </TabItem>
                     <TabItem Header="Airports">
                         <ContentControl x:Name="AirportsViewModel" />
+                    </TabItem>
+                    <TabItem Header="Connections">
+                        <ContentControl x:Name="ConnectionsViewModel" />
                     </TabItem>
                     <TabItem Header="Flights">
                         <ContentControl x:Name="FlightsViewModel" />
