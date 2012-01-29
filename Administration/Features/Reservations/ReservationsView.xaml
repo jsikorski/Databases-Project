@@ -1,8 +1,7 @@
 ﻿<UserControl x:Class="Administration.Features.Reservations.ReservationsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Utils="clr-namespace:Client.Utils"
-             Style="{StaticResource FeatureTabStyle}">
+             xmlns:Utils1="clr-namespace:Common.Utils;assembly=Common" Style="{StaticResource FeatureTabStyle}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -43,7 +42,7 @@
                 <TextBox Text="{Binding PlaceSymbol, Mode=OneWayToSource}" />
 
                 <Label Content="Client id" />
-                <Utils:DigitOnlyTextBox Text="{Binding ClientId, Mode=OneWayToSource}" />
+                <Utils1:DigitOnlyTextBox Text="{Binding ClientId, Mode=OneWayToSource}" />
 
                 <Label Content="Is paid" />
                 <CheckBox IsChecked="{Binding IsPaid, Mode=OneWayToSource}" />

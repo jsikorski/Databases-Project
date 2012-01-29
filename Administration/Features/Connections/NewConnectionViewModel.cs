@@ -6,9 +6,9 @@ using Administration.Commands;
 using Administration.Commands.Airports;
 using Administration.Commands.Connections;
 using Administration.Features.Airports;
-using Administration.Infrastucture;
 using Administration.Messages;
 using Caliburn.Micro;
+using Common.Infrastucture;
 using Connection;
 
 namespace Administration.Features.Connections

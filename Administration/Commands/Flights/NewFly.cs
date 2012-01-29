@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Administration.Features.Flights;
 using Caliburn.Micro;
+using Common.Infrastucture;
 
 namespace Administration.Commands.Flights
 {

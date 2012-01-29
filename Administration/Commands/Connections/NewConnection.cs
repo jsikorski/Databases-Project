@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Administration.Features.Connections;
 using Caliburn.Micro;
+using Common.Infrastucture;
 
 namespace Administration.Commands.Connections
 {

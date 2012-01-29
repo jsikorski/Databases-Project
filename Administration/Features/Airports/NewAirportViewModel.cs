@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Administration.Commands;
 using Administration.Commands.Airports;
-using Administration.Infrastucture;
 using Caliburn.Micro;
 using Common;
+using Common.Infrastucture;
 
 namespace Administration.Features.Airports
 {

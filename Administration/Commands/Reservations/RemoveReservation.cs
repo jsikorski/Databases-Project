@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Administration.Messages;
 using Caliburn.Micro;
+using Common.Infrastucture;
 using Connection;
 
 namespace Administration.Commands.Reservations

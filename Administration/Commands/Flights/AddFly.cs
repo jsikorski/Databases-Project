@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Administration.Features.Flights;
 using Common;
+using Common.Infrastucture;
 using Connection;
 
 namespace Administration.Commands.Flights

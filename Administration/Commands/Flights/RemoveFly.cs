@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using Administration.Utils;
+using Common.Infrastucture;
+using Common.Utils;
 using Connection;
 
 namespace Administration.Commands.Flights

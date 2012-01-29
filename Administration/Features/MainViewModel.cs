@@ -6,8 +6,8 @@ using Administration.Features.Airports;
 using Administration.Features.Connections;
 using Administration.Features.Flights;
 using Administration.Features.Reservations;
-using Administration.Infrastucture;
 using Caliburn.Micro;
+using Common.Infrastucture;
 
 namespace Administration.Features
 {

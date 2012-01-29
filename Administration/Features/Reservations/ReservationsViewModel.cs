@@ -1,9 +1,9 @@
 ﻿using System;
 using Administration.Commands;
 using Administration.Commands.Reservations;
-using Administration.Infrastucture;
 using Administration.Messages;
 using Caliburn.Micro;
+using Common.Infrastucture;
 using Connection;
 
 namespace Administration.Features.Reservations

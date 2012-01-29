@@ -7,10 +7,10 @@ using System.Net;
 using System.Threading;
 using Administration.Commands;
 using Administration.Features;
-using Administration.Infrastucture;
 using Administration.Messages;
 using Autofac;
 using Caliburn.Micro;
+using Common.Infrastucture;
 using Connection;
 
 namespace Administration

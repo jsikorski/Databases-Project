@@ -6,6 +6,7 @@ using System.Text;
 using Administration.Features.Reservations;
 using Administration.Messages;
 using Caliburn.Micro;
+using Common.Infrastucture;
 using Connection;
 
 namespace Administration.Commands.Reservations
