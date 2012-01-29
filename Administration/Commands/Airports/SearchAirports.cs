@@ -31,6 +31,7 @@ namespace Administration.Commands.Airports
                            airport.NAME.Contains(_airportsSearchData.AirportName) &&
                            airport.CITY.NAME.Contains(_airportsSearchData.CityName) &&
                            airport.CITY.COUNTRY.NAME.Contains(_airportsSearchData.CountryName));
+
             _eventAggregator.Publish(new AirportsFounded(airports));
         }
     }

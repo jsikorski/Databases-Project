@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Administration.Features.Airports;
 using Administration.Features.Connections;
+using Administration.Features.Flights;
 using Administration.Infrastucture;
 using Caliburn.Micro;
 
@@ -14,6 +15,7 @@ namespace Administration.Features
         public IBusyScopeSubscreen ReservationsViewModel { get; private set; }
         public IBusyScopeSubscreen ConnectionsViewModel { get; private set; }
         public IBusyScopeSubscreen AirportsViewModel { get; private set; }
+        public IBusyScopeSubscreen FlightsViewModel { get; private set; }
 
         private bool _isBusy;
         public bool IsBusy
@@ -28,7 +30,8 @@ namespace Administration.Features
 
         public MainViewModel(
             AirportsViewModel airportsViewModel,
-            ConnectionsViewModel connectionsViewModel)
+            ConnectionsViewModel connectionsViewModel, 
+            FlightsViewModel flightsViewModel)
         {
             base.DisplayName = "Administration panel";
 
@@ -37,6 +40,9 @@ namespace Administration.Features
 
             AirportsViewModel = airportsViewModel;
             AirportsViewModel.SetBusyScope(this);
+
+            FlightsViewModel = flightsViewModel;
+            FlightsViewModel.SetBusyScope(this);
         }
     }
 }

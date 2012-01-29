@@ -17,6 +17,9 @@
                     <TabItem Header="Airports">
                         <ContentControl x:Name="AirportsViewModel" />
                     </TabItem>
+                    <TabItem Header="Flights">
+                        <ContentControl x:Name="FlightsViewModel" />
+                    </TabItem>
                 </TabControl>
             </Grid>
         </Grid>

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Administration.Features;
+using Administration.Features.Flights;
 using Administration.Utils;
 using Autofac;
 using System;
@@ -33,7 +34,7 @@ namespace Administration
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(type => type != typeof(FlyViewModel))
                 .AsImplementedInterfaces().AsSelf().PropertiesAutowired(
                     PropertyWiringFlags.PreserveSetValues);
             containerBuilder.RegisterType<SymbolsProvider>().AsImplementedInterfaces();

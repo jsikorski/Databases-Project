@@ -17,6 +17,11 @@ namespace Common
             return GetSymbol("CONNECTION");
         }
 
+        public string GetFlySymbol()
+        {
+            return GetSymbol("FLY");
+        }
+
         private string GetSymbol(string objectType)
         {
             return objectType + "_" + Guid.NewGuid().ToString();

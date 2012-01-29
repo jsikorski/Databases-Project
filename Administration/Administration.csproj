@@ -53,6 +53,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\packages\Caliburn.Micro.1.2.0\lib\Net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -84,6 +85,9 @@
     <Compile Include="Commands\Connections\NewConnection.cs" />
     <Compile Include="Commands\Connections\RemoveConnection.cs" />
     <Compile Include="Commands\Connections\SearchConnections.cs" />
+    <Compile Include="Commands\Flights\AddFly.cs" />
+    <Compile Include="Commands\Flights\NewFly.cs" />
+    <Compile Include="Commands\Flights\SearchFlights.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Login.cs" />
     <Compile Include="Features\Airports\AirportCreationData.cs" />
@@ -106,6 +110,17 @@
       <DependentUpon>NewConnectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\Connections\NewConnectionViewModel.cs" />
+    <Compile Include="Features\Flights\FlightsSearchData.cs" />
+    <Compile Include="Features\Flights\FlightsView.xaml.cs">
+      <DependentUpon>FlightsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Flights\FlightsViewModel.cs" />
+    <Compile Include="Features\Flights\FlyCreationData.cs" />
+    <Compile Include="Features\Flights\FlyViewModel.cs" />
+    <Compile Include="Features\Flights\NewFlyView.xaml.cs">
+      <DependentUpon>NewFlyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Flights\NewFlyViewModel.cs" />
     <Compile Include="Features\MainViewModel.cs" />
     <Compile Include="Features\Reservations\ReservationsView.xaml.cs">
       <DependentUpon>ReservationsView.xaml</DependentUpon>
@@ -123,6 +138,7 @@
     <Compile Include="Messages\AirportRemoved.cs" />
     <Compile Include="Messages\AirportsFounded.cs" />
     <Compile Include="Messages\ConnectionsFounded.cs" />
+    <Compile Include="Messages\FlightsFounded.cs" />
     <Compile Include="Messages\LoggedIn.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -145,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Features\Connections\NewConnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Flights\FlightsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\Flights\NewFlyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,9 +228,7 @@
       <Name>Connection</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Flights\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
