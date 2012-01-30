@@ -8,20 +8,28 @@
     <StackPanel Orientation="Vertical"
                 Margin="10">
         <Label Content="Date" />
-        <Calendar DisplayDate="{Binding DisplayDate, Mode=OneWay}" 
+        <Calendar DisplayDate="{Binding DisplayDate, Mode=OneWay}"
                   SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
 
-      <Label Content="Connection symbol" />
+        <Label Content="Connection symbol" />
         <ComboBox ItemsSource="{Binding Connections}"
                   SelectedItem="{Binding SelectedConnection, Mode=OneWayToSource}">
+            <ComboBox.Style>
+                <Style />
+            </ComboBox.Style>
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding SYMBOL}" />
+                    <Label Content="{Binding SYMBOL}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-      <Button Name="AddFly"
+        <Button Name="AddFly"
                 Content="Add"
                 Margin="0 15 0 0"></Button>
 

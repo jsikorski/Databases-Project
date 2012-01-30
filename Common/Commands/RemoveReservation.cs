@@ -35,7 +35,12 @@ namespace Common.Commands
             
             RESERVATION reservationToRemove = dbConnection.RESERVATION
                 .Single(reservation => reservation.SYMBOL == _reservationToRemove.SYMBOL);
-            reservationToRemove.FLY.FREE_PLACES_NUMBER++;
+
+            if (reservationToRemove.FLY != null)
+            {
+                reservationToRemove.FLY.FREE_PLACES_NUMBER++;                
+            }
+
             dbConnection.RESERVATION.DeleteObject(reservationToRemove);
             dbConnection.SaveChanges();
 

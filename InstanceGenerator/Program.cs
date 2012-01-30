@@ -31,6 +31,8 @@ namespace InstanceGenerator
 
             //databaseGenerator.Generate();
 
+            Console.WriteLine();
+
             var generator = new DataGenerator();
             generator.GenerateData("cities.csv");
 

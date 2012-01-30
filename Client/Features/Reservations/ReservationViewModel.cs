@@ -28,7 +28,7 @@ namespace Client.Features.Reservations
 
         public string Date
         {
-            get { return Reservation.FLY.FLY_DATE.ToShortDateString(); }
+            get { return Reservation.FLY == null ? null : Reservation.FLY.FLY_DATE.ToShortDateString(); }
         }
 
         public bool IsPaid

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 using Administration.Commands;
 using Administration.Commands.Connections;
 using Administration.Commands.Flights;
@@ -35,6 +36,10 @@ namespace Administration.Features.Flights
                 if (_selectedDate >= DateTime.Now)
                 {
                     UpdateConnections();
+                }
+                else
+                {
+                    Connections.Clear();                    
                 }
 
                 NotifyOfPropertyChange(() => CanAddFly);
@@ -81,6 +86,7 @@ namespace Administration.Features.Flights
             Func<FlyCreationData, AddFly> addFlyFactory)
         {
             base.DisplayName = "Add new fly";
+            Connections = new BindableCollection<CONNECTION>();
 
             _mainViewModel = mainViewModel;
             _eventAggregator = eventAggregator;
@@ -88,8 +94,6 @@ namespace Administration.Features.Flights
             _addFlyFactory = addFlyFactory;
             DisplayDate = DateTime.Now;
             SelectedDate = DisplayDate;
-
-            Connections = new BindableCollection<CONNECTION>();
         }
 
         public void AddFly()
@@ -103,14 +107,16 @@ namespace Administration.Features.Flights
         private void UpdateConnections()
         {
             _eventAggregator.Subscribe(this);
+            string weekDay = SelectedDate.DayOfWeek.ToString();
             var connectionsSearchData = new ConnectionsSearchData(
-                string.Empty, new DateTime(), new DateTime(), SelectedDate.DayOfWeek.ToString(), string.Empty, string.Empty);
+                string.Empty, new DateTime(), new DateTime(), weekDay, string.Empty, string.Empty);
             ICommand command = _searchConnectionsFactory(connectionsSearchData);
             CommandInvoker.InvokeBusy(command, this);
         }
 
         public void Handle(ConnectionsFounded message)
         {
+            _eventAggregator.Unsubscribe(this);
             Connections.Clear();
             Connections.AddRange(message.Connections);
         }

@@ -38,8 +38,7 @@
 
             <Label Content="From city" />
             <Controls:AutoCompleteBox Text="{Binding FromCityName, Mode=OneWayToSource}"
-                                      ItemsSource="{Binding CitiesNames}"
-                                      MinimumPrefixLength="3" />
+                                      ItemsSource="{Binding CitiesNames}" />
 
           <Label Content="To city" />
             <Controls:AutoCompleteBox Text="{Binding ToCityName, Mode=OneWayToSource}"
