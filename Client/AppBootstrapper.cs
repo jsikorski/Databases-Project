@@ -1,7 +1,10 @@
 ﻿using System.Reflection;
 using Autofac;
+using Client.Features;
 using Client.Features.Flights;
+using Client.Features.Reservations;
 using Common;
+using Common.Commands;
 using Connection;
 using System;
 using System.Collections.Generic;
@@ -32,11 +35,14 @@ namespace Client
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(type => type != typeof(FlyViewModel))
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).Where(
+                type => type != typeof (FlyViewModel) && type != typeof (ReservationViewModel))
                 .AsImplementedInterfaces().AsSelf().PropertiesAutowired(
                     PropertyWiringFlags.PreserveSetValues);
+            containerBuilder.RegisterType<RemoveReservation>();
             containerBuilder.RegisterType<SymbolsProvider>().AsImplementedInterfaces();
             containerBuilder.RegisterType<ConnectionProvider>().SingleInstance().AsImplementedInterfaces();
+            containerBuilder.RegisterType<MainViewModel>().SingleInstance().AsSelf().AsImplementedInterfaces();
             containerBuilder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
             containerBuilder.RegisterType<WindowManager>().As<IWindowManager>();
             containerBuilder.Register(cc => _container).ExternallyOwned();

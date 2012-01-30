@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Client.Features.Reservations.ReservationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Utils1="clr-namespace:Common.Utils;assembly=Common"
+             Style="{StaticResource FeatureTabStyle}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0"
+                  ItemsSource="{Binding Reservations}"
+                  SelectedItem="{Binding SelectedReservation, Mode=OneWayToSource}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Symbol"
+                                    Width="*"
+                                    Binding="{Binding Symbol}" />
+                <DataGridTextColumn Header="Place symbol"
+                                    Width="*"
+                                    Binding="{Binding PlaceSymbol}" />
+                <DataGridTextColumn Header="Date"
+                                    Width="*"
+                                    Binding="{Binding Date}" />
+                <DataGridCheckBoxColumn Header="Is paid"
+                                        Width="*"
+                                        Binding="{Binding IsPaid, Mode=OneWay}" />
+                <DataGridTextColumn Header="Fly symbol"
+                                    Width="*"
+                                    Binding="{Binding FlySymbol}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="1"
+                    Margin="10"
+                    Orientation="Vertical"
+                    VerticalAlignment="Bottom">
+            <Button Name="ReloadReservations"
+                    Content="Reload" />
+            <Separator Margin="0 10" />
+            <Button Name="PayForReservation"
+                    Content="Pay" />
+            <Button Name="RemoveReservation"
+                    Content="Remove"
+                    Margin="0 10 0 0" />
+        </StackPanel>
+
+    </Grid>
+</UserControl>

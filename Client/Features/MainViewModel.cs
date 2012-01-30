@@ -6,6 +6,7 @@ using Autofac;
 using Caliburn.Micro;
 using Client.Commands.Cities;
 using Client.Features.Flights;
+using Client.Features.Reservations;
 using Client.Messages;
 using Common.Infrastucture;
 
@@ -27,18 +28,24 @@ namespace Client.Features
         }
 
         public IBusyScopeSubscreen FlightsViewModel { get; set; }
+        public IBusyScopeSubscreen ReservationsViewModel { get; set; }
 
         public MainViewModel(
             IEventAggregator eventAggregator,
             FlightsViewModel flightsViewModel, 
+            ReservationsViewModel reservationsViewModel,
             IContainer container)
         {
             _eventAggregator = eventAggregator;
             _container = container;
+            ReservationsViewModel = reservationsViewModel;
             base.DisplayName = "Client";
 
             FlightsViewModel = flightsViewModel;
             flightsViewModel.SetBusyScope(this);
+
+            ReservationsViewModel = reservationsViewModel;
+            reservationsViewModel.SetBusyScope(this);
         }
 
         protected override void OnActivate()

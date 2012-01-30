@@ -22,6 +22,11 @@ namespace Common
             return GetSymbol("FLY");
         }
 
+        public string GetReservationSymbol()
+        {
+            return GetSymbol("RESERVATION");
+        }
+
         private string GetSymbol(string objectType)
         {
             return objectType + "_" + Guid.NewGuid().ToString();

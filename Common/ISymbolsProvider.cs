@@ -10,5 +10,6 @@ namespace Common
         string GetAirportSymbol();
         string GetConnectionSymbol();
         string GetFlySymbol();
+        string GetReservationSymbol();
     }
 }

@@ -7,6 +7,7 @@ using Administration.Features.Reservations;
 using Administration.Messages;
 using Caliburn.Micro;
 using Common.Infrastucture;
+using Common.Messages;
 using Connection;
 
 namespace Administration.Commands.Reservations
@@ -35,9 +36,14 @@ namespace Administration.Commands.Reservations
             IQueryable<RESERVATION> reservations = dbConnection.RESERVATION.Where(
                 reservation => reservation.SYMBOL.Contains(_reservationsSearchData.Symbol) &&
                                reservation.PLACE_SYMBOL.Contains(_reservationsSearchData.PlaceSymbol) &&
-                               reservation.CLIENT_ID == _reservationsSearchData.ClientId &&
                                reservation.IS_PAID == isPaidOracle &&
                                reservation.FLY_SYMBOL.Contains(_reservationsSearchData.FlySymbol));
+
+            if (_reservationsSearchData.ClientId != null)
+            {
+                reservations =
+                    reservations.Where(reservation => reservation.CLIENT_ID == _reservationsSearchData.ClientId);
+            }
 
             _eventAggregator.Publish(new ReservationsFounded(reservations.ToList()));
         }

@@ -119,6 +119,7 @@ namespace Administration.Features.Connections
                        !string.IsNullOrEmpty(SelectedDay) &&
                        !string.IsNullOrEmpty(Price.Trim('_')) &&
                        !string.IsNullOrEmpty(NumberOfTickets.Trim('_')) &&
+                       Convert.ToInt32(NumberOfTickets.Trim('_')) > 0 &&
                        SelectedFromAirport != null &&
                        SelectedToAirport != null && 
                        SelectedFromAirport != SelectedToAirport;

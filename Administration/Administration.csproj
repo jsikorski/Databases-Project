@@ -90,7 +90,6 @@
     <Compile Include="Commands\Flights\RemoveFly.cs" />
     <Compile Include="Commands\Flights\SearchFlights.cs" />
     <Compile Include="Commands\Login.cs" />
-    <Compile Include="Commands\Reservations\RemoveReservation.cs" />
     <Compile Include="Commands\Reservations\SearchReservations.cs" />
     <Compile Include="Features\Airports\AirportCreationData.cs" />
     <Compile Include="Features\Airports\AirportsSearchData.cs" />
@@ -137,8 +136,6 @@
     <Compile Include="Messages\ConnectionRemoved.cs" />
     <Compile Include="Messages\ConnectionsFounded.cs" />
     <Compile Include="Messages\FlyRemoved.cs" />
-    <Compile Include="Messages\ReservationRemoved.cs" />
-    <Compile Include="Messages\ReservationsFounded.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

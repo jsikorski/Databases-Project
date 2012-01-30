@@ -74,9 +74,14 @@ namespace Common.Infrastucture
                 return "Constraint violated. Cannot complete this operation.";
             }
 
-            if (exception.Message.StartsWith("ORA-01031"))
+            if (exception.Message.StartsWith("ORA-01031") || exception.Message.StartsWith("ORA-00942"))
             {
                 return "You don't have sufficient privileges to complete this operation.";
+            }
+
+            if (exception.Message.StartsWith("ORA-02290"))
+            {
+                return "Cannot execute this operation. Refresh Your view and try again.";
             }
 
             return "Unknown database error occured.";
