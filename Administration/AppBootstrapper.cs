@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Caliburn.Micro;
 using Common;
+using Common.Commands;
 using Connection;
 
 namespace Administration
@@ -37,6 +38,7 @@ namespace Administration
                 .AsImplementedInterfaces().AsSelf().PropertiesAutowired(
                     PropertyWiringFlags.PreserveSetValues);
             containerBuilder.RegisterType<SymbolsProvider>().AsImplementedInterfaces();
+            containerBuilder.RegisterType<RemoveReservation>();
             containerBuilder.RegisterType<ConnectionProvider>().SingleInstance().AsImplementedInterfaces();
             containerBuilder.RegisterType<MainViewModel>().SingleInstance().AsSelf().AsImplementedInterfaces();
             containerBuilder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();

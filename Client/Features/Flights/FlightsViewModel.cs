@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Autofac;
 using Caliburn.Micro;
 using Client.Commands.Cities;
 using Client.Commands.Flights;
@@ -19,7 +18,6 @@ namespace Client.Features.Flights
         private readonly IEventAggregator _eventAggregator;
         private readonly Func<FlightsSearchData, SearchFlights> _searchFlightsFactory;
         private readonly Func<FLY, ShowFlyDetails> _showFlyDetailsFactory;
-        private readonly IContainer _container;
 
         public BindableCollection<FlyViewModel> Flights { get; private set; }
         private FlyViewModel _selectedFly;
@@ -53,13 +51,11 @@ namespace Client.Features.Flights
         public FlightsViewModel(
             IEventAggregator eventAggregator,
             Func<FlightsSearchData, SearchFlights> searchFlightsFactory,
-            Func<FLY, ShowFlyDetails> showFlyDetailsFactory,
-            IContainer container)
+            Func<FLY, ShowFlyDetails> showFlyDetailsFactory)
         {
             _eventAggregator = eventAggregator;
             _searchFlightsFactory = searchFlightsFactory;
             _showFlyDetailsFactory = showFlyDetailsFactory;
-            _container = container;
             DisplayDate = DateTime.Now;
             SelectedDate = DisplayDate;
 

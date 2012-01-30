@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "CONNECTION_AIRPORT_TO_FK", "AIRPORT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.AIRPORT), "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CONNECTION), true)]
 [assembly: EdmRelationshipAttribute("Model", "CITY_COUNTRY_FK", "COUNTRY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.COUNTRY), "CITY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.CITY), true)]
 [assembly: EdmRelationshipAttribute("Model", "FLY_CONNECTION_FK", "CONNECTION", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.CONNECTION), "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.FLY), true)]
-[assembly: EdmRelationshipAttribute("Model", "RESERVATION_FLY_FK", "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Connection.FLY), "RESERVATION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.RESERVATION), true)]
+[assembly: EdmRelationshipAttribute("Model", "RESERVATION_FLY_FK", "FLY", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Connection.FLY), "RESERVATION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Connection.RESERVATION), true)]
 
 #endregion
 
@@ -1247,14 +1247,12 @@ namespace Connection
         /// </summary>
         /// <param name="sYMBOL">Initial value of the SYMBOL property.</param>
         /// <param name="iS_PAID">Initial value of the IS_PAID property.</param>
-        /// <param name="fLY_SYMBOL">Initial value of the FLY_SYMBOL property.</param>
         /// <param name="cLIENT_ID">Initial value of the CLIENT_ID property.</param>
-        public static RESERVATION CreateRESERVATION(global::System.String sYMBOL, global::System.Int16 iS_PAID, global::System.String fLY_SYMBOL, global::System.Decimal cLIENT_ID)
+        public static RESERVATION CreateRESERVATION(global::System.String sYMBOL, global::System.Int16 iS_PAID, global::System.Decimal cLIENT_ID)
         {
             RESERVATION rESERVATION = new RESERVATION();
             rESERVATION.SYMBOL = sYMBOL;
             rESERVATION.IS_PAID = iS_PAID;
-            rESERVATION.FLY_SYMBOL = fLY_SYMBOL;
             rESERVATION.CLIENT_ID = cLIENT_ID;
             return rESERVATION;
         }
@@ -1340,7 +1338,7 @@ namespace Connection
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String FLY_SYMBOL
         {
@@ -1352,7 +1350,7 @@ namespace Connection
             {
                 OnFLY_SYMBOLChanging(value);
                 ReportPropertyChanging("FLY_SYMBOL");
-                _FLY_SYMBOL = StructuralObject.SetValidValue(value, false);
+                _FLY_SYMBOL = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("FLY_SYMBOL");
                 OnFLY_SYMBOLChanged();
             }

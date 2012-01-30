@@ -89,7 +89,7 @@
           <Property Name="SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
           <Property Name="PLACE_SYMBOL" Type="varchar2" MaxLength="5" />
           <Property Name="IS_PAID" Type="number" Nullable="false" Precision="1" />
-          <Property Name="FLY_SYMBOL" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="FLY_SYMBOL" Type="varchar2" MaxLength="50" />
           <Property Name="CLIENT_ID" Type="number" Nullable="false" />
         </EntityType>
         <Association Name="AIRPORT_CITY_FK">
@@ -163,7 +163,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RESERVATION_FLY_FK">
-          <End Role="FLY" Type="Model.Store.FLY" Multiplicity="1" />
+          <End Role="FLY" Type="Model.Store.FLY" Multiplicity="0..1" />
           <End Role="RESERVATION" Type="Model.Store.RESERVATION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FLY">
@@ -273,7 +273,7 @@
           <Property Type="String" Name="SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="PLACE_SYMBOL" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Type="Int16" Name="IS_PAID" Nullable="false" />
-          <Property Type="String" Name="FLY_SYMBOL" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FLY_SYMBOL" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="CLIENT_ID" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="FLY" Relationship="Model.RESERVATION_FLY_FK" FromRole="RESERVATION" ToRole="FLY" />
         </EntityType>
@@ -338,7 +338,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="RESERVATION_FLY_FK">
-          <End Type="Model.FLY" Role="FLY" Multiplicity="1" />
+          <End Type="Model.FLY" Role="FLY" Multiplicity="0..1" />
           <End Type="Model.RESERVATION" Role="RESERVATION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FLY">

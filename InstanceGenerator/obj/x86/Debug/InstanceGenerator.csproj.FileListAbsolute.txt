@@ -12,3 +12,14 @@ C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGe
 C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\InstanceGenerator.pdb
 C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\script.sql
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Connection.dll
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Connection.pdb
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\cities.csv
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Common.dll
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Caliburn.Micro.dll
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\WPFToolkit.Extended.dll
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Common.pdb
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Caliburn.Micro.pdb
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\Caliburn.Micro.xml
+C:\Users\Jakub\Documents\Visual Studio 2010\Projects\DatabasesProject\InstanceGenerator\bin\Debug\System.Windows.Interactivity.xml

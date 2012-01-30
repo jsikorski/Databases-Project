@@ -37,7 +37,7 @@ namespace Administration.Commands.Reservations
                 reservation => reservation.SYMBOL.Contains(_reservationsSearchData.Symbol) &&
                                reservation.PLACE_SYMBOL.Contains(_reservationsSearchData.PlaceSymbol) &&
                                reservation.IS_PAID == isPaidOracle &&
-                               reservation.FLY_SYMBOL.Contains(_reservationsSearchData.FlySymbol));
+                               (reservation.FLY_SYMBOL == null || reservation.FLY_SYMBOL.Contains(_reservationsSearchData.FlySymbol)));
 
             if (_reservationsSearchData.ClientId != null)
             {

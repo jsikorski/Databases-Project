@@ -25,7 +25,7 @@ namespace Client.Commands.Cities
         public void Execute()
         {
             DBConnection dbConnection = _connectionProvider.GetConnection();
-            IQueryable<string> citiesNames = dbConnection.CITY.Select(city => city.NAME);
+            IQueryable<string> citiesNames = dbConnection.CITY.Select(city => city.NAME).OrderBy(cityName => cityName);
             _eventAggregator.Publish(new CitiesNamesFounded(citiesNames.ToList()));
         }
     }

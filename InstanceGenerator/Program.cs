@@ -13,23 +13,27 @@ namespace InstanceGenerator
     {
         static void Main(string[] args)
         {
-            var userInformationGatherer = new UserInformationGatherer();
-            string username = userInformationGatherer.GetUsername();
-            string password = userInformationGatherer.GetUsername();
+            //var userInformationGatherer = new UserInformationGatherer();
+            //string username = userInformationGatherer.GetUsername();
+            //string password = userInformationGatherer.GetUsername();
 
-            string connectionString = string.Format(
-                "Driver={{Microsoft ODBC for Oracle}};" +
-                "Server=localhost: 1521/xe;" +
-                "Uid={0};" +
-                "Pwd={1};",
-                username,
-                password);
+            //string connectionString = string.Format(
+            //    "Driver={{Microsoft ODBC for Oracle}};" +
+            //    "Server=localhost: 1521/xe;" +
+            //    "Uid={0};" +
+            //    "Pwd={1};",
+            //    username,
+            //    password);
 
-            var databaseConnector = new DatabaseConnector(connectionString);
-            var scriptLoader = new ScriptLoader("script.sql");
-            var databaseGenerator = new DatabaseGenerator(databaseConnector, scriptLoader);
+            //var databaseConnector = new DatabaseConnector(connectionString);
+            //var scriptLoader = new ScriptLoader("script.sql");
+            //var databaseGenerator = new DatabaseGenerator(databaseConnector, scriptLoader);
 
-            databaseGenerator.Generate();
+            //databaseGenerator.Generate();
+
+            var generator = new DataGenerator();
+            generator.GenerateData("cities.csv");
+
             Console.ReadKey();
         }
     }

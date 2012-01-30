@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="DatabaseConnector.cs" />
     <Compile Include="DatabaseGenerator.cs" />
+    <Compile Include="DataGenerator.cs" />
     <Compile Include="IDatabaseConnector.cs" />
+    <Compile Include="IDataGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptLoader.cs" />
@@ -56,11 +58,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="cities.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="script.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{AC4BA4C3-5B30-49EE-8FBA-3ECA458061CF}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connection\Connection.csproj">
+      <Project>{DE720842-0F5C-4A99-8765-C9C715DD84AE}</Project>
+      <Name>Connection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

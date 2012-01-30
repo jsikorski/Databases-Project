@@ -30,6 +30,14 @@
             <Label Content="From" />
             <ComboBox ItemsSource="{Binding Airports}"
                       SelectedItem="{Binding SelectedFromAirport, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.Style>
+                    <Style />
+                </ComboBox.Style>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding NAME}" />
@@ -40,6 +48,14 @@
             <Label Content="To" />
             <ComboBox ItemsSource="{Binding Airports}"
                       SelectedItem="{Binding SelectedToAirport, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.Style>
+                    <Style />
+                </ComboBox.Style>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding NAME}" />
